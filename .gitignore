@@ -16,3 +16,10 @@ hs_err_pid*
 \.project
 
 \.settings/
+/nbproject/
+/build/
+
+
+build\.xml
+
+manifest\.mf
