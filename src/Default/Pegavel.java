@@ -17,4 +17,18 @@ public abstract class Pegavel {
     public void setPeso(int peso) {
             this.peso = peso;
     }
+    
+    public boolean compare(String [] nomes, String itemStr){
+        itemStr = itemStr.toLowerCase();
+        for(String nome: nomes){
+            if(nome.equals(itemStr)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean compare(String itemStr){
+        return false;
+    }
 }

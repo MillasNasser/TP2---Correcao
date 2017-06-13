@@ -13,4 +13,9 @@ public class Ouro extends Pegavel {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+    
+    public boolean compare(String itemStr){
+        String[] nomes = {"gold", "ouro"};
+        return super.compare(nomes, itemStr);
+    }
 }

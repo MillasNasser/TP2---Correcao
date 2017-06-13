@@ -17,4 +17,9 @@ public class Machado extends Pegavel {
     public Machado() {
         this.setPeso(1);
     }
+    
+    public boolean compare(String itemStr){
+        String[] nomes = {"axe", "machado"};
+        return super.compare(nomes, itemStr);
+    }
 }

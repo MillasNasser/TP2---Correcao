@@ -12,7 +12,8 @@ public class Jogador {
 
     private Mochila itens;
     private Porta portaPerto = new Porta();
-    private String itemPerto;
+    private Pegavel itemPerto;
+    private Sala salaAtual;
 
     public Porta getPortaPerto() {
         return portaPerto;
@@ -22,11 +23,11 @@ public class Jogador {
         this.portaPerto = portaPerto;
     }
 
-    public String getItemPerto() {
+    public Pegavel getItemPerto() {
         return itemPerto;
     }
 
-    public void setItemPerto(String itemPerto) {
+    public void setItemPerto(Pegavel itemPerto) {
         this.itemPerto = itemPerto;
     }
 
@@ -38,5 +39,36 @@ public class Jogador {
         this.itens = itens;
     }
     
-    //TO-DO: Criar função pra moveTo, drop, usar.
+    public Sala getSalaAtual() {
+        return salaAtual;
+    }
+
+    public void setSalaAtual(Sala salaAtual) {
+        this.salaAtual = salaAtual;
+    }
+    
+    public void pegar(String itemStr){
+        if(this.itemPerto != null){
+            if(this.itemPerto.compare(itemStr)){
+                this.itens.addItem(this.itemPerto);
+            }
+        }
+    }
+    
+    public void largar(String itemStr){
+        this.itens.removeItem(itemStr);
+    }
+    
+    public void mover(Pegavel item){
+        this.itemPerto = item;
+        this.portaPerto = null;
+    }
+    
+    public void mover(Porta porta){
+        this.portaPerto = porta;
+        this.itemPerto = null;
+    }
+    
+    //TO-DO: Criar função pra moveTo, usar.
+
 }

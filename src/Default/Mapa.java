@@ -2,6 +2,7 @@ package Default;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Mapa {
 
@@ -15,6 +16,7 @@ public class Mapa {
         player = new Jogador();
         
         inicializaSalas();
+        espalhaItens();
         inicializaTrolls();
     }
 
@@ -81,29 +83,59 @@ public class Mapa {
         salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "18"));
         salas.add(new Sala("20"));
         salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "15"));
+        
+        for(Sala sala: this.salas){
+            sala.addChave();
+        }
+    }
+    
+    public void espalhaItem(Pegavel item){
+        int max_itens = 5;
+        Random random = new Random();
+        for(int i = 0; i < max_itens; i++){
+            int sala = random.nextInt(salas.size()-1);
+            this.salas.get(sala).addItem(item);
+        }
+    }
+    
+    public void espalhaItens(){
+        this.espalhaItem(new Machado());
+        this.espalhaItem(new Ouro());
+        this.espalhaItem(new Pocao());
     }
 
     public void inicializaTrolls() {
         int quantidade_trolls = 5;//quantidade de trolls que vou inicializar
-        ArrayList<Integer> salasJaEscolhidas = new ArrayList<Integer>();
-        TrollNome trollNome = new TrollNome();
+        Random random = new Random();
         for (int i = 0; i < quantidade_trolls; i++) {
             Troll troll = new Troll();
+            troll.setNome(TrollNome.gerarNome());
+            this.trolls.add(troll);
+            
+            //Escolhendo uma sala aleatória que esteja vazia.
+            int pos;
             boolean conseguiu = false;
-            Integer pos = 0;
             while (!conseguiu) {
-                pos = new Integer(random.nextInt((salas.size() - 2)) + 1);//gera a sala aleatoriamente desde q a sala nao seja a primeira
+                pos = random.nextInt((salas.size() - 2)) + 1;//gera a sala aleatoriamente desde q a sala nao seja a primeira
                 //checar se a sala ja foi escolhida anteriormente
-                if (!salasJaEscolhidas.contains(pos)) {
+                if( !this.salas.get(pos).temTroll() ) {
+                    this.salas.get(pos).addTroll(troll);
                     conseguiu = true;
-                    break;
                 }
 
             }
-            salasJaEscolhidas.add(new Integer(pos));
-            troll.setLocalizacao(salas.get(pos));
-            troll.setNome(trollNome.gerarNome());
-            trolls.add(troll);
         }
+    }
+
+    public List<Sala> getSalas() {
+        return salas;
+    }
+
+    public List<Troll> getTrolls() {
+        return trolls;
+    }
+
+    public Jogador getPlayer() {
+        return player;
     }
 }

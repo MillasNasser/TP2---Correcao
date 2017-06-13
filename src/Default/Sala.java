@@ -1,10 +1,8 @@
 package Default;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- */
 /**
  * @author renan
  *
@@ -12,13 +10,15 @@ import java.util.ArrayList;
 public class Sala {
 
     private String nome;
-    private ArrayList<Porta> portas = new ArrayList<Porta>();
-
-    Sala() {
-    }
+    private List<Porta> portas;
+    private List<Pegavel> itens;
+    private List<Troll> trolls;
 
     Sala(String nome) {
         this.nome = nome;
+        this.portas = new ArrayList<>();
+        this.itens = new ArrayList<>();
+        this.trolls = new ArrayList<>();
     }
 
     public String getNome() {
@@ -29,97 +29,55 @@ public class Sala {
         this.nome = nome;
     }
 
-    public ArrayList<Porta> getPortas() {
+    public List<Porta> getPortas() {
         return portas;
+    }
+    
+    public Porta getPorta(String portaStr){
+        for(Porta porta: this.portas){
+            
+        }
     }
 
     public void setPortas(ArrayList<Porta> portas) {
         this.portas = portas;
     }
-
-    public static Sala getSalabyNome(ArrayList<Sala> salas, String nome) {
-        for (Sala s : salas) {
-            if (s.getNome().equals(nome)) {
-                return s;
+    
+    public void addItem(Pegavel item){
+        this.itens.add(item);
+    }
+    
+    public void removeItem(Pegavel item){
+        this.itens.remove(item);
+    }
+    
+    public void addChave(){
+        for(Porta porta: this.portas){
+            if(porta.getAberta() == false){
+                this.addItem(new Chave());
+                return; //limite de 1 chave para ele ter q escolher uma porta para navegar
             }
         }
-        return null;
+    }
+    
+    public void addTroll(Troll troll){
+        this.trolls.add(troll);
+    }
+    
+    public void removeTroll(Troll troll){
+        this.trolls.remove(troll);
+    }
+    
+    public boolean temTroll(){
+        return this.trolls.size() > 0;
     }
 
     public void imprimeInfoSala() {
         System.out.println("Sala atual: " + this.getNome());
         System.out.println("PORTAS");
         for (Porta porta : this.getPortas()) {
-            System.out.println("Porta " + porta.getIndentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
+            System.out.println("Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
         }
+        //TO-DO: mostrar itens e trolls tbm.
     }
-
-    public ArrayList<Sala> inicializaSalas() {
-        ArrayList<Sala> salas = new ArrayList<Sala>();
-        salas.add(new Sala("01"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "06"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "02"));
-        salas.add(new Sala("02"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "01"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "03"));
-        salas.add(new Sala("03"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "02"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "08"));
-        salas.add(new Sala("04"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "00"));
-        //setar a saida nesta porta
-        salas.get((salas.size() - 1)).getPortas().get((salas.get((salas.size() - 1)).getPortas().size() - 1)).setSaida(true);
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "05"));
-        salas.add(new Sala("05"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "10"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "04"));
-        salas.add(new Sala("06"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "01"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "07"));
-        salas.add(new Sala("07"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "12"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "06"));
-        salas.add(new Sala("08"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "13"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "03"));
-        salas.add(new Sala("09"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "10"));
-        salas.add(new Sala("10"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "09"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "15"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("C", "05"));
-        salas.add(new Sala("11"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "12"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "16"));
-        salas.add(new Sala("12"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "11"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "07"));
-        salas.add(new Sala("13"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "12"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "08"));
-        salas.add(new Sala("14"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "15"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "19"));
-        salas.add(new Sala("15"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "14"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "10"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "20"));
-        salas.add(new Sala("16"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "11"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "17"));
-        salas.add(new Sala("17"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "16"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "17"));
-        salas.add(new Sala("18"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "19"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "17"));
-        salas.add(new Sala("19"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "14"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "18"));
-        salas.add(new Sala("20"));
-        salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "15"));
-
-        return salas;
-    }
-
 }
