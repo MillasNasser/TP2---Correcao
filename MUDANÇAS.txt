@@ -1,0 +1,8 @@
+	* A função public ArrayList<Chave> inicializaChaves(ArrayList<Sala> salas) foi movida para a classe Sala.
+		* Cada sala, se tem algum aporta trancada, terá 1 chave. Se a sala não tem portas trancadas, então não tem chaves.
+	* Funções do tipo getItemDisponivelSala serão movidos para a classe Sala.
+	* Funções para printar os itens da sala serão movidas para a classe Sala.
+
+	* Funções para soltar o Item serão movidas para a classe Jogador.
+
+	* No máximo 5 salas aleatórias tinham machado / ouro.
