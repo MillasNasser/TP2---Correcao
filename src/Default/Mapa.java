@@ -1,61 +1,24 @@
 package Default;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- */
-/**
- * @author renan
- *
- */
-public class Sala {
+public class Mapa {
 
-    private String nome;
-    private ArrayList<Porta> portas = new ArrayList<Porta>();
+    private List<Sala> salas;
+    private List<Troll> trolls;
+    private Jogador player;
 
-    Sala() {
+    public Mapa() {
+        salas = new ArrayList<>();
+        trolls = new ArrayList<>();
+        player = new Jogador();
+        
+        inicializaSalas();
+        inicializaTrolls();
     }
 
-    Sala(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public ArrayList<Porta> getPortas() {
-        return portas;
-    }
-
-    public void setPortas(ArrayList<Porta> portas) {
-        this.portas = portas;
-    }
-
-    public static Sala getSalabyNome(ArrayList<Sala> salas, String nome) {
-        for (Sala s : salas) {
-            if (s.getNome().equals(nome)) {
-                return s;
-            }
-        }
-        return null;
-    }
-
-    public void imprimeInfoSala() {
-        System.out.println("Sala atual: " + this.getNome());
-        System.out.println("PORTAS");
-        for (Porta porta : this.getPortas()) {
-            System.out.println("Porta " + porta.getIndentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
-        }
-    }
-
-    public ArrayList<Sala> inicializaSalas() {
-        ArrayList<Sala> salas = new ArrayList<Sala>();
+    private void inicializaSalas() {
         salas.add(new Sala("01"));
         salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "06"));
         salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "02"));
@@ -118,8 +81,29 @@ public class Sala {
         salas.get((salas.size() - 1)).getPortas().add(new Porta("B", "18"));
         salas.add(new Sala("20"));
         salas.get((salas.size() - 1)).getPortas().add(new Porta("A", "15"));
-
-        return salas;
     }
 
+    public void inicializaTrolls() {
+        int quantidade_trolls = 5;//quantidade de trolls que vou inicializar
+        ArrayList<Integer> salasJaEscolhidas = new ArrayList<Integer>();
+        TrollNome trollNome = new TrollNome();
+        for (int i = 0; i < quantidade_trolls; i++) {
+            Troll troll = new Troll();
+            boolean conseguiu = false;
+            Integer pos = 0;
+            while (!conseguiu) {
+                pos = new Integer(random.nextInt((salas.size() - 2)) + 1);//gera a sala aleatoriamente desde q a sala nao seja a primeira
+                //checar se a sala ja foi escolhida anteriormente
+                if (!salasJaEscolhidas.contains(pos)) {
+                    conseguiu = true;
+                    break;
+                }
+
+            }
+            salasJaEscolhidas.add(new Integer(pos));
+            troll.setLocalizacao(salas.get(pos));
+            troll.setNome(trollNome.gerarNome());
+            trolls.add(troll);
+        }
+    }
 }

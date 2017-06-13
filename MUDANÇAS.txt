@@ -6,3 +6,5 @@
 	* Funções para soltar o Item serão movidas para a classe Jogador.
 
 	* No máximo 5 salas aleatórias tinham machado / ouro.
+
+	* Função movimentaTroll será movida/refeita

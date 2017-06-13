@@ -1,45 +1,42 @@
 package Default;
+
 /**
- * 
+ *
  */
 
 /**
  * @author renan
  *
  */
-public class Jogador extends Localizavel{
-	
-	private Mochila itens;
-	private Porta portaPerto = new Porta();
-	private String itemPerto;
-	
-	
-	
+public class Jogador {
 
-	public Porta getPortaPerto() {
-		return portaPerto;
-	}
+    private Mochila itens;
+    private Porta portaPerto = new Porta();
+    private String itemPerto;
 
-	public void setPortaPerto(Porta portaPerto) {
-		this.portaPerto = portaPerto;
-	}
+    public Porta getPortaPerto() {
+        return portaPerto;
+    }
 
-	public String getItemPerto() {
-		return itemPerto;
-	}
+    public void setPortaPerto(Porta portaPerto) {
+        this.portaPerto = portaPerto;
+    }
 
-	public void setItemPerto(String itemPerto) {
-		this.itemPerto = itemPerto;
-	}
+    public String getItemPerto() {
+        return itemPerto;
+    }
 
-	public Mochila getItens() {
-		return itens;
-	}
+    public void setItemPerto(String itemPerto) {
+        this.itemPerto = itemPerto;
+    }
 
-	public void setItens(Mochila itens) {
-		this.itens = itens;
-	}
-	
-	
-	
+    public Mochila getItens() {
+        return itens;
+    }
+
+    public void setItens(Mochila itens) {
+        this.itens = itens;
+    }
+    
+    //TO-DO: Criar função pra moveTo, drop, usar.
 }
