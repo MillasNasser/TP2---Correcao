@@ -7,7 +7,6 @@ public class Chave extends Pegavel{
 	
     private boolean usada = false;
 
-
     public Chave() {
         this.setPeso(1);
     }
