@@ -8,3 +8,13 @@
 	* No máximo 5 salas aleatórias tinham machado / ouro.
 
 	* Função movimentaTroll será movida/refeita
+
+	* Fez alteração total na estrutura das salas (Salas possuem array de objs e trolls)
+
+	* Criação de funcões inicializadoras
+
+	* Adicionou a classe Console
+		-Simplificou Console
+
+	* Jogador agora contém sua sala atual
+
