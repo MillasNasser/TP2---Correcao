@@ -3,19 +3,23 @@ package Default;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Default.Sala;
+
 public class Porta {
 
     private String identificador;
-    private String nomeSalaSaida;
+   // private String nomeSalaSaida;
+    private Sala salaSaida;
     private boolean aberta;
     private boolean encantada = false; //se for encantada troll nao passa
     private boolean saida = false;
+    Random random = new Random();
 
-    Porta(String indentificador, String nomeSalaSaida) {
+    Porta(String indentificador, Sala nomeSalaSaida) {
 
         this.identificador = indentificador;
-        this.nomeSalaSaida = nomeSalaSaida;
-        this.aberta = random.nextBoolean();
+        this.salaSaida = nomeSalaSaida;
+		this.aberta = random.nextBoolean();
     }
 
     public static Porta getPortaByIdentificador(ArrayList<Porta> portas, String identificador) {
@@ -43,12 +47,12 @@ public class Porta {
         this.identificador = identificador;
     }
 
-    public String getNomeSalaSaida() {
-        return nomeSalaSaida;
+    public Sala getSalaSaida() {
+        return salaSaida;
     }
 
-    public void setNomeSalaSaida(String nomeSalaSaida) {
-        this.nomeSalaSaida = nomeSalaSaida;
+    public void setSalaSaida(Sala salaSaida) {
+        this.salaSaida = salaSaida;
     }
 
     public boolean getAberta() {

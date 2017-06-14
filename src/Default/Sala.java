@@ -3,6 +3,9 @@ package Default;
 import java.util.ArrayList;
 import java.util.List;
 
+import Default.Pegavel;
+import Default.Porta;
+
 /**
  * @author renan
  *
@@ -78,6 +81,16 @@ public class Sala {
         for (Porta porta : this.getPortas()) {
             System.out.println("Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
         }
-        //TO-DO: mostrar itens e trolls tbm.
     }
+        
+     public Pegavel encontraItemSala(String itemStr){
+    	 for(Pegavel item: this.itens){
+    		 if(item.compare(itemStr)){
+    			 return item;
+    		 }
+    	 }
+     }
+     
+     
+        //TO-DO: mostrar itens e trolls tbm.
 }

@@ -2,6 +2,8 @@ package Default;
 
 import java.util.Scanner;
 
+import Default.Mapa;
+
 /**
  *
  * @author paulo
@@ -40,19 +42,18 @@ public class Console {
                 if (comandoSplited.length == 3) {
                     //vai colocar o player perto da porta					
                     if (comandoSplited[2].equals("door")) {
-                        Porta p = Porta.getPortaByIdentificador(this.player.getLocalizacao().getPortas(), comandoSplited[1]);
+                        Porta p = Porta.getPortaByIdentificador(mapa.getPlayer().getSalaAtual().getPortas(), comandoSplited[1]);
                         
                         if (p != null) {
-                            this.player.setPortaPerto(p);
+                        	mapa.getPlayer().mover(p);
                         } else {
-                            this.player.setPortaPerto(null);
+                            mapa.getPlayer().setPortaPerto(null);
                             System.out.println("Nenhuma porta com o identificador solicitado");
                         }
 
                     }
                 } else {
-                    this.player.setPortaPerto(null);
-                    this.player.setItemPerto(comandoSplited[1]);
+                	mapa.getPlayer().mover(comandoSplited[1]);
                 }
                 break;
 

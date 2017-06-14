@@ -59,8 +59,8 @@ public class Jogador {
         this.itens.removeItem(itemStr);
     }
     
-    public void mover(Pegavel item){
-        this.itemPerto = item;
+    public void mover(String itemStr){
+        this.itemPerto = this.salaAtual.encontraItemSala(itemStr);
         this.portaPerto = null;
     }
     
