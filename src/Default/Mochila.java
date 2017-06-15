@@ -41,6 +41,16 @@ public class Mochila {
             }
         }
     }
+    
+    public Pegavel compare(String itemStr){
+    	itemStr = itemStr.toLowerCase();
+    	for(Pegavel item: this.itens){
+    		if(item.compare(itemStr)){
+    			return item;
+    		}
+    	}
+    	return null;
+    }
 
     public void imprimeItens() {
         //TO-DO: printar os itens aqui.

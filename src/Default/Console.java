@@ -14,7 +14,7 @@ public class Console {
         System.out.print("Player> ");
         Scanner scanner = new Scanner(System.in);
         String comando = scanner.nextLine().replaceAll("\n", "").toLowerCase();
-        //split do comando pelo espaço
+        //split do comando pelo espaÃ§o
         String[] comandoSplited = comando.split(" ");
         switch (comandoSplited[0]) {
             case "view":
@@ -47,6 +47,7 @@ public class Console {
                         if (p != null) {
                         	mapa.getPlayer().mover(p);
                         } else {
+                        	//TO-DO: mover esse else para dentro da função mover quando for tratar erros
                             mapa.getPlayer().setPortaPerto(null);
                             System.out.println("Nenhuma porta com o identificador solicitado");
                         }
@@ -72,7 +73,7 @@ public class Console {
                             }
                         }
                     } else {
-                        System.out.println("Troll especificado não foi encontrado");
+                        System.out.println("Troll especificado nÃ£o foi encontrado");
                     }
                 }
                 break;
@@ -88,10 +89,10 @@ public class Console {
                             }
                         }
                         if (zerou) {
-                            System.out.println("VOCÊ VENCEU!");
+                            System.out.println("VOCÃŠ VENCEU!");
                             return false;
                         } else {
-                            System.out.println("Você não coletou todo o ouro disponível.");
+                            System.out.println("VocÃª nÃ£o coletou todo o ouro disponÃ­vel.");
                         }
 
                         break;
@@ -104,13 +105,13 @@ public class Console {
                                 //movimentar trolls
                                 for (Troll troll : this.trolls) {
                                     troll.movimentaTroll(this.salas);
-                                    //verifica se a saida do troll é a sala do cara
+                                    //verifica se a saida do troll Ã© a sala do cara
                                     if (troll.isVivo() && troll.getLocalizacao() == this.player.getLocalizacao()) {
                                         //verificar se tem machado solto na sala
                                         for (Machado machado : this.machados) {
                                             if (!machado.isPegado() && !machado.isUtilizado() && machado.getLocalizacao() == this.player.getLocalizacao()) {
                                                 //tem machado troll vai atacar
-                                                System.out.println("Troll de nome " + troll.getNome() + " atacou você com um machado");
+                                                System.out.println("Troll de nome " + troll.getNome() + " atacou vocÃª com um machado");
                                                 boolean temPocao = false;
                                                 for (Pocao pocao : this.player.getItens().getPocoes()) {
                                                     if (pocao.isPegado() && !pocao.isUtilizado()) {
@@ -120,10 +121,10 @@ public class Console {
                                                     }
                                                 }
                                                 if (temPocao) {
-                                                    System.out.println("Você usou uma poção para sobreviver!");
+                                                    System.out.println("VocÃª usou uma poÃ§Ã£o para sobreviver!");
                                                 } else {
-                                                    System.out.println("Você não possui poções.");
-                                                    System.out.println("Você morreu!");
+                                                    System.out.println("VocÃª nÃ£o possui poÃ§Ãµes.");
+                                                    System.out.println("VocÃª morreu!");
                                                     return false;
                                                 }
 
@@ -144,13 +145,13 @@ public class Console {
                                     //movimentar trolls
                                     for (Troll troll : this.trolls) {
                                         troll.movimentaTroll(this.salas);
-                                        //verifica se a saida do troll é a sala do cara
+                                        //verifica se a saida do troll Ã© a sala do cara
                                         if (troll.getLocalizacao() == this.player.getLocalizacao()) {
                                             //verificar se tem machado solto na sala
                                             for (Machado machado : this.machados) {
                                                 if (!machado.isPegado() && !machado.isUtilizado() && machado.getLocalizacao() == this.player.getLocalizacao()) {
                                                     //tem machado troll vai atacar
-                                                    System.out.println("Troll de nome " + troll.getNome() + " atacou você com um machado");
+                                                    System.out.println("Troll de nome " + troll.getNome() + " atacou vocÃª com um machado");
                                                     boolean temPocao = false;
                                                     for (Pocao pocao : this.player.getItens().getPocoes()) {
                                                         if (pocao.isPegado() && !pocao.isUtilizado()) {
@@ -160,10 +161,10 @@ public class Console {
                                                         }
                                                     }
                                                     if (temPocao) {
-                                                        System.out.println("Você usou uma poção para sobreviver!");
+                                                        System.out.println("VocÃª usou uma poÃ§Ã£o para sobreviver!");
                                                     } else {
-                                                        System.out.println("Você não possui poções.");
-                                                        System.out.println("Você morreu!");
+                                                        System.out.println("VocÃª nÃ£o possui poÃ§Ãµes.");
+                                                        System.out.println("VocÃª morreu!");
                                                         return false;
                                                     }
 
@@ -173,17 +174,17 @@ public class Console {
                                         }
                                     }
                                 } else {
-                                    System.out.println("A porta está fechada e você não possui chaves para usar");
+                                    System.out.println("A porta estÃ¡ fechada e vocÃª nÃ£o possui chaves para usar");
                                 }
                             }
 
                         } else {
-                            System.out.println("Jogador está longe das portas");
+                            System.out.println("Jogador estÃ¡ longe das portas");
                         }
                     }
                     this.player.setPortaPerto(null);
                 } else {
-                    System.out.println("Jogador está longe das portas");
+                    System.out.println("Jogador estÃ¡ longe das portas");
                 }
                 break;
             case "restart":

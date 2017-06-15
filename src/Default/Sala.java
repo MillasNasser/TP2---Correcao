@@ -31,8 +31,28 @@ public class Sala {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    public List<Pegavel> getItens() {
+		return itens;
+	}
 
-    public List<Porta> getPortas() {
+	public void setItens(List<Pegavel> itens) {
+		this.itens = itens;
+	}
+
+	public List<Troll> getTrolls() {
+		return trolls;
+	}
+
+	public void setTrolls(List<Troll> trolls) {
+		this.trolls = trolls;
+	}
+
+	public void setPortas(List<Porta> portas) {
+		this.portas = portas;
+	}
+
+	public List<Porta> getPortas() {
         return portas;
     }
     
@@ -83,12 +103,23 @@ public class Sala {
         }
     }
         
-     public Pegavel encontraItemSala(String itemStr){
+     public Pegavel getItem(String itemStr){
     	 for(Pegavel item: this.itens){
     		 if(item.compare(itemStr)){
     			 return item;
     		 }
     	 }
+    	 return null;
+     }
+     
+     
+     public Troll getTroll(String trollName){
+     	for(Troll troll: this.trolls){
+     		if(troll.getNome().equals(trollName)){
+     			return troll;
+     		}
+     	}
+     	return null;
      }
      
      
