@@ -1,21 +1,14 @@
 package Default;
 
-//tudo que é pegavel é localizavel
+//tudo que Ã© pegavel Ã© localizavel
 public abstract class Pegavel {
     private boolean pegado = false;
-    private int peso = 0;
 
     public boolean isPegado() {
             return pegado;
     }
     public void setPegado(boolean pegado) {
             this.pegado = pegado;
-    }
-    public int getPeso() {
-            return peso;
-    }
-    public void setPeso(int peso) {
-            this.peso = peso;
     }
     
     public boolean compare(String [] nomes, String itemStr){
