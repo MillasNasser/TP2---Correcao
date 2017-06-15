@@ -1,20 +1,37 @@
-	* A funÃ§Ã£o public ArrayList<Chave> inicializaChaves(ArrayList<Sala> salas) foi movida para a classe Sala.
-		* Cada sala, se tem algum aporta trancada, terÃ¡ 1 chave. Se a sala nÃ£o tem portas trancadas, entÃ£o nÃ£o tem chaves.
-	* FunÃ§Ãµes do tipo getItemDisponivelSala serÃ£o movidos para a classe Sala.
-	* FunÃ§Ãµes para printar os itens da sala serÃ£o movidas para a classe Sala.
+	* A função public ArrayList<Chave> inicializaChaves(ArrayList<Sala> salas) foi movida para a classe Sala.
+		* Cada sala, se tem algum aporta trancada, terá 1 chave. Se a sala não tem portas trancadas, então não tem chaves.
+	* Funções do tipo getItemDisponivelSala serão movidos para a classe Sala.
+	* Funções para printar os itens da sala serão movidas para a classe Sala.
 
-	* FunÃ§Ãµes para soltar o Item serÃ£o movidas para a classe Jogador.
+	* Funções para soltar o Item serão movidas para a classe Jogador.
 
-	* No mÃ¡ximo 5 salas aleatÃ³rias tinham machado / ouro.
+	* No máximo 5 salas aleatórias tinham machado / ouro.
 
-	* FunÃ§Ã£o movimentaTroll serÃ¡ movida/refeita
+	* Função movimentaTroll será movida/refeita
 
-	* Fez alteraÃ§Ã£o total na estrutura das salas (Salas possuem array de objs e trolls)
+	* Fez alteração total na estrutura das salas (Salas possuem array de objs e trolls)
 
-	* CriaÃ§Ã£o de funcÃµes inicializadoras
+	* Criação de funções inicializadoras
 
 	* Adicionou a classe Console
 		-Simplificou Console
+		-Consequentemente simplificou classe jogo, sem console e arraylist, apenas mapa
 
-	* Jogador agora contÃ©m sua sala atual
-
+	* Jogador agora contém sua sala atual
+	
+	* Agora a Sala onde a porta está não é mais string
+	 
+	* Criou ArrayItem e Trolls para sala
+		-e suas funções consequentes
+	
+	* Em jogador criada a função pegar, compara o comando digitado com possiveis
+	  comandos que realizariam a mesma ação.
+	
+	* Criada função compara itens em Pegavel para comparar com posiveis nomes dos itens
+	
+	* String itemPerto em jogador agora é Pegavel
+	
+	* Player tem Sala salaAtual
+	
+	* Tirou Arrrays de cada item em mochila, fazendo apenas um arrayPegavel, ouro deixou de
+	  ser int e passou a ser objeto 
