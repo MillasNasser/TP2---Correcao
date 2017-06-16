@@ -5,5 +5,7 @@ public abstract class Pegavel {
     
     abstract public boolean compare(String itemStr);
     
-    abstract public void usar() throws ItemException;   
+    public void usar() throws ItemException{
+        throw new ItemException("Não passou argumentos!");
+    }
 }

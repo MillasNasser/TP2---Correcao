@@ -26,9 +26,4 @@ public class Pocao extends Pegavel {
             throw new ItemException("Porta já está trancada");
         }
     }
-
-    @Override
-    public void usar() throws ItemException {
-        throw new ItemException("Não passou argumentos!"); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -6,10 +6,10 @@ public class Machado extends Pegavel {
     
     public boolean compare(String itemStr){
         String[] nomes = {"axe", "machado"};
-        return super.compare(nomes, itemStr);
+        return Util.compare(nomes, itemStr);
     }
 
-    public void usar() {
+    public void usar(Troll troll) {
         //TO-DO:
     }
 

@@ -21,7 +21,11 @@ public class Chave extends Pegavel{
     }
 
     
-    public void usar() {
-        //TO-DO:
+    public void usar(Porta porta) throws ItemException {
+        if(porta.getAberta() == false){
+            porta.setAberta(true);
+            return;
+        }
+        throw new ItemException("Porta não está trancada.");
     }
 }
