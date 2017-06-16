@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Default.Sala;
+import java.util.List;
 
 public class Porta {
 
@@ -22,7 +23,7 @@ public class Porta {
 		this.aberta = random.nextBoolean();
     }
 
-    public static Porta getPortaByIdentificador(ArrayList<Porta> portas, String identificador) {
+    public static Porta getPortaByIdentificador(List<Porta> portas, String identificador) {
         for (Porta porta : portas) {
             if (porta.getIdentificador().equals(identificador)) {
                 return porta;

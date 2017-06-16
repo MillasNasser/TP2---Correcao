@@ -3,6 +3,7 @@ package Default;
 import java.util.Scanner;
 
 import Default.Mapa;
+import java.time.Clock;
 
 /**
  *
@@ -38,9 +39,9 @@ public class Console {
                 }
                 break;
             case "moveto":
-                //andar com o player
-                //vai colocar o player perto da porta			
+                //andar com o player	
 		if (comandoSplited.length == 3 && comandoSplited[2].equals("door")) {
+		    //Vai colocar o player perto da porta
 		    Porta p = Porta.getPortaByIdentificador(mapa.getPlayer().getSalaAtual().getPortas(), comandoSplited[1]);
 		    try{
 			mapa.getPlayer().mover(p);
@@ -48,6 +49,7 @@ public class Console {
 			System.out.println(e.getMessage());
 		    }
 		}else{
+		    //Vai colocar o player perto do item
 		    try{
 			mapa.getPlayer().mover(comandoSplited[1]);
 		    }catch(ItemException e){
@@ -56,24 +58,15 @@ public class Console {
 		}
                 break;
 
-            case "throwaxe":
+            case "throwaxe": ///Necessita deletar o troll do jogo
                 //Ataca um troll
-                if (comandoSplited.length == 2) {
-                    //verifica se possui machado
-                    Troll troll = Troll.getTrollByNome(this.trolls, comandoSplited[1]);
-                    if (troll != null) {
-                        for (Machado machado : this.player.getItens().getMachados()) {
-                            if (machado.isPegado() && !machado.isUtilizado()) {
-                                //taca o machado
-                                machado.setUtilizado(true);
-                                troll.mataTroll();
-                                System.out.println("Troll foi morto");
-                            }
-                        }
-                    } else {
-                        System.out.println("Troll especificado nÃ£o foi encontrado");
-                    }
-                }
+		Troll troll = mapa.getPlayer().getSalaAtual().getTroll(comandoSplited[1]);
+		try{
+		    mapa.getPlayer().usar(troll);
+		    mapa.deleteTroll(troll); ///<---- Não muito POO
+		}catch(ItemException e){
+		    System.out.println(e.getMessage());
+		}
                 break;
             case "exit":
                 if (this.player.getPortaPerto() != null) {

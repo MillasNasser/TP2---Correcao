@@ -85,6 +85,8 @@ public class Jogador {
     		} catch (ItemException ex) {
     			throw ex;
     		}
-    	}
+    	}else{
+	    throw new ItemException("Não há machados na mochila!");
+	}
     }
 }

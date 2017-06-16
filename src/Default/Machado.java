@@ -11,7 +11,7 @@ public class Machado extends Pegavel {
 
     public void usar(Troll troll) throws ItemException {
         if(troll == null){
-        	throw new ItemException("Troll já está morto");
+        	throw new ItemException("Não há trolls com esse nome");
         }
     }
 }
