@@ -16,6 +16,12 @@ public class Porta {
     private boolean saida = false;
     Random random = new Random();
 
+    Porta(){
+	this.identificador = "Entrada";
+	this.salaSaida = null;
+	this.aberta = false;
+	this.encantada = true;
+    }
     Porta(String indentificador, Sala nomeSalaSaida) {
 
         this.identificador = indentificador;
