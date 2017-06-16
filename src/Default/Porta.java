@@ -38,6 +38,10 @@ public class Porta {
     public void setEncantada(boolean encantada) {
         this.encantada = encantada;
     }
+    
+    public boolean getEncantada() {
+        return this.encantada;
+    }
 
     public String getIdentificador() {
         return identificador;

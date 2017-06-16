@@ -1,6 +1,7 @@
 package Default;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Mochila {
@@ -53,6 +54,8 @@ public class Mochila {
     }
 
     public void imprimeItens() {
-        //TO-DO: printar os itens aqui.
+        for (Pegavel item : itens) {
+	    System.out.println(item.getClass().toString());
+	}
     }
 }

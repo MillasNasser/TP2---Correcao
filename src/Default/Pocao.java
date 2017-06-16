@@ -20,15 +20,10 @@ public class Pocao extends Pegavel {
     }
     
     public void usar(Porta porta) throws ItemException{
-        if(porta.getAberta()){
-            porta.setAberta(false);
+        if(!porta.getEncantada()){
+            porta.setEncantada(true);
         }else{
             throw new ItemException("Porta já está trancada");
         }
-    }
-
-    @Override
-    public void usar() throws ItemException {
-        throw new ItemException("Não passou argumentos!"); //To change body of generated methods, choose Tools | Templates.
     }
 }
