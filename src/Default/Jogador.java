@@ -66,4 +66,21 @@ public class Jogador {
             throw e;
         }
     }
+    
+    public void sair() throws AproximavelException{
+        if(this.perto instanceof Porta){
+            Porta porta = (Porta)this.perto;
+            if(porta.getAberta() == false){
+                try{
+                    Pegavel chave = this.itens.getItem("key");
+                    this.itens.removeItem(chave);
+                }catch(ItemException ie){
+                    throw ie;
+                }
+            }
+            this.salaAtual = porta.getSalaSaida();
+        }else{
+            throw new AproximavelException("Jogador está longe das portas.");
+        }
+    }
 }

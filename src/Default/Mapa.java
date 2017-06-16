@@ -128,14 +128,6 @@ public class Mapa {
     public List<Sala> getSalas() {
         return salas;
     }
-
-    public List<Troll> getTrolls() {
-        return trolls;
-    }
-
-    public void deleteTroll(Troll troll){
-	this.trolls.remove(troll);
-    }
     
     public Jogador getPlayer() {
         return player;
