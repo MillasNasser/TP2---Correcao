@@ -10,17 +10,8 @@ public class Machado extends Pegavel {
     }
 
     public void usar(Troll troll) throws ItemException {
-        if(troll != null){
-        	troll.mataTroll();
-        }else{
+        if(troll == null){
         	throw new ItemException("Troll já está morto");
         }
     }
-
-	@Override
-	public void usar() throws ItemException {
-		throw new ItemException("Não passou argumentos!");
-		
-	}
-
 }
