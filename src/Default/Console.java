@@ -10,7 +10,7 @@ import Default.Mapa;
  */
 public class Console {
 
-    public static boolean console(Mapa mapa) {
+    public static boolean console(Mapa mapa) throws ItemException {
         System.out.print("Player> ");
         Scanner scanner = new Scanner(System.in);
         String comando = scanner.nextLine().replaceAll("\n", "").toLowerCase();
@@ -39,23 +39,21 @@ public class Console {
                 break;
             case "moveto":
                 //andar com o player
-                if (comandoSplited.length == 3) {
-                    //vai colocar o player perto da porta					
-                    if (comandoSplited[2].equals("door")) {
-                        Porta p = Porta.getPortaByIdentificador(mapa.getPlayer().getSalaAtual().getPortas(), comandoSplited[1]);
-                        
-                        if (p != null) {
-                        	mapa.getPlayer().mover(p);
-                        } else {
-                        	//TO-DO: mover esse else para dentro da função mover quando for tratar erros
-                            mapa.getPlayer().setPortaPerto(null);
-                            System.out.println("Nenhuma porta com o identificador solicitado");
-                        }
-
-                    }
-                } else {
-                	mapa.getPlayer().mover(comandoSplited[1]);
-                }
+                //vai colocar o player perto da porta			
+		if (comandoSplited.length == 3 && comandoSplited[2].equals("door")) {
+		    Porta p = Porta.getPortaByIdentificador(mapa.getPlayer().getSalaAtual().getPortas(), comandoSplited[1]);
+		    try{
+			mapa.getPlayer().mover(p);
+		    }catch(ItemException e){
+			System.out.println(e.getMessage());
+		    }
+		}else{
+		    try{
+			mapa.getPlayer().mover(comandoSplited[1]);
+		    }catch(ItemException e){
+			System.out.println(e.getMessage());
+		    }
+		}
                 break;
 
             case "throwaxe":

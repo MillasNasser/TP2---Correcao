@@ -59,14 +59,22 @@ public class Jogador {
         this.itens.removeItem(itemStr);
     }
     
-    public void mover(String itemStr){
-        this.itemPerto = this.salaAtual.getItem(itemStr);
-        this.portaPerto = null;
+    public void mover(String itemStr) throws ItemException{
+	this.itemPerto = this.salaAtual.getItem(itemStr);
+	if(this.itemPerto != null){
+	    this.portaPerto = null;
+	}else{
+	    throw new ItemException("Nenhum item por perto");
+	}
     }
     
-    public void mover(Porta porta){
-        this.portaPerto = porta;
-        this.itemPerto = null;
+    public void mover(Porta porta) throws ItemException{
+	if(porta != null){
+	    this.portaPerto = porta;
+	    this.itemPerto = null;
+	}else{
+	    throw new ItemException("Nenhuma porta com o identificador solicitado");
+	}
     }
     
     public void usar(Troll troll) throws ItemException{
