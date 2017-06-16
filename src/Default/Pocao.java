@@ -1,5 +1,6 @@
 package Default;
 
+import Exceptions.ItemException;
 import java.util.ArrayList;
 
 public class Pocao extends Pegavel {

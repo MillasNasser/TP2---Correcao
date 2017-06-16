@@ -1,8 +1,8 @@
 package Default;
 
-/**
- *
- */
+import Exceptions.AproximavelException;
+import Exceptions.ItemException;
+import Exceptions.PersonagemException;
 
 /**
  * @author renan
@@ -11,24 +11,15 @@ package Default;
 public class Jogador {
 
     private Mochila itens;
-    private Porta portaPerto = new Porta();
-    private Pegavel itemPerto;
     private Sala salaAtual;
-
-    public Porta getPortaPerto() {
-        return portaPerto;
+    private Aproximavel perto;
+    
+    public Aproximavel getPerto(){
+        return this.perto;
     }
-
-    public void setPortaPerto(Porta portaPerto) {
-        this.portaPerto = portaPerto;
-    }
-
-    public Pegavel getItemPerto() {
-        return itemPerto;
-    }
-
-    public void setItemPerto(Pegavel itemPerto) {
-        this.itemPerto = itemPerto;
+    
+    public void setPerto(Aproximavel perto){
+        this.perto = perto;
     }
 
     public Mochila getItens() {
@@ -47,46 +38,32 @@ public class Jogador {
         this.salaAtual = salaAtual;
     }
     
-    public void pegar(String itemStr){
-        if(this.itemPerto != null){
-            if(this.itemPerto.compare(itemStr)){
-                this.itens.addItem(this.itemPerto);
+    public void pegar(String itemStr) throws ItemException{
+        if(this.perto instanceof Pegavel){
+            if(this.perto.compare(itemStr)){
+                this.itens.addItem((Pegavel)this.perto);
+                return;
             }
+            throw new ItemException("Você não está perto de " + itemStr + ".");
         }
+        throw new ItemException("Você não está perto de nenhum item.");
     }
     
     public void largar(String itemStr){
         this.itens.removeItem(itemStr);
     }
     
-    public void mover(String itemStr) throws ItemException{
-	this.itemPerto = this.salaAtual.getItem(itemStr);
-	if(this.itemPerto != null){
-	    this.portaPerto = null;
-	}else{
-	    throw new ItemException("Nenhum item por perto");
-	}
+    public void mover(Aproximavel aproximavel) throws AproximavelException{
+        this.setPerto(aproximavel);
     }
     
-    public void mover(Porta porta) throws ItemException{
-	if(porta != null){
-	    this.portaPerto = porta;
-	    this.itemPerto = null;
-	}else{
-	    throw new ItemException("Nenhuma porta com o identificador solicitado");
-	}
-    }
-    
-    public void usar(Troll troll) throws ItemException{
-    	Pegavel machado = this.itens.getItem("axe");
-    	if(machado != null){
-    		try{
-    			((Machado)machado).usar(troll);
-    		} catch (ItemException ex) {
-    			throw ex;
-    		}
-    	}else{
-	    throw new ItemException("Não há machados na mochila!");
-	}
+    public void throwAxe(Troll troll) throws ItemException{
+        try{
+            Pegavel machado = this.itens.getItem("axe");
+            ((Machado)machado).usar(troll);
+            this.salaAtual.removeTroll(troll);
+        }catch(ItemException e){
+            throw e;
+        }
     }
 }

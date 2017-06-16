@@ -1,11 +1,13 @@
 package Default;
 
 //tudo que é pegavel é localizavel
-public abstract class Pegavel {
+
+import Exceptions.ItemException;
+import Exceptions.PersonagemException;
+
+public abstract class Pegavel extends Aproximavel{
     
-    abstract public boolean compare(String itemStr);
-    
-    public void usar() throws ItemException{
-        throw new ItemException("Não passou argumentos!");
+    public void usar() throws Exception{
+        throw new Exception("Não passou argumentos!");
     }
 }

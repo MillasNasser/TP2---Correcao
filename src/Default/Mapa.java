@@ -7,12 +7,10 @@ import java.util.Random;
 public class Mapa {
 
     private List<Sala> salas;
-    private List<Troll> trolls;
     private Jogador player;
 
     public Mapa() {
         salas = new ArrayList<>();
-        trolls = new ArrayList<>();
         player = new Jogador();
         
         inicializaSalas();

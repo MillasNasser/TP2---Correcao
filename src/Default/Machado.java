@@ -1,5 +1,7 @@
 package Default;
 
+import Exceptions.ItemException;
+import Exceptions.PersonagemException;
 import java.util.ArrayList;
 
 public class Machado extends Pegavel {
@@ -9,9 +11,7 @@ public class Machado extends Pegavel {
         return Util.compare(nomes, itemStr);
     }
 
-    public void usar(Troll troll) throws ItemException {
-        if(troll == null){
-        	throw new ItemException("Não há trolls com esse nome");
-        }
+    public void usar(Troll troll) {
+        
     }
 }

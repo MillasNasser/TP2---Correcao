@@ -1,14 +1,15 @@
 package Default;
 
+import Exceptions.ItemException;
 import java.util.Scanner;
 
 import Default.Mapa;
+import Exceptions.AproximavelException;
+import Exceptions.PersonagemException;
 import java.time.Clock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author paulo
- */
 public class Console {
 
     public static boolean console(Mapa mapa) throws ItemException {
@@ -40,33 +41,34 @@ public class Console {
                 break;
             case "moveto":
                 //andar com o player	
-		if (comandoSplited.length == 3 && comandoSplited[2].equals("door")) {
-		    //Vai colocar o player perto da porta
-		    Porta p = Porta.getPortaByIdentificador(mapa.getPlayer().getSalaAtual().getPortas(), comandoSplited[1]);
-		    try{
-			mapa.getPlayer().mover(p);
-		    }catch(ItemException e){
-			System.out.println(e.getMessage());
-		    }
-		}else{
-		    //Vai colocar o player perto do item
-		    try{
-			mapa.getPlayer().mover(comandoSplited[1]);
-		    }catch(ItemException e){
-			System.out.println(e.getMessage());
-		    }
-		}
+                if (comandoSplited.length == 3 && comandoSplited[2].equals("door")) {
+                    //Vai colocar o player perto da porta
+                    try {
+                        Aproximavel porta = mapa.getPlayer().getSalaAtual().getPorta(comandoSplited[1]);
+                        mapa.getPlayer().mover(porta);
+                    } catch (AproximavelException e) {
+                        System.out.println(e.getMessage());
+                    }
+                } else {
+                    //Vai colocar o player perto do item
+                    try {
+                        Aproximavel item = mapa.getPlayer().getSalaAtual().getItem(comandoSplited[1]);
+                        mapa.getPlayer().mover(item);
+                    } catch (AproximavelException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
                 break;
 
             case "throwaxe": ///Necessita deletar o troll do jogo
                 //Ataca um troll
-		Troll troll = mapa.getPlayer().getSalaAtual().getTroll(comandoSplited[1]);
-		try{
-		    mapa.getPlayer().usar(troll);
-		    mapa.deleteTroll(troll); ///<---- Não muito POO
-		}catch(ItemException e){
-		    System.out.println(e.getMessage());
-		}
+                Troll troll;
+                try {
+                    troll = mapa.getPlayer().getSalaAtual().getTroll(comandoSplited[1]);
+                    mapa.getPlayer().throwAxe(troll);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
                 break;
             case "exit":
                 if (this.player.getPortaPerto() != null) {
