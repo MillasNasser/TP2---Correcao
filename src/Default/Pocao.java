@@ -16,7 +16,7 @@ public class Pocao extends Pegavel {
     
     public boolean compare(String itemStr){
         String[] nomes = {"poção", "pocao", "potion"};
-        return super.compare(nomes, itemStr);
+        return Util.compare(nomes, itemStr);
     }
 
     public void usar() {

@@ -16,7 +16,7 @@ public class Ouro extends Pegavel {
     
     public boolean compare(String itemStr){
         String[] nomes = {"gold", "ouro"};
-        return super.compare(nomes, itemStr);
+        return Util.compare(nomes, itemStr);
     }
     
     public void usar() throws ItemException{

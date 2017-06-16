@@ -17,7 +17,7 @@ public class Chave extends Pegavel{
     
     public boolean compare(String itemStr){
         String[] nomes = {"chave", "key"};
-        return super.compare(nomes, itemStr);
+        return Util.compare(nomes, itemStr);
     }
 
     
