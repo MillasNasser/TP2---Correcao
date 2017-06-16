@@ -72,19 +72,16 @@ public class Jogador {
     public void usar(Pegavel item, String trollName){
     	Troll troll = new Troll();
     	if(this.itens.compare("axe") != null){
-    		troll = salaAtual.getTroll(trollName);
-    		if(troll != null){
-    			this.itens.removeItem(item);
-    			salaAtual.removeTroll(troll);
-    		}else{//troll não encontrado
-    			//TO-DO : exceções
-    		}
+            troll = salaAtual.getTroll(trollName);
+            if(troll != null){
+                this.itens.removeItem(item);
+                salaAtual.removeTroll(troll);
+            }else{//troll não encontrado
+                //TO-DO : exceções
+            }
     	}else{//player não tem o item
-    		//TO-DO : exceções
+            //TO-DO : exceções
     	}
     	
     }
-    //TO-DO: Criar funÃ§Ã£o pra moveTo, usar.
-    
-
 }

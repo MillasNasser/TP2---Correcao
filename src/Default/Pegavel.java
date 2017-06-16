@@ -2,14 +2,6 @@ package Default;
 
 //tudo que Ã© pegavel Ã© localizavel
 public abstract class Pegavel {
-    private boolean pegado = false;
-
-    public boolean isPegado() {
-            return pegado;
-    }
-    public void setPegado(boolean pegado) {
-            this.pegado = pegado;
-    }
     
     public boolean compare(String [] nomes, String itemStr){
         itemStr = itemStr.toLowerCase();
@@ -21,7 +13,5 @@ public abstract class Pegavel {
         return false;
     }
     
-    public boolean compare(String itemStr){
-        return false;
-    }
+    abstract public boolean compare(String itemStr);
 }
