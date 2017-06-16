@@ -19,4 +19,9 @@ public class Chave extends Pegavel{
         String[] nomes = {"chave", "key"};
         return super.compare(nomes, itemStr);
     }
+
+    
+    public void usar() {
+        //TO-DO:
+    }
 }

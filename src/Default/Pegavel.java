@@ -1,6 +1,6 @@
 package Default;
 
-//tudo que Ã© pegavel Ã© localizavel
+//tudo que é pegavel é localizavel
 public abstract class Pegavel {
     
     public boolean compare(String [] nomes, String itemStr){
@@ -14,4 +14,6 @@ public abstract class Pegavel {
     }
     
     abstract public boolean compare(String itemStr);
+    
+    abstract public void usar() throws ItemException;   
 }

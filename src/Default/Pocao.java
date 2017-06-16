@@ -18,4 +18,8 @@ public class Pocao extends Pegavel {
         String[] nomes = {"poção", "pocao", "potion"};
         return super.compare(nomes, itemStr);
     }
+
+    public void usar() {
+        //TO-DO:
+    }
 }

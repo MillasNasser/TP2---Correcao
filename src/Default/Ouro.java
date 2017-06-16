@@ -18,4 +18,8 @@ public class Ouro extends Pegavel {
         String[] nomes = {"gold", "ouro"};
         return super.compare(nomes, itemStr);
     }
+    
+    public void usar() throws ItemException{
+        throw new ItemException("ouro não é usavel.");
+    }
 }

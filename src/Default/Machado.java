@@ -9,4 +9,8 @@ public class Machado extends Pegavel {
         return super.compare(nomes, itemStr);
     }
 
+    public void usar() {
+        //TO-DO:
+    }
+
 }
