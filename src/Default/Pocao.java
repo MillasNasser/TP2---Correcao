@@ -18,8 +18,17 @@ public class Pocao extends Pegavel {
         String[] nomes = {"poção", "pocao", "potion"};
         return Util.compare(nomes, itemStr);
     }
+    
+    public void usar(Porta porta) throws ItemException{
+        if(porta.getAberta()){
+            porta.setAberta(false);
+        }else{
+            throw new ItemException("Porta já está trancada");
+        }
+    }
 
-    public void usar() {
-        //TO-DO:
+    @Override
+    public void usar() throws ItemException {
+        throw new ItemException("Não passou argumentos!"); //To change body of generated methods, choose Tools | Templates.
     }
 }
