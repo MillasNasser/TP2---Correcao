@@ -42,7 +42,7 @@ public class Mochila {
         }
     }
     
-    public Pegavel compare(String itemStr){
+    public Pegavel getItem(String itemStr){
     	itemStr = itemStr.toLowerCase();
     	for(Pegavel item: this.itens){
     		if(item.compare(itemStr)){
