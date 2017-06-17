@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class Ouro extends Pegavel {
 
     private int quantidade;
+    
+    public Ouro(int quantidade){
+        this.quantidade = quantidade;
+    }
 
     public int getQuantidade() {
         return quantidade;

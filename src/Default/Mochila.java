@@ -20,6 +20,14 @@ public class Mochila {
         this.capacidade = capacidade;
     }
 
+    public Ouro getOuro() {
+        return ouro;
+    }
+
+    public void setOuro(Ouro ouro) {
+        this.ouro = ouro;
+    }
+
     public void addItem(Pegavel item) {
         if (item instanceof Ouro) {
             int quantidade = this.ouro.getQuantidade();

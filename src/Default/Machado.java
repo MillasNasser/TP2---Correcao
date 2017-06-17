@@ -14,4 +14,18 @@ public class Machado extends Pegavel {
     public void usar(Troll troll) {
         
     }
+    
+    public void usar(Jogador player) throws PersonagemException{
+        try{
+            Pegavel pocao = player.getItem("potion");
+            player.getItens().removeItem(pocao);
+        }catch(ItemException ie){
+            try{
+                Pegavel ouro = player.getItem("gold");
+                player.zerarOuro();
+            }catch(ItemException ie2){
+                throw new PersonagemException("Morreu.");
+            }
+        }
+    }
 }

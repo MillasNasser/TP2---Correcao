@@ -30,12 +30,26 @@ public class Jogador {
         this.itens = itens;
     }
     
+    public Pegavel getItem(String strItem) throws ItemException{
+        try{
+            return this.itens.getItem(strItem);
+        }catch(ItemException e){
+            throw e;
+        }
+    }
+    
     public Sala getSalaAtual() {
         return salaAtual;
     }
 
     public void setSalaAtual(Sala salaAtual) {
         this.salaAtual = salaAtual;
+    }
+    
+    public void zerarOuro(){
+        int quantidade = this.itens.getOuro().getQuantidade();
+        this.itens.getOuro().setQuantidade(0);
+        this.salaAtual.addItem(new Ouro(quantidade));
     }
     
     public void pegar(String itemStr) throws ItemException{

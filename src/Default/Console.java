@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class Console {
 
-    public static boolean console(Mapa mapa) throws ItemException {
+    public static boolean console(Mapa mapa) throws PersonagemException {
         System.out.print("Player> ");
         Scanner scanner = new Scanner(System.in);
         String comando = scanner.nextLine().replaceAll("\n", "").toLowerCase();
@@ -30,7 +30,11 @@ public class Console {
             case "pickup":
                 //pegar objetos para a mochila
                 if (comandoSplited.length == 2) {
-                    mapa.getPlayer().pegar(comandoSplited[1]);
+                    try {
+                        mapa.getPlayer().pegar(comandoSplited[1]);
+                    } catch (ItemException ex) {
+                        System.out.println(ex.getMessage());
+                    }
                 }
                 break;
             case "drop":
@@ -76,12 +80,28 @@ public class Console {
                 } catch (AproximavelException ex) {
                     System.out.println(ex.getMessage());
                 }
-                break;
-            case "restart":
-                return true; //reinicia o jogo
+                boolean zerou = true;
+                for(Sala sala : mapa.getSalas()){
+                    if(sala.temTroll()){
+                        for(Troll trl: sala.getTrolls()){
+                            try {
+                                trl.mover(sala, mapa.getPlayer());
+                            } catch (PersonagemException ex) {
+                                System.out.println(ex.getMessage());
+                                throw ex;
+                            }
+                        }
+                    }
+                    try{
+                        sala.getItem("gold");
+                    }catch(ItemException e){
+                        zerou = false;
+                    }
+                }
+                return zerou;
             default:
                 break;
         }
-        return retorno;
+        return false;
     }
 }
