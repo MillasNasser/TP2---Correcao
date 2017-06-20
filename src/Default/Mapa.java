@@ -30,7 +30,7 @@ public class Mapa {
         int max_itens = 5;
         Random random = new Random();
         for(int i = 0; i < max_itens; i++){
-            int sala = random.nextInt(salas.size()-1);
+            int sala = random.nextInt(salas.size());
             this.salas.get(sala).addItem(item);
         }
     }
@@ -53,7 +53,7 @@ public class Mapa {
             int pos;
             boolean conseguiu = false;
             while (!conseguiu) {
-                pos = random.nextInt((salas.size() - 2)) + 1;//gera a sala aleatoriamente desde q a sala nao seja a primeira
+                pos = random.nextInt((salas.size() - 1)) + 1;//gera a sala aleatoriamente desde q a sala nao seja a primeira
                 //checar se a sala ja foi escolhida anteriormente
                 if( !this.salas.get(pos).temTroll() ) {
                     this.salas.get(pos).addTroll(troll);

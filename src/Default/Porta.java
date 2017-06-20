@@ -22,9 +22,9 @@ public class Porta extends Aproximavel{
         this.encantada = true;
     }
     
-    Porta(String indentificador, Sala nomeSalaSaida) {
+    Porta(String indentificador, Sala salaSaida) {
         this.identificador = indentificador.toLowerCase();
-        this.salaSaida = nomeSalaSaida;
+        this.salaSaida = salaSaida;
 		this.aberta = random.nextBoolean();
     }
 

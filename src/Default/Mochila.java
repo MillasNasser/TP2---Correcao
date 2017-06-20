@@ -7,9 +7,12 @@ import java.util.List;
 
 public class Mochila {
 
-    private int capacidade = 5;
+    private int capacidade = 10;
 
-    private List<Pegavel> itens;
+    private List<Pegavel> machados;
+    private List<Pegavel> pocoes;
+    private List<Pegavel> chaves;
+    
     private Ouro ouro;
 
     public int getCapacidade() {
@@ -33,15 +36,35 @@ public class Mochila {
             int quantidade = this.ouro.getQuantidade();
             quantidade += ((Ouro) item).getQuantidade();
             this.ouro.setQuantidade(quantidade);
-        } else {
-            if (this.itens.size() + 1 < this.capacidade) {
-                this.itens.add(item);
+        } else if(item instanceof Machado){
+        	if (this.machados.size() + 1 < 4) {
+                this.machados.add(item);
             }
+        }else if(item instanceof Pocao){
+        	if(this.pocoes.size() + 1 < 3){
+        		this.pocoes.add(item);
+        	}
+        }else if(item instanceof Chave){
+        	if(this.chaves.size() + 1 < 3){
+        		this.chaves.add(item);
+        	}
         }
     }
 
     public void removeItem(Pegavel item) {
-        this.itens.remove(item);
+	    if(item instanceof Machado){
+	    	if (this.machados.size() + 1 < 4) {
+	            this.machados.remove(item);
+	        }
+	    }else if(item instanceof Pocao){
+	    	if(this.pocoes.size() + 1 < 3){
+	    		this.pocoes.remove(item);
+	    	}
+	    }else if(item instanceof Chave){
+	    	if(this.chaves.size() + 1 < 3){
+	    		this.chaves.remove(item);
+	    	}
+	    }
     }
 
     public void removeItem(String itemStr) {

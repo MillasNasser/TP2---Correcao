@@ -61,7 +61,9 @@ public class Sala {
 
     public Porta getPorta(String portaStr) throws AproximavelException {
         for (Porta porta : this.portas) {
-            porta.getIdentificador().toLowerCase().equals(portaStr.toLowerCase());
+            if(porta.getIdentificador().toLowerCase().equals(portaStr.toLowerCase())){
+            	return porta;
+            }
         }
         throw new AproximavelException("Porta " + portaStr + " não encontrada.");
     }
