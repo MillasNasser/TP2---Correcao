@@ -1,0 +1,25 @@
+{
+	"player" : {},
+	"salas" : 
+		[
+			{
+				"nome" : "Sala Teste",
+				"itens" : [],
+				"trolls" : [],
+				"trolls" : [],"portas" : [],
+				"portas" : [
+					{
+						"identificador" : "porta a",
+						"aberta" : false,
+						"encantada" : false,
+						"saida" : false,
+						"salaSaida" :
+							{
+								"nome" : "Sala Saida",
+								"itens" : []
+							}
+					}
+				]
+			}
+		]
+}

@@ -9,10 +9,10 @@ import java.util.List;
 public class Porta extends Aproximavel{
 
     private String identificador;
-    private Sala salaSaida;
     private boolean aberta;
     private boolean encantada = false; //se for encantada troll nao passa
     private boolean saida = false;
+    private Sala salaSaida;
 
     Porta(){
         this.identificador = "entrada";

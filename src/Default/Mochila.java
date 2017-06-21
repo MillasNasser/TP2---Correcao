@@ -68,26 +68,26 @@ public class Mochila {
     }
 
     public void removeItem(String itemStr) {
-        for (int i = 0; i < this.itens.size(); i++) {
+        /*for (int i = 0; i < this.itens.size(); i++) {
             if (this.itens.get(i).compare(itemStr)) {
                 this.itens.remove(i);
             }
-        }
+        }*/
     }
 
     public Pegavel getItem(String itemStr) throws ItemException {
-        itemStr = itemStr.toLowerCase();
+        /*itemStr = itemStr.toLowerCase();
         for (Pegavel item : this.itens) {
             if (item.compare(itemStr)) {
                 return item;
             }
-        }
+        }*/
         throw new ItemException("Não há " + itemStr + "na mochila.");
     }
 
     public void imprimeItens() {
-        for (Pegavel item : itens) {
+        /*for (Pegavel item : itens) {
             System.out.println(item.getClass().toString());
-        }
+        }*/
     }
 }

@@ -6,16 +6,16 @@ import java.util.Random;
 
 public class Mapa {
 
-    private List<Sala> salas;
     private Jogador player;
+    private List<Sala> salas;
 
-    public Mapa() {
+    public Mapa(){
         salas = new ArrayList<>();
         player = new Jogador();
         
-        inicializaSalas();
+        /*inicializaSalas();
         espalhaItens();
-        inicializaTrolls();
+        inicializaTrolls();*/
     }
 
     private void inicializaSalas() {

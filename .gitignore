@@ -23,3 +23,5 @@ hs_err_pid*
 build\.xml
 
 manifest\.mf
+/dist/
+Trabalho 2 - Adventure.pdf

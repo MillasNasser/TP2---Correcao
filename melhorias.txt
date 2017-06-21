@@ -1,0 +1,10 @@
+SALA: 
+	* fazer as salas terem metros quadrados e limitar a quantidade de ouro.
+		- recomendo fazer um atributo largura e um altura e não um só atributo "metrosQuadrados". Quando ele pedir pra fazer a interface grafica acho que vai ficar mais facil usando altura e largura.
+
+MACHADOS: 
+	* implementar os 3 tipos de machado e seus comportamentos (pra troll e jogador).
+		- lembrar que cada tipo de machado tem uma duração diferente.
+
+JOGADOR:
+	* fazer a melhoria da mochila.

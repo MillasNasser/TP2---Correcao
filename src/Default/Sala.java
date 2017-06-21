@@ -16,9 +16,9 @@ import Exceptions.PersonagemException;
 public class Sala {
 
     private String nome;
-    private List<Porta> portas;
     private List<Pegavel> itens;
     private List<Troll> trolls;
+    private List<Porta> portas;
 
     Sala(String nome) {
         this.nome = nome;
