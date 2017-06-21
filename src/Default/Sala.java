@@ -68,16 +68,16 @@ public class Sala {
         throw new AproximavelException("Porta " + portaStr + " não encontrada.");
     }
 
-    public void setPortas(ArrayList<Porta> portas) {
-        this.portas = portas;
-    }
-
     public void addItem(Pegavel item) {
         this.itens.add(item);
     }
 
     public void removeItem(Pegavel item) {
         this.itens.remove(item);
+    }
+    
+    public void addPorta(Porta porta){
+    	this.portas.add(porta);
     }
 
     public void addChave() {

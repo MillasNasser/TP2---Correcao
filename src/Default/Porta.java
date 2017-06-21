@@ -13,7 +13,6 @@ public class Porta extends Aproximavel{
     private boolean aberta;
     private boolean encantada = false; //se for encantada troll nao passa
     private boolean saida = false;
-    Random random = new Random();
 
     Porta(){
         this.identificador = "entrada";
@@ -25,7 +24,6 @@ public class Porta extends Aproximavel{
     Porta(String indentificador, Sala salaSaida) {
         this.identificador = indentificador.toLowerCase();
         this.salaSaida = salaSaida;
-		this.aberta = random.nextBoolean();
     }
 
     public boolean isEncantada() {
