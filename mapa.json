@@ -3,23 +3,40 @@
 	"salas" : 
 		[
 			{
-				"nome" : "Sala Teste",
+				"nome" : "Sala 01",
 				"itens" : [],
 				"trolls" : [],
-				"trolls" : [],"portas" : [],
-				"portas" : [
-					{
-						"identificador" : "porta a",
-						"aberta" : false,
-						"encantada" : false,
-						"saida" : false,
-						"salaSaida" :
-							{
-								"nome" : "Sala Saida",
-								"itens" : []
-							}
-					}
-				]
+				"portas" : 
+					[
+						{
+							"identificador" : "porta a",
+							"aberta" : false,
+							"encantada" : false,
+							"saida" : false,
+							"salaSaida" :
+								{
+									"nome" : "Sala Saida",
+									"itens" : []
+								}
+						}
+					]
+			},
+			{
+				"nome" : "Sala 02",
+				"portas" : 
+					[
+						{
+							"identificador" : "porta d",
+							"aberta" : false,
+							"encantada" : true,
+							"saida" : false,
+							"salaSaida" :
+								{
+									"nome" : "Sala 03",
+									"itens" : []
+								}
+						}
+					]
 			}
 		]
 }
