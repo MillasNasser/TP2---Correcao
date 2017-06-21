@@ -1,42 +1,35 @@
 {
-	"player" : {},
-	"salas" : 
-		[
-			{
-				"nome" : "Sala 01",
-				"itens" : [],
-				"trolls" : [],
-				"portas" : 
-					[
-						{
-							"identificador" : "porta a",
-							"aberta" : false,
-							"encantada" : false,
-							"saida" : false,
-							"salaSaida" :
-								{
-									"nome" : "Sala Saida",
-									"itens" : []
-								}
-						}
-					]
-			},
-			{
-				"nome" : "Sala 02",
-				"portas" : 
-					[
-						{
-							"identificador" : "porta d",
-							"aberta" : false,
-							"encantada" : true,
-							"saida" : false,
-							"salaSaida" :
-								{
-									"nome" : "Sala 03",
-									"itens" : []
-								}
-						}
-					]
-			}
-		]
+	"salas": [
+		{
+			"nome": "Sala 01",
+			"portas": [
+				{
+					"identificador": "Porta A",
+					"aberta": true,
+					"encantada": false,
+					"salaSaida": "Sala 02",
+					"saida": false
+				},
+				{
+					"identificador": "Porta B",
+					"aberta": false,
+					"encantada": true,
+					"salaSaida": "Sala 02",
+					"saida": false
+				}
+			]
+		},
+		{
+			"nome": "Sala 02",
+			"portas": [
+				{
+					"identificador": "Porta D",
+					"aberta": true,
+					"encantada": false,
+					"salaSaida": "Sala 01",
+					"saida": false
+				}
+			]
+		}
+	]
 }

@@ -23,10 +23,10 @@ public class Console {
                 //obtem descricao da sala e seu conteudo
                 //nome da sala e portas				
                 mapa.getPlayer().getSalaAtual().imprimeInfoSala();
-                break;
+                return true;
             case "backpack":
                 mapa.getPlayer().getItens().imprimeItens();
-                break;
+                return true;
             case "pickup":
                 //pegar objetos para a mochila
                 if (comandoSplited.length == 2) {
@@ -36,13 +36,13 @@ public class Console {
                         System.out.println(ex.getMessage());
                     }
                 }
-                break;
+                return true;
             case "drop":
                 //soltar objeto da mochila
                 if (comandoSplited.length == 2) {
                     mapa.getPlayer().largar(comandoSplited[1]);
                 }
-                break;
+                return true;
             case "moveto":
                 //andar com o player	
                 if (comandoSplited.length == 3 && comandoSplited[2].equals("door")) {
@@ -62,8 +62,7 @@ public class Console {
                         System.out.println(e.getMessage());
                     }
                 }
-                break;
-
+                return true;
             case "throwaxe": ///Necessita deletar o troll do jogo
                 //Ataca um troll
                 Troll troll;
@@ -73,7 +72,7 @@ public class Console {
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
-                break;
+                return true;
             case "exit":
                 try {
                     mapa.getPlayer().sair();
@@ -100,8 +99,7 @@ public class Console {
                 }
                 return zerou;
             default:
-                break;
+                return true;
         }
-        return false;
     }
 }
