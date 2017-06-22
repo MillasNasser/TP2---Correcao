@@ -2,10 +2,7 @@ package Default;
 
 import Exceptions.ItemException;
 import Exceptions.PersonagemException;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Troll {
     private String nome;
@@ -13,6 +10,10 @@ public class Troll {
 
     public String getNome() {
         return nome;
+    }
+    
+    public void setMachado(Machado machado){
+	this.machado = machado;
     }
 
     public void setNome(String nome) {
