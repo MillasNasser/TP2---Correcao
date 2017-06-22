@@ -73,8 +73,12 @@ public class Jogador {
     public void throwAxe(Troll troll) throws ItemException{
         try{
             Pegavel machado = this.itens.getItem("axe");
-            ((Machado)machado).usar(troll);
-            this.salaAtual.removeTroll(troll);
+            try{
+		((Machado)machado).usar(troll);
+	    }catch(ItemException ie){
+		System.out.println(ie.getMessage());
+	    }
+	    this.salaAtual.removeTroll(troll);
         }catch(ItemException e){
             throw e;
         }
