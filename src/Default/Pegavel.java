@@ -1,10 +1,6 @@
 package Default;
 
-//tudo que é pegavel é localizavel
-
-import Exceptions.ItemException;
-import Exceptions.PersonagemException;
-
+//tudo que é pegavel é aproximavel
 public abstract class Pegavel extends Aproximavel{
     
     public void usar() throws Exception{

@@ -49,7 +49,6 @@ public class Jogador {
     public void zerarOuro(){
         int quantidade = this.itens.getOuro().getQuantidade();
         this.itens.getOuro().setQuantidade(0);
-        this.salaAtual.addItem(new Ouro(quantidade));
     }
     
     public void pegar(String itemStr) throws ItemException{

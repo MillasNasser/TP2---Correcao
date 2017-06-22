@@ -2,6 +2,7 @@
 	"salas": [
 		{
 			"nome": "Sala 01",
+			"tamanho": 12,
 			"portas": [
 				{
 					"identificador": "Porta A",
@@ -21,6 +22,7 @@
 		},
 		{
 			"nome": "Sala 02",
+			"tamanho": 6,
 			"portas": [
 				{
 					"identificador": "Porta D",

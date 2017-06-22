@@ -3,8 +3,6 @@ package Default;
 import java.util.ArrayList;
 import java.util.List;
 
-import Default.Pegavel;
-import Default.Porta;
 import Exceptions.AproximavelException;
 import Exceptions.ItemException;
 import Exceptions.PersonagemException;
@@ -16,15 +14,17 @@ import Exceptions.PersonagemException;
 public class Sala {
 
     private String nome;
-    private List<Pegavel> itens;
-    private List<Troll> trolls;
-    private List<Porta> portas;
+    private int metrosQuadrados;
+    private List<Pegavel> itens = null;
+    private List<Troll> trolls = null;
+    private List<Porta> portas = null;
 
-    Sala(String nome) {
+    Sala(String nome, int tamanho) {
         this.nome = nome;
         this.portas = new ArrayList<>();
         this.itens = new ArrayList<>();
         this.trolls = new ArrayList<>();
+        this.setMetrosQuadrados(tamanho);
     }
 
     public String getNome() {
@@ -68,7 +68,12 @@ public class Sala {
         throw new AproximavelException("Porta " + portaStr + " não encontrada.");
     }
 
-    public void addItem(Pegavel item) {
+    public void addItem(Pegavel item) throws ItemException {
+        if(item instanceof Ouro){
+            if(this.getQuantidadeOuro() + 1 > this.metrosQuadrados * 10){
+                throw new ItemException("Não cabe mais ouro na sala.");
+            }
+        }
         this.itens.add(item);
     }
 
@@ -83,7 +88,11 @@ public class Sala {
     public void addChave() {
         for (Porta porta : this.portas) {
             if (porta.getAberta() == false) {
-                this.addItem(new Chave());
+                try {
+                    this.addItem(new Chave());
+                } catch (ItemException ex) {
+                    //A função addItem só lançará uma exceção caso o item seja Ouro.
+                }
                 return; //limite de 1 chave para ele ter q escolher uma porta para navegar
             }
         }
@@ -124,6 +133,16 @@ public class Sala {
         }
         throw new ItemException("Não há " + itemStr + " na sala");
     }
+    
+    public int getQuantidadeOuro(){
+        int quantidade = 0;
+        for(Pegavel pegavel: this.itens){
+            if(pegavel instanceof Ouro){
+                quantidade += ((Ouro)pegavel).getQuantidade();
+            }
+        }
+        return quantidade;
+    }
 
     public Troll getTroll(String trollName) throws PersonagemException {
         if(this.temTroll() == false){
@@ -135,5 +154,21 @@ public class Sala {
             }
         }
         throw new PersonagemException("Troll " + trollName + " não está na sala");
+    }
+
+    public int getMetrosQuadrados() {
+        return metrosQuadrados;
+    }
+
+    public void setMetrosQuadrados(int metrosQuadrados) throws IllegalArgumentException {
+        //Checando por erros.
+        if(metrosQuadrados < 1){
+            throw new IllegalArgumentException("Metros Quadrados não pode ser maior que 1.");
+        }
+        if(this.getQuantidadeOuro() > metrosQuadrados * 10){
+            throw new IllegalArgumentException("Metros Quadrados menor que a quantidade atual de ouro.");
+        }
+        
+        this.metrosQuadrados = metrosQuadrados;
     }
 }

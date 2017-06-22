@@ -1,5 +1,6 @@
 package Default;
 
+import Exceptions.ItemException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -36,7 +37,8 @@ public class Mapa {
             JsonObject jsonSala = jsonSalas.get(i).getAsJsonObject();
             
             String nome = jsonSala.get("nome").getAsString();
-            Sala sala = new Sala(nome);
+            int tamanho = jsonSala.get("tamanho").getAsInt();
+            Sala sala = new Sala(nome, tamanho);
             
             this.salas.add(sala);
         }
@@ -73,20 +75,40 @@ public class Mapa {
         }
     }
     
-    public void espalhaItem(Pegavel item){
+    public void espalhaItem(Pegavel item) throws ItemException{
         int max_itens = 5;
         Random random = new Random();
         for(int i = 0; i < max_itens; i++){
             int sala = random.nextInt(salas.size());
-            this.salas.get(sala).addItem(item);
+            try {
+                this.salas.get(sala).addItem(item);
+            } catch (ItemException ex) {
+                throw ex;
+            }
         }
     }
     
     public void espalhaItens(){
-        this.espalhaItem(new Machado());
+        try {
+            this.espalhaItem(new Machado());
+        } catch (ItemException ex) {
+            //A exceção só será lançada em Ouro.
+        }
+        try {
+            this.espalhaItem(new Pocao());
+        } catch (ItemException ex) {
+            //A exceção só será lançada em Ouro.
+        }
+        
         Random random = new Random();
-        this.espalhaItem(new Ouro(random.nextInt(100)));
-        this.espalhaItem(new Pocao());
+        int quantidade = 100;
+        while(quantidade > 0){
+            try {
+                this.espalhaItem(new Ouro(random.nextInt(quantidade)));
+            } catch (ItemException ex) {
+                quantidade -= 10;
+            }
+        }
     }
 
     public void inicializaTrolls() {
