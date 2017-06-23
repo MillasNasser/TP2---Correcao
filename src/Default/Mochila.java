@@ -3,6 +3,8 @@ package Default;
 import Exceptions.ItemException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Mochila {
 
@@ -14,6 +16,13 @@ public class Mochila {
     
     private Ouro ouro;
 
+    public Mochila(){
+	machados = new ArrayList<>();
+	pocoes = new ArrayList<>();
+	chaves = new ArrayList<>();
+	ouro = new Ouro(10);
+    }
+    
     public int getCapacidade() {
         return capacidade;
     }
@@ -90,11 +99,13 @@ public class Mochila {
     }
 
     public void imprimeItens() {
+	System.out.println("Ouro <"+ouro.getQuantidade()+">");
         System.out.println("Poções: "+pocoes.size());
 	System.out.println("Chaves: "+chaves.size());
 	System.out.println("Machados:");
 	for(Pegavel item: this.machados){
-	    System.out.println("-machado de "+((Machado)item).getMaterial());
+	    System.out.println("    -machado de "+((Machado)item).getMaterial()+ 
+			       ": "+((Machado)item).getDurabilidade());
 	}
 	
     }

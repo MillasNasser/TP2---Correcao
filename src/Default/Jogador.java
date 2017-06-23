@@ -14,6 +14,10 @@ public class Jogador {
     private Sala salaAtual;
     private Aproximavel perto;
     
+    public Jogador(){
+	itens = new Mochila();
+    }
+    
     public Aproximavel getPerto(){
         return this.perto;
     }
