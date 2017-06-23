@@ -77,6 +77,7 @@ public class Jogador {
 		((Machado)machado).usar(troll);
 	    }catch(ItemException ie){
 		System.out.println(ie.getMessage());
+		this.itens.removeItem(machado);
 	    }
 	    this.salaAtual.removeTroll(troll);
         }catch(ItemException e){

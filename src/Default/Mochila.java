@@ -2,7 +2,6 @@ package Default;
 
 import Exceptions.ItemException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Mochila {
@@ -50,6 +49,15 @@ public class Mochila {
         	}
         }
     }
+    
+    public void removeItem(String itemStr) {
+	try {	    
+	    Pegavel item = getItem(itemStr);
+	    removeItem(item);
+	} catch (ItemException ex) {
+	    
+	}
+    }
 
     public void removeItem(Pegavel item) {
 	    if(item instanceof Machado){
@@ -67,27 +75,27 @@ public class Mochila {
 	    }
     }
 
-    public void removeItem(String itemStr) {
-        /*for (int i = 0; i < this.itens.size(); i++) {
-            if (this.itens.get(i).compare(itemStr)) {
-                this.itens.remove(i);
-            }
-        }*/
-    }
-
     public Pegavel getItem(String itemStr) throws ItemException {
-        /*itemStr = itemStr.toLowerCase();
-        for (Pegavel item : this.itens) {
+	List<Pegavel> allItens = new ArrayList<Pegavel>();
+	allItens.addAll(pocoes);
+	allItens.addAll(chaves);
+	allItens.addAll(machados);
+	
+	for (Pegavel item : allItens) {
             if (item.compare(itemStr)) {
                 return item;
             }
-        }*/
-        throw new ItemException("Não há " + itemStr + "na mochila.");
+        }
+	throw new ItemException("Não há " + itemStr + "na mochila.");
     }
 
     public void imprimeItens() {
-        /*for (Pegavel item : itens) {
-            System.out.println(item.getClass().toString());
-        }*/
+        System.out.println("Poções: "+pocoes.size());
+	System.out.println("Chaves: "+chaves.size());
+	System.out.println("Machados:");
+	for(Pegavel item: this.machados){
+	    System.out.println("-machado de "+((Machado)item).getMaterial());
+	}
+	
     }
 }

@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class Machado extends Pegavel {
     protected Integer durabilidade;
+    protected String material;
+    
+    public String getMaterial() {
+	return material;
+    }
     
     public Integer getDurabilidade() {
 	return durabilidade;

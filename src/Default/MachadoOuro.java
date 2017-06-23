@@ -1,15 +1,9 @@
 package Default;
 
 public final class MachadoOuro extends Machado{
-    private String material;
-    
     public MachadoOuro(){
 	setMaterial("ouro");
 	setDurabilidade(5);
-    }
-
-    public String getMaterial() {
-	return material;
     }
 
     private void setMaterial(String material) {
