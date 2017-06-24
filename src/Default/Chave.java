@@ -29,4 +29,8 @@ public class Chave extends Pegavel{
         }
         throw new ItemException("Porta não está trancada.");
     }
+    
+    public String toString(){
+        return "chave";
+    }
 }

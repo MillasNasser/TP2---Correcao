@@ -16,35 +16,59 @@ public class Console {
         System.out.print("Player> ");
         Scanner scanner = new Scanner(System.in);
         String comando = scanner.nextLine().replaceAll("\n", "").toLowerCase();
-        //split do comando pelo espaÃ§o
+        //split do comando pelo espaço
         String[] comandoSplited = comando.split(" ");
+        
+        String itemStr = null;
         switch (comandoSplited[0]) {
             case "view":
                 //obtem descricao da sala e seu conteudo
                 //nome da sala e portas				
                 mapa.getPlayer().getSalaAtual().imprimeInfoSala();
+                mapa.getPlayer().mostrarProximo();
                 return true;
             case "backpack":
                 mapa.getPlayer().getItens().imprimeItens();
                 return true;
             case "pickup":
                 //pegar objetos para a mochila
+                itemStr = comandoSplited[1] + ((comandoSplited.length == 4)?" " + comandoSplited[3]:"");
+                try {
+                    mapa.getPlayer().pegar(itemStr);
+                    
+                    System.out.println("Jogador pegou " + itemStr);
+                } catch (ItemException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                /*
                 if (comandoSplited.length == 2) {
                     try {
                         mapa.getPlayer().pegar(comandoSplited[1]);
                     } catch (ItemException ex) {
                         System.out.println(ex.getMessage());
                     }
-                }
+                } else if (comandoSplited.length == 4) {
+                    try {
+                        mapa.getPlayer().pegar(comandoSplited[1] + " " + comandoSplited[3]);
+                    } catch (ItemException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }*/
                 return true;
             case "drop":
                 //soltar objeto da mochila
                 if (comandoSplited.length == 2) {
-                    mapa.getPlayer().largar(comandoSplited[1]);
+                    try {
+                        mapa.getPlayer().largar(comandoSplited[1]);
+                        
+                        System.out.println("Jogador largou "+ comandoSplited[1]);
+                    } catch (ItemException ex) {
+                        System.out.println(ex.getMessage());
+                    }
                 }
                 return true;
             case "moveto":
-                //andar com o player	
+                //andar com o player
                 if (comandoSplited.length == 3 && comandoSplited[2].equals("door")) {
                     //Vai colocar o player perto da porta
                     try {
@@ -54,11 +78,12 @@ public class Console {
                         System.out.println(e.getMessage());
                     }
                 } else {
-                    //Vai colocar o player perto do item
-                    try {
-                        Aproximavel item = mapa.getPlayer().getSalaAtual().getItem(comandoSplited[1]);
-                        mapa.getPlayer().mover(item);
-                    } catch (AproximavelException e) {
+                    try{
+                        itemStr = comandoSplited[1] + ((comandoSplited.length == 4)?" " + comandoSplited[3]:"");
+                        System.out.println(itemStr);
+                        Aproximavel item = mapa.getPlayer().getSalaAtual().getItem(itemStr);
+                        mapa.getPlayer().setPerto(item);
+                    }catch(ItemException e){
                         System.out.println(e.getMessage());
                     }
                 }
@@ -79,17 +104,10 @@ public class Console {
                 } catch (AproximavelException ex) {
                     System.out.println(ex.getMessage());
                 }
-                for(Sala sala : mapa.getSalas()){
-                    if(sala.temTroll()){
-                        for(Troll trl: sala.getTrolls()){
-                            try {
-                                trl.mover(sala, mapa.getPlayer());
-                            } catch (PersonagemException ex) {
-                                System.out.println(ex.getMessage());
-                                throw ex;
-                            }
-                        }
-                    }
+                try{
+                    mapa.moverTroll();
+                }catch(PersonagemException ex){
+                    System.out.println(ex.getMessage());
                 }
                 return mapa.verifcarFim();
             default:

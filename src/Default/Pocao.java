@@ -27,4 +27,8 @@ public class Pocao extends Pegavel {
             throw new ItemException("Porta já está trancada");
         }
     }
+    
+    public String toString(){
+        return "poção";
+    }
 }

@@ -20,7 +20,7 @@ public class Mochila {
 	machados = new ArrayList<>();
 	pocoes = new ArrayList<>();
 	chaves = new ArrayList<>();
-	ouro = new Ouro(10);
+	ouro = new Ouro(0);
     }
     
     public int getCapacidade() {
@@ -59,13 +59,13 @@ public class Mochila {
         }
     }
     
-    public void removeItem(String itemStr) {
-	try {	    
-	    Pegavel item = getItem(itemStr);
-	    removeItem(item);
-	} catch (ItemException ex) {
-	    
-	}
+    public void removeItem(String itemStr) throws ItemException{
+        try {	    
+            Pegavel item = getItem(itemStr);
+            removeItem(item);
+        } catch (ItemException ex) {
+            throw ex;
+        }
     }
 
     public void removeItem(Pegavel item) {

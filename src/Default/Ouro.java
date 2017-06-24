@@ -27,4 +27,8 @@ public class Ouro extends Pegavel {
     public void usar() throws ItemException{
         throw new ItemException("ouro não é usavel.");
     }
+    
+    public String toString(){
+        return String.format("ouro <%d>", this.quantidade);
+    }
 }

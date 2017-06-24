@@ -59,6 +59,7 @@ public class Jogador {
         if(this.perto instanceof Pegavel){
             if(this.perto.compare(itemStr)){
                 this.itens.addItem((Pegavel)this.perto);
+                this.perto = null;
                 return;
             }
             throw new ItemException("Você não está perto de " + itemStr + ".");
@@ -66,7 +67,7 @@ public class Jogador {
         throw new ItemException("Você não está perto de nenhum item.");
     }
     
-    public void largar(String itemStr){
+    public void largar(String itemStr) throws ItemException{
         this.itens.removeItem(itemStr);
     }
     
@@ -103,6 +104,14 @@ public class Jogador {
             this.salaAtual = porta.getSalaSaida();
         }else{
             throw new AproximavelException("Jogador está longe das portas.");
+        }
+    }
+    
+    public void mostrarProximo(){
+        if(this.perto != null){
+            System.out.println("Jogador está próximo à: " + this.perto);
+        }else{
+            System.out.println("Jogador não está próximo a nada.");
         }
     }
 }

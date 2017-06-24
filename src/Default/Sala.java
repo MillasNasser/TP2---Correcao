@@ -112,9 +112,13 @@ public class Sala {
 
     public void imprimeInfoSala() {
         System.out.println("Sala atual: " + this.getNome());
-        System.out.println("PORTAS");
+        System.out.println("  PORTAS");
         for (Porta porta : this.getPortas()) {
-            System.out.println("Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
+            System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
+        }
+        System.out.println("  ITENS");
+        for (Pegavel item : this.itens) {
+            System.out.println("    " + item);
         }
     }
     

@@ -8,6 +8,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -28,8 +30,29 @@ public class Mapa {
         inicializaTrolls();*/
     }
     
-    public Mapa(String jsonString){
+    public Mapa(String arquivo){
         this();
+        
+        //Lendo o arquivo e configurando as salas.
+        FileReader fr = null;
+        BufferedReader br = null;
+        
+        String jsonString = "";
+        
+        try{
+            fr = new FileReader(arquivo);
+            br = new BufferedReader(fr);
+            
+            String linha;
+            
+            br = new BufferedReader(new FileReader(arquivo));
+            
+            while((linha = br.readLine()) != null){
+                jsonString += linha;
+            }
+        }catch(Exception e){
+            
+        }
         
         JsonElement jsonElement = new JsonParser().parse(jsonString);
         JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -71,17 +94,14 @@ public class Mapa {
     }
 
     private void inicializaSalas() {
-        //TO-DO: iniciar o arquivo do mapa.
-        
         for(Sala sala: this.salas){
             sala.addChave();
         }
     }
     
-    public void espalhaItem(Pegavel item) throws ItemException{
-        int max_itens = 5;
+    public void espalhaItem(Pegavel item, int maxItens) throws ItemException{
         Random random = new Random();
-        for(int i = 0; i < max_itens; i++){
+        for(int i = 0; i < maxItens; i++){
             int sala = random.nextInt(salas.size());
             try {
                 this.salas.get(sala).addItem(item);
@@ -93,12 +113,22 @@ public class Mapa {
     
     public void espalhaItens(){
         try {
-            this.espalhaItem(new Machado());
+            this.espalhaItem(new MachadoFerro(), this.salas.size());
         } catch (ItemException ex) {
             //A exceção só será lançada em Ouro.
         }
         try {
-            this.espalhaItem(new Pocao());
+            this.espalhaItem(new MachadoBronze(), 5);
+        } catch (ItemException ex) {
+            //A exceção só será lançada em Ouro.
+        }
+        try {
+            this.espalhaItem(new MachadoOuro(), 1);
+        } catch (ItemException ex) {
+            //A exceção só será lançada em Ouro.
+        }
+        try {
+            this.espalhaItem(new Pocao(), this.salas.size());
         } catch (ItemException ex) {
             //A exceção só será lançada em Ouro.
         }
@@ -107,7 +137,7 @@ public class Mapa {
         int quantidade = 100;
         while(quantidade > 0){
             try {
-                this.espalhaItem(new Ouro(random.nextInt(quantidade)));
+                this.espalhaItem(new Ouro(random.nextInt(quantidade)), this.salas.size());
             } catch (ItemException ex) {
                 quantidade -= 10;
             }
@@ -165,4 +195,17 @@ public class Mapa {
         return zerou;
     }
     
+    public void moverTroll() throws PersonagemException{
+        for (Sala sala : this.getSalas()) {
+            if (sala.temTroll()) {
+                for (Troll trl : sala.getTrolls()) {
+                    try {
+                        trl.mover(sala, this.getPlayer());
+                    } catch (PersonagemException ex) {
+                        throw ex;
+                    }
+                }
+            }
+        }
+    }
 }

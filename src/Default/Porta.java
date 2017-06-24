@@ -78,5 +78,9 @@ public class Porta extends Aproximavel{
         
         return Util.compare(nomes, portaStr);
     }
+    
+    public String toString(){
+        return this.identificador;
+    }
 
 }
