@@ -37,7 +37,8 @@ public class Jogo {
                 //agora ja tenho o jogo pronto para jogar
                 jogavel = Console.console(mapa);
             } catch (PersonagemException ex) {
-                Jogo.main(args);
+                /**Cuidado para não esquecer isso aqui**/
+            	Jogo.main(args);
             }
         }
         /**/

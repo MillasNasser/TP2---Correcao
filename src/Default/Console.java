@@ -79,7 +79,6 @@ public class Console {
                 } catch (AproximavelException ex) {
                     System.out.println(ex.getMessage());
                 }
-                boolean zerou = true;
                 for(Sala sala : mapa.getSalas()){
                     if(sala.temTroll()){
                         for(Troll trl: sala.getTrolls()){
@@ -91,13 +90,8 @@ public class Console {
                             }
                         }
                     }
-                    try{
-                        sala.getItem("gold");
-                    }catch(ItemException e){
-                        zerou = false;
-                    }
                 }
-                return zerou;
+                return mapa.verifcarFim();
             default:
                 return true;
         }

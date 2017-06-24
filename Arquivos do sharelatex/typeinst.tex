@@ -1,0 +1,186 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Ce gabarit peu servir autant les philosophes que les scientifiques ; 
+% et même d'autres genres, vous en faites ce que vous voulez.
+% J'ai modifié et partagé ce gabarit afin d'épargner à d'autres 
+% d'interminables heures à modifier des gabarits d'articles anglais. 
+% 
+% L'ajout d'une table des matières et une bibliographie a été ajoutée,
+% rendant le gabarit plus ajusté aux besoins de plusieurs.
+%
+% Pour retrouvé le gabarit original, veuillez télécharger les
+% documents suivants: llncs2e.zip (.cls et autres) et 
+% typeinst.zip (.tex). Les documents ci-haut mentionnés ne sont pas 
+% disponibles au même endroit, alors je vous invite à fouiller le web. 
+%
+% Pour l'instant (02-2016) ils sont disponibles tous deux ici :
+%
+% http://kawahara.ca/springer-lncs-latex-template/
+%
+% Netkompt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{natbib}
+\bibliographystyle{apalike-pt-br}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage[brazil]{babel} % Pour adopter les règles de typographie française
+\usepackage[T1]{fontenc} % Pour que les lettres accentuées soient reconnues
+
+\usepackage{url}
+\urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+\urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+\urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|    
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+
+\mainmatter 
+
+\title{Relatório Trabalho Prático II}
+
+\titlerunning{Trabalho Prático II}
+
+\author{Christoffer de Paula Oliveira, Paulo , Millas}
+
+\institute{UFSJ- Universidade Federal de São João Del Rei}
+
+\authorrunning{Christoffer de Paula Oliveira, Pulo, Millas}
+
+\toctitle{Sumário}
+\tocauthor{{}}
+
+\maketitle
+
+\medskip
+
+\begingroup
+\let\clearpage\relax
+\tableofcontents
+\addcontentsline{toc}{section}{Introduction}
+\endgroup
+
+\medskip
+\medskip
+
+\section*{Introdução}
+
+O objetivo deste relatório é citar e justificar mudanças realizadas no Trabalho Prático I do aluno Renan.As mudanças realizadas visam um melhoramento no código java, com relação a Programação Orientada a Objeto e também implementação de novas funcionalidades.
+
+\section{Classe Jogo-Main}
+
+A classe Jogo a princípio estava com um alto nível de acoplamento, além de deixar o código extremamente extenso, com pouco necessidade, haviam também implementação de métodos, que deveriam estar em outras classes, como por exemplo: Inicialização de objetos, ações do jogador pegar/largar, utilização de poções etc.
+
+\subsection{Mudanças e Justificativas}
+
+Para resolver parte do acoplamento o método console foi simplificado e transformado em uma classe, essa classe ficou responsável por tratar os comandos e transforma-los em ações no jogo chamando métodos, se necessário, em outras classes, criou-se também a classe Mapa que ficou responsável por armazenar inicializar e juntar todos os objetos e o personagem do jogo, para remover o restante do acoplamento os de mais métodos foram movidos para suas respectivas classes com alterações para adaptar-se a nova estrutura do código.
+
+\section{Classe Sala}
+
+Não tinha objetos como trolls e itens apenas portas. Havia problemas de acoplamento, sendo feita a inicialização das salas, colocando portas, e também obtendo nome a partir de um array de salas, que ficava sendo passada para os métodos na classe. Pouco coesa, pois métodos para exibir e retornar itens disponíveis na sala estava em outras classes.
+
+\subsection{Mudanças e Justificativas}
+
+Para a cada Sala ter todos os objetos que se pode ter em uma sala foi declarado um array de Pegavel e Trolls, toda a inicialização como dito anteriormente foi passada para a classe Mapa, criados métodos para retornar, remover, adicionar e imprimir itens e trolls nas salas.
+
+\section{Classe Jogador}
+
+Pouco coesa. Nenhum método além de get e set implementado nessa classe ações do jogador como, soltar e pegar, estavam implementadas na classe Jogo. Acoplada por haver tipo String para representação de um item.
+
+\subsection{Mudanças e Justificativas}
+
+Métodos que são responsáveis por realizar ações do jogador foram implementados aqui, ações como largar e pegar itens, lançar machado, sair da sala e perder ouro deixando o código mais coeso. O tipo de variável para representar o objeto que está perto passou a ser Aproximavel, falaremos dessa classe mais adiante. Por ultimo foi criada uma variável do tipo Sala para armazenar onde o jogador se encontra atualmente no mapa. 
+
+\section{Classe Localizável}
+
+Muito acoplada, praticamente todo o código era dependente dessa classe.
+
+\subsection{Mudanças e Justificativas}
+
+Essa classe foi excluída ocasionando em um bom desnível de acoplamento no código,com isso todo o restante do código que necessitava dessa classe foi adaptado pra não depender mais. 
+
+\section{Classes Chave, Machado, Pocao e Ouro}
+
+Todas estão na mesma forma, ou seja implementação bem semelhante, por isso ficou desnecessário criar tópicos diferentes.
+Índice de coesão extremamente baixo, praticamente todos os métodos não eram coesos, por exemplo imprimir itens na sala sem as classes sequer terem salas. 
+
+\subsection{Mudanças e Justificativas}
+
+Para aumentar a coesão todos os itens passou a ter um método usar, estes métodos são responsáveis por aplicar ações de cada item no jogo, outro método criado é o de comparar, responsável por chamar a função compare da classe Util, que compara possíveis nomes que o usuário pode digitar com nomes semelhantes que representam os itens, consequentemente houve uma grande diminuição no código pois não foi mais utilizados switch/cases enormes. Houve também a criação classe Util para conter métodos que podem ser úteis em várias partes do código.
+
+\section{Classe Porta}
+
+Não totalmente coesa, desconsiderando set e get, havia apenas um método,de pegar identificador a partir de um array de portas, sendo que o mesmo não deveria estar nessa classe.
+
+\subsection{Mudanças e Justificativas}
+
+Para aumentar a coesão foi criado um método para para chamar a compare da classe util, funcionando de maneira idêntica ao método comparar em itens, ou seja, a partir do comando digitado pelo usuário. 
+
+\section{Classe Troll}
+
+Acoplada por depender de sala e também com baixa coesão, métodos de outras classes, como inicializa troll, estavam sendo implementados nessa classe.
+
+\subsection{Mudanças e Justificativas}
+
+Métodos de outras classes foram movidos para os seus devidos lugares, e método de mover trolls modificado para se adaptar ao novo código.
+
+\section{Classe TrollNome}
+
+Uma função de troll que poderia estar implementada na classe Troll. 
+
+\subsection{Mudanças e Justificativas}
+
+
+Caso precise ser mais detalhado
+
+\section{Pontos positivos}
+
+Houve também pontos em que o código estava seguindo a Programação Orientada a Objeto. O encapsulamento foi feito de maneira correta, As classes Mochila e Pegavel para o antigo código estava sem problemas,isto é, nenhum erro de coesão ou acoplamento 
+
+Complexidade do algoritmo aqui
+
+
+
+
+\paragraph{Remark 1.}
+Paragrafo
+
+
+\section{analise de Resultados}
+Analise aqui
+
+\section{Conclusão}
+
+{\small (Example from Jensen K., Wirth N. (1991) Pascal user manual and
+report. Springer, New York)}
+
+\bibliography{references}
+\nocite{*} 
+
+\end{document}

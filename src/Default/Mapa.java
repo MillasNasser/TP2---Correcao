@@ -1,6 +1,9 @@
 package Default;
 
+import Exceptions.AproximavelException;
 import Exceptions.ItemException;
+import Exceptions.PersonagemException;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -149,4 +152,17 @@ public class Mapa {
     public Jogador getPlayer() {
         return player;
     }
+    
+    public boolean verifcarFim(){
+    	boolean zerou = true;
+        for(Sala sala : this.salas){
+            try{
+                sala.getItem("gold");
+            }catch(ItemException e){
+                zerou = false;
+            }
+        }
+        return zerou;
+    }
+    
 }
