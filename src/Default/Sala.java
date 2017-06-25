@@ -128,7 +128,7 @@ public class Sala {
     }
 
     public void imprimeInfoSala() {
-        System.out.println("Sala atual: " + this.getNome());
+        System.out.printf("Sala Atual: %s | Tamanho: %d metros quadrados\n", this.nome, this.metrosQuadrados);
         System.out.println("  PORTAS");
         for (Porta porta : this.getPortas()) {
             System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
@@ -142,6 +142,7 @@ public class Sala {
         for (Troll troll : this.trolls) {
             System.out.println("    " + troll.getNome());
         }
+        System.out.println();
     }
     
     public boolean temItem(){

@@ -25,7 +25,7 @@ public class Jogo {
         Mapa mapa = new Mapa("mapa.json");
         
         mapa.espalhaItens();
-        mapa.inicializaTrolls();
+        mapa.espalhaTrolls();
         
         /**/
         mapa.getPlayer().setSalaAtual(mapa.getSalas().get(0));

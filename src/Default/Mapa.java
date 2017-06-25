@@ -144,7 +144,7 @@ public class Mapa {
         }
     }
 
-    public void inicializaTrolls() {
+    public void espalhaTrolls() {
         int quantidade_trolls = 15;//quantidade de trolls que vou inicializar
         Random random = new Random();
         for (int i = 0; i < quantidade_trolls; i++) {
@@ -193,16 +193,17 @@ public class Mapa {
     }
     
     public void atacarTroll() throws PersonagemException{
-        for (Sala sala : this.salas) {
-            if (sala.temTroll()) {
-                for(int i=0; i<sala.getTrolls().size(); i++){
-                    try {
-                        sala.getTrolls().get(i).atacar(sala, this.getPlayer());
-                    } catch (PersonagemException ex) {
-                        throw ex;
-                    }
+        Sala salaAtual = this.player.getSalaAtual();
+        if(salaAtual.temTroll()) {
+            for(int i=0; i<salaAtual.getTrolls().size(); i++){
+                try {
+                    salaAtual.getTrolls().get(i).atacar(salaAtual, this.getPlayer());
+                } catch (PersonagemException ex) {
+                    throw ex;
                 }
             }
+        }else{
+            throw new PersonagemException("Não há trolls na sala.");
         }
     }
     

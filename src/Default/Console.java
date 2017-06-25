@@ -118,7 +118,10 @@ public class Console {
                     mapa.moverTroll();
                 }
                 return !mapa.verifcarFim();
+            case "quit":
+                System.exit(0);
             default:
+                System.out.println("Comando inválido.");
                 return true;
         }
     }

@@ -51,10 +51,10 @@ public class Machado extends Pegavel {
     }
 
     public void diminuiDurabilidade() throws ItemException {
+        this.durabilidade--;
         if (this.durabilidade == 0) {
             throw new ItemException("Quebrou o machado");
         }
-        this.durabilidade--;
     }
     
     @Override

@@ -44,21 +44,24 @@ public class Mochila {
             int quantidade = this.ouro.getQuantidade();
             quantidade += ((Ouro) item).getQuantidade();
             this.ouro.setQuantidade(quantidade);
+            return;
         } else if (item instanceof Machado) {
             if (this.machados.size() + 1 <= 4) {
                 this.machados.add(item);
+                return;
             }
         } else if (item instanceof Pocao) {
             if (this.pocoes.size() + 1 <= 3) {
                 this.pocoes.add(item);
+                return;
             }
         } else if (item instanceof Chave) {
             if (this.chaves.size() + 1 <= 3) {
                 this.chaves.add(item);
+                return;
             }
-        }else{
-            throw new ItemException("Mochila cheia.");
         }
+        throw new ItemException("Mochila cheia.");
     }
 
     public void removeItem(String itemStr) throws ItemException {
@@ -72,17 +75,11 @@ public class Mochila {
 
     public void removeItem(Pegavel item) {
         if (item instanceof Machado) {
-            if (this.machados.size() + 1 < 4) {
-                this.machados.remove(item);
-            }
+            this.machados.remove(item);
         } else if (item instanceof Pocao) {
-            if (this.pocoes.size() + 1 < 3) {
-                this.pocoes.remove(item);
-            }
+            this.pocoes.remove(item);
         } else if (item instanceof Chave) {
-            if (this.chaves.size() + 1 < 3) {
-                this.chaves.remove(item);
-            }
+            this.chaves.remove(item);
         }
     }
 
@@ -106,8 +103,10 @@ public class Mochila {
         System.out.println("Chaves: " + chaves.size());
         System.out.println("Machados:");
         for (Pegavel item : this.machados) {
-            System.out.println("    -machado de " + ((Machado) item).getMaterial()
-                + ": " + ((Machado) item).getDurabilidade());
+            Machado machado = (Machado)item;
+            System.out.printf("    -%s | %d\n", machado.getMaterial(), machado.getDurabilidade());
+            /*System.out.println("    -machado de " + ((Machado) item).getMaterial()
+                + ": " + ((Machado) item).getDurabilidade());*/
         }
 
     }
