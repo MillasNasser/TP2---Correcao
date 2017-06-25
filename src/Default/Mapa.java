@@ -102,7 +102,7 @@ public class Mapa {
     public void espalhaItem(Pegavel item, int maxItens) throws ItemException{
         Random random = new Random();
         for(int i = 0; i < maxItens; i++){
-            int sala = random.nextInt(salas.size());
+            int sala = random.nextInt(salas.size() - 1);
             try {
                 this.salas.get(sala).addItem(item);
             } catch (ItemException ex) {
@@ -145,20 +145,17 @@ public class Mapa {
     }
 
     public void inicializaTrolls() {
-        int quantidade_trolls = Integer.min(this.salas.size() - 1, 5);//quantidade de trolls que vou inicializar
+        int quantidade_trolls = 15;//quantidade de trolls que vou inicializar
         Random random = new Random();
         for (int i = 0; i < quantidade_trolls; i++) {
-            Troll troll = new Troll();
-            troll.setNome(TrollNome.gerarNome());
-            
             //Escolhendo uma sala aleatória que esteja vazia.
             int pos;
             boolean conseguiu = false;
             while (!conseguiu) {
-                pos = random.nextInt((salas.size() - 1)) + 1;//gera a sala aleatoriamente desde q a sala nao seja a primeira
+                pos = random.nextInt((this.salas.size() - 2)) + 1;//gera a sala aleatoriamente desde q a sala nao seja a primeira
                 //checar se a sala ja foi escolhida anteriormente
                 if( !this.salas.get(pos).temTroll() ) {
-                    this.salas.get(pos).addTroll(troll);
+                    this.salas.get(pos).addTroll(new Troll());
                     conseguiu = true;
                 }
             }
@@ -188,19 +185,20 @@ public class Mapa {
         for(Sala sala : this.salas){
             try{
                 sala.getItem("gold");
-            }catch(ItemException e){
                 zerou = false;
+            }catch(ItemException e){
             }
         }
         return zerou;
     }
     
     public void moverTroll() throws PersonagemException{
-        for (Sala sala : this.getSalas()) {
+        for (Sala sala : this.salas) {
             if (sala.temTroll()) {
-                for (Troll trl : sala.getTrolls()) {
+                for(int i=0; i<sala.getTrolls().size(); i++){
+                //for (Troll trl : sala.getTrolls()) {
                     try {
-                        trl.mover(sala, this.getPlayer());
+                        sala.getTrolls().get(i).mover(sala, this.getPlayer());
                     } catch (PersonagemException ex) {
                         throw ex;
                     }

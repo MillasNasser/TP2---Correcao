@@ -16,6 +16,7 @@ public class Sala {
     private String nome;
     private int metrosQuadrados;
     private List<Pegavel> itens = null;
+    Ouro ouro = null;
     private List<Troll> trolls = null;
     private List<Porta> portas = null;
 
@@ -23,6 +24,7 @@ public class Sala {
         this.nome = nome;
         this.portas = new ArrayList<>();
         this.itens = new ArrayList<>();
+        this.ouro = new Ouro(0);
         this.trolls = new ArrayList<>();
         this.setMetrosQuadrados(tamanho);
     }
@@ -44,7 +46,7 @@ public class Sala {
     }
 
     public List<Troll> getTrolls() {
-        return trolls;
+        return this.trolls;
     }
 
     public void setTrolls(List<Troll> trolls) {
@@ -70,15 +72,25 @@ public class Sala {
 
     public void addItem(Pegavel item) throws ItemException {
         if(item instanceof Ouro){
+            int quantidadeAtual = this.getQuantidadeOuro();
+            int novaQuantidade = quantidadeAtual + ((Ouro)item).getQuantidade();
+            ((Ouro)item).setQuantidade(novaQuantidade);
+            
+            this.ouro.setQuantidade(novaQuantidade);
             if(this.getQuantidadeOuro() + 1 > this.metrosQuadrados * 10){
                 throw new ItemException("Não cabe mais ouro na sala.");
             }
+            return;
         }
         this.itens.add(item);
     }
 
     public void removeItem(Pegavel item) {
-        this.itens.remove(item);
+        if(item instanceof Ouro){
+            this.ouro.setQuantidade(0);
+        }else{
+            this.itens.remove(item);
+        }
     }
     
     public void addPorta(Porta porta){
@@ -107,7 +119,12 @@ public class Sala {
     }
 
     public boolean temTroll() {
-        return this.trolls.size() > 0;
+        if(this.trolls.size() > 0){
+            return true;
+        }else{
+            return false;
+        }
+        //return (this.trolls.size() > 0);
     }
 
     public void imprimeInfoSala() {
@@ -117,13 +134,18 @@ public class Sala {
             System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
         }
         System.out.println("  ITENS");
+        System.out.printf("%s", (this.ouro.getQuantidade() > 0)?String.format("    Ouro <%d>\n", this.ouro.getQuantidade()):"");
         for (Pegavel item : this.itens) {
             System.out.println("    " + item);
+        }
+        System.out.println("  TROLLS");
+        for (Troll troll : this.trolls) {
+            System.out.println("    " + troll.getNome());
         }
     }
     
     public boolean temItem(){
-        return this.itens.size() > 0;
+        return (this.itens.size() > 0 || this.ouro.getQuantidade() > 0);
     }
 
     public Pegavel getItem(String itemStr) throws ItemException {
@@ -135,17 +157,14 @@ public class Sala {
                 return item;
             }
         }
+        if(this.ouro.compare(itemStr)){
+            return this.ouro;
+        }
         throw new ItemException("Não há " + itemStr + " na sala");
     }
     
     public int getQuantidadeOuro(){
-        int quantidade = 0;
-        for(Pegavel pegavel: this.itens){
-            if(pegavel instanceof Ouro){
-                quantidade += ((Ouro)pegavel).getQuantidade();
-            }
-        }
-        return quantidade;
+        return this.ouro.getQuantidade();
     }
 
     public Troll getTroll(String trollName) throws PersonagemException {
@@ -153,7 +172,7 @@ public class Sala {
             throw new PersonagemException("Não há trolls na sala.");
         }
         for (Troll troll : this.trolls) {
-            if (troll.getNome().equals(trollName)) {
+            if (troll.getNome().toLowerCase().equals(trollName)) {
                 return troll;
             }
         }
@@ -174,5 +193,9 @@ public class Sala {
         }
         
         this.metrosQuadrados = metrosQuadrados;
+    }
+    
+    public boolean equals(Sala sala){
+        return this.nome.equals(sala.getNome());
     }
 }

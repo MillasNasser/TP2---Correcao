@@ -66,9 +66,9 @@
 			"portas": [
 				{
 					"identificador": "A",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
-					"salaSaida": "Sala ",
+					"salaSaida": "Saida",
 					"saida": true
 				},
 				{
@@ -406,6 +406,11 @@
 					"saida": false
 				}
 			]
+		},
+		{
+			"nome": "Saida",
+			"tamanho": 1,
+			"portas": []
 		}
 	]
 }
