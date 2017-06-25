@@ -144,7 +144,7 @@ public class Mapa {
         }
     }
 
-    public void inicializaTrolls() {
+    public void espalhaTrolls() {
         int quantidade_trolls = 15;//quantidade de trolls que vou inicializar
         Random random = new Random();
         for (int i = 0; i < quantidade_trolls; i++) {
@@ -180,28 +180,37 @@ public class Mapa {
         return player;
     }
     
-    public boolean verifcarFim(){
-    	boolean zerou = true;
+    public void verifcarFim(){
         for(Sala sala : this.salas){
             try{
                 sala.getItem("gold");
-                zerou = false;
+                return;
             }catch(ItemException e){
             }
         }
-        return zerou;
+        System.exit(0); //Fim de jogo.
     }
     
-    public void moverTroll() throws PersonagemException{
+    public void atacarTroll() throws PersonagemException{
+        Sala salaAtual = this.player.getSalaAtual();
+        if(salaAtual.temTroll()) {
+            for(int i=0; i<salaAtual.getTrolls().size(); i++){
+                try {
+                    salaAtual.getTrolls().get(i).atacar(salaAtual, this.getPlayer());
+                } catch (PersonagemException ex) {
+                    throw ex;
+                }
+            }
+        }else{
+            throw new PersonagemException("Não há trolls na sala.");
+        }
+    }
+    
+    public void moverTroll() {
         for (Sala sala : this.salas) {
             if (sala.temTroll()) {
                 for(int i=0; i<sala.getTrolls().size(); i++){
-                //for (Troll trl : sala.getTrolls()) {
-                    try {
-                        sala.getTrolls().get(i).mover(sala, this.getPlayer());
-                    } catch (PersonagemException ex) {
-                        throw ex;
-                    }
+                    sala.getTrolls().get(i).mover(sala);
                 }
             }
         }

@@ -25,18 +25,18 @@ public class Jogo {
         Mapa mapa = new Mapa("mapa.json");
         
         mapa.espalhaItens();
-        mapa.inicializaTrolls();
+        mapa.espalhaTrolls();
         
         /**/
         mapa.getPlayer().setSalaAtual(mapa.getSalas().get(0));
-        boolean jogavel = true;
-        while (jogavel) {
+        while (true) {
             try {
                 //agora ja tenho o jogo pronto para jogar
-                jogavel = Console.console(mapa);
+                Console.console(mapa);
             } catch (PersonagemException ex) {
                 
             }
+            mapa.verifcarFim();
         }
         /**/
     }

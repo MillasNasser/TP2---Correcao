@@ -13,14 +13,14 @@ public class TrollNome {
         nomesPossiveis.add("Charles");
         nomesPossiveis.add("Guidoni");
         nomesPossiveis.add("Madeira");
-        nomesPossiveis.add("Dárlinton");
+        nomesPossiveis.add("Darlinton");
         nomesPossiveis.add("Diego");
         nomesPossiveis.add("Edimilson");
         nomesPossiveis.add("Elder");
         nomesPossiveis.add("Elisa");
         nomesPossiveis.add("Elverton");
         nomesPossiveis.add("Sumika");
-        nomesPossiveis.add("Flávio");
+        nomesPossiveis.add("Flavio");
         nomesPossiveis.add("Leo");
         nomesPossiveis.add("Marcos");
         nomesPossiveis.add("Matheus");
@@ -28,7 +28,7 @@ public class TrollNome {
         nomesPossiveis.add("Milene");
         nomesPossiveis.add("Sachetto");
         nomesPossiveis.add("Sofia");
-        nomesPossiveis.add("Vinícius");
+        nomesPossiveis.add("Vinicius");
         
         Random random = new Random();
         int valor = random.nextInt(nomesPossiveis.size());
