@@ -91,8 +91,10 @@ public class Jogador {
                 }catch(ItemException me){
                     //Machado acabou a duração.
                     this.itens.removeItem(item);
+                }finally{
+                    this.salaAtual.removeTroll(troll);
+                    return;
                 }
-                return;
             }catch(ItemException ex){
                 
             }

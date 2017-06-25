@@ -51,14 +51,12 @@ public class Console {
                     return true;
                 }
                 //soltar objeto da mochila
-                if (comandoSplited.length == 2) {
-                    try {
-                        mapa.getPlayer().largar(comandoSplited[1]);
-                        
-                        System.out.println("Jogador largou "+ comandoSplited[1]);
-                    } catch (ItemException ex) {
-                        System.out.println(ex.getMessage());
-                    }
+                try {
+                    mapa.getPlayer().largar(comandoSplited[1]);
+
+                    System.out.println("Jogador largou "+ comandoSplited[1]);
+                } catch (ItemException ex) {
+                    System.out.println(ex.getMessage());
                 }
                 return true;
             case "moveto":
@@ -72,16 +70,21 @@ public class Console {
                     try {
                         Aproximavel porta = mapa.getPlayer().getSalaAtual().getPorta(comandoSplited[1]);
                         mapa.getPlayer().mover(porta);
+                        
+                        System.out.println("Jogador de aproximou da Porta " + ((Porta)porta).getIdentificador());
                     } catch (AproximavelException e) {
                         System.out.println(e.getMessage());
                     }
                 } else {
                     try{
                         itemStr = comandoSplited[1] + ((comandoSplited.length == 4)?" " + comandoSplited[3]:"");
-                        System.out.println(itemStr);
+                        
                         Aproximavel item = mapa.getPlayer().getSalaAtual().getItem(itemStr);
-                        mapa.getPlayer().setPerto(item);
-                    }catch(ItemException e){
+                        mapa.getPlayer().mover(item);
+                        
+                        System.out.println("Jogador de aproximou de " + item);
+                        
+                    }catch(AproximavelException e){
                         System.out.println(e.getMessage());
                     }
                 }
@@ -96,6 +99,7 @@ public class Console {
                 try {
                     troll = mapa.getPlayer().getSalaAtual().getTroll(comandoSplited[1]);
                     mapa.getPlayer().throwAxe(troll);
+                    System.out.println("Jogador matou " + troll.getNome());
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
@@ -103,6 +107,7 @@ public class Console {
             case "exit":
                 try {
                     mapa.getPlayer().sair();
+                    System.out.println("Jogador se moveu para a sala " + mapa.getPlayer().getSalaAtual().getNome());
                 } catch (AproximavelException ex) {
                     System.out.println(ex.getMessage());
                 }

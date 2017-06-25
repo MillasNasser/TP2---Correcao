@@ -43,6 +43,7 @@ public class Troll {
             try {
                 this.machado.usar(player);
                 this.machado = null;
+                System.out.println("Troll machado");
             } catch (PersonagemException ex) {
                 throw ex;
             }

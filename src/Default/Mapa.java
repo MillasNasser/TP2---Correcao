@@ -196,7 +196,6 @@ public class Mapa {
         for (Sala sala : this.salas) {
             if (sala.temTroll()) {
                 for(int i=0; i<sala.getTrolls().size(); i++){
-                //for (Troll trl : sala.getTrolls()) {
                     try {
                         sala.getTrolls().get(i).mover(sala, this.getPlayer());
                     } catch (PersonagemException ex) {

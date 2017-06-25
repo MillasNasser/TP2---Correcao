@@ -22,7 +22,8 @@ public class Machado extends Pegavel {
     }
 
     public boolean compare(String itemStr) { ///Alterar daqui a pouco
-        String[] nomes = {"axe " + this.material, "machado " + this.material};
+        String[] nomes = {"axe " + this.material, "machado " + this.material,
+                          this.material + " axe", "machado de " + this.material};
         return Util.compare(nomes, itemStr);
     }
 

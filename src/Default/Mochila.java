@@ -97,7 +97,7 @@ public class Mochila {
                 return item;
             }
         }
-        throw new ItemException("Não há " + itemStr + "na mochila.");
+        throw new ItemException("Não há " + itemStr + " na mochila.");
     }
 
     public void imprimeItens() {
