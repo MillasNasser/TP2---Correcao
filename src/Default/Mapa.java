@@ -180,16 +180,15 @@ public class Mapa {
         return player;
     }
     
-    public boolean verifcarFim(){
-    	boolean zerou = true;
+    public void verifcarFim(){
         for(Sala sala : this.salas){
             try{
                 sala.getItem("gold");
-                zerou = false;
+                return;
             }catch(ItemException e){
             }
         }
-        return zerou;
+        System.exit(0); //Fim de jogo.
     }
     
     public void atacarTroll() throws PersonagemException{

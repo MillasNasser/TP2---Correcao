@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class Console {
 
-    public static boolean console(Mapa mapa) throws PersonagemException {
+    public static void console(Mapa mapa) throws PersonagemException {
         System.out.print("Player> ");
         Scanner scanner = new Scanner(System.in);
         String comando = scanner.nextLine().replaceAll("\n", "").toLowerCase();
@@ -26,14 +26,14 @@ public class Console {
                 //nome da sala e portas				
                 mapa.getPlayer().getSalaAtual().imprimeInfoSala();
                 mapa.getPlayer().mostrarProximo();
-                return true;
+                break;
             case "backpack":
                 mapa.getPlayer().getItens().imprimeItens();
-                return true;
+                break;
             case "pickup":
                 if(comandoSplited.length < 2){
                     System.out.println("Comando incompleto.");
-                    return true;
+                    break;
                 }
                 //pegar objetos para a mochila
                 itemStr = comandoSplited[1] + ((comandoSplited.length == 4)?" " + comandoSplited[3]:"");
@@ -44,11 +44,11 @@ public class Console {
                 } catch (ItemException ex) {
                     System.out.println(ex.getMessage());
                 }
-                return true;
+                break;
             case "drop":
                 if(comandoSplited.length < 2){
                     System.out.println("Comando incompleto.");
-                    return true;
+                    break;
                 }
                 //soltar objeto da mochila
                 try {
@@ -58,11 +58,11 @@ public class Console {
                 } catch (ItemException ex) {
                     System.out.println(ex.getMessage());
                 }
-                return true;
+                break;
             case "moveto":
                 if(comandoSplited.length < 2){
                     System.out.println("Comando incompleto.");
-                    return true;
+                    break;
                 }
                 //andar com o player
                 if (comandoSplited.length == 3 && comandoSplited[2].equals("door")) {
@@ -88,11 +88,11 @@ public class Console {
                         System.out.println(e.getMessage());
                     }
                 }
-                return true;
+                break;
             case "throwaxe": ///Necessita deletar o troll do jogo
                 if(comandoSplited.length < 2){
                     System.out.println("Comando incompleto.");
-                    return true;
+                    break;
                 }
                 //Ataca um troll
                 Troll troll;
@@ -103,7 +103,7 @@ public class Console {
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
-                return true;
+                break;
             case "exit":
                 try {
                     mapa.getPlayer().sair();
@@ -117,12 +117,12 @@ public class Console {
                 }catch(PersonagemException ex){
                     mapa.moverTroll();
                 }
-                return !mapa.verifcarFim();
+                break;
             case "quit":
                 System.exit(0);
             default:
                 System.out.println("Comando inválido.");
-                return true;
+                break;
         }
     }
 }
