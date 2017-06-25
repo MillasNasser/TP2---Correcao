@@ -71,7 +71,7 @@
 
 \institute{UFSJ- Universidade Federal de São João Del Rei}
 
-\authorrunning{Christoffer de Paula Oliveira, Pulo, Millas}
+\authorrunning{Christoffer de Paula Oliveira, Paulo Henrique Tobias, Millas Násser}
 
 \toctitle{Sumário}
 \tocauthor{{}}
@@ -90,18 +90,26 @@
 \medskip
 
 \section*{Introdução}
+Este relatório tem como objetivo documentar as mudanças feitos no Trabalho Prático I para que este se adeque aos conceitos de Programação Orientada a Objetos (POO). Além disso, o relatório também o que ajudou e o que atrapalhou na implementação das novas funcionalidades requeridas no Trabalho Prático 2.
 
-O objetivo deste relatório é citar e justificar mudanças realizadas no Trabalho Prático I do aluno Renan.As mudanças realizadas visam um melhoramento no código java, com relação a Programação Orientada a Objeto e também implementação de novas funcionalidades.
+\section{Classe Jogo}
+A classe Jogo estava com um alto nível de acoplamento. Várias funções -- que, segundo a ideia de coesão, pertencem à outras classes -- estavam implementadas aqui. Além disso, havia muito código repetido, que mais tarde foi transformado em métodos. Estes fatores deixavam o código muito grande e quase ilegível.
 
-\section{Classe Jogo-Main}
+Praticamente todos os objetos do jogo eram declarados aqui. Além da lista de salas e trolls, também existiam listas para cada tipo de item. Estes itens, durante a inicialização, seriam espalhados aleatoriamente pelas salas. Para isso, existia uma classe \emph{Localizavel} que guardava a localização de todos os objetos do jogo (Incluindo Jogador e Trolls).
 
-A classe Jogo a princípio estava com um alto nível de acoplamento, além de deixar o código extremamente extenso, com pouco necessidade, haviam também implementação de métodos, que deveriam estar em outras classes, como por exemplo: Inicialização de objetos, ações do jogador pegar/largar, utilização de poções etc.
+A verificação e execução dos comandos do jogador também era feita nesta classe. Ações como pegar um item, por exemplo, que pertencem à classe Jogador, eram feitas na classe Jogo.
 
 \subsection{Mudanças e Justificativas}
 
-Para resolver parte do acoplamento o método console foi simplificado e transformado em uma classe, essa classe ficou responsável por tratar os comandos e transforma-los em ações no jogo chamando métodos, se necessário, em outras classes, criou-se também a classe Mapa que ficou responsável por armazenar inicializar e juntar todos os objetos e o personagem do jogo, para remover o restante do acoplamento os de mais métodos foram movidos para suas respectivas classes com alterações para adaptar-se a nova estrutura do código.
+Para diminuir o acoplamento, foi criada uma nova classe chamada \emph{Console}, que faz o processamento da entrada do usuário e chama as funções corretas, cada uma implementada na sua devida classe. Portanto, se o usuário digitou o comando "pickup gold", o console agora apenas identifica que é o comando "pegar" e chama a função correspondente da classe Jogador.
+
+Além disso, uma nova classe \emph{Mapa} foi criada, que guarda a lista de salas e o objeto Jogador. A lista de trolls, assim como as de itens, foram transformadas em listas individuais para cada sala. Assim, cada sala passou a ter suas próprias listas de trolls e de itens.
+
+Ao final das modificações, a classe jogo apenas chama a função \emph{console} até que o jogo termine.
 
 \section{Classe Sala}
+
+O principal problema das salas, além do já explicado acima, é que a função que inicializava o conjunto das salas estava implementado ali (veremos mais adiante que este foi um problema em quase todo o projeto). Podemos achar que %aqui tem que falar que por mais que a função aparenta pertencer àquela classe, na verdade ela devia ser implementada na classe acima (Mapa).
 
 Não tinha objetos como trolls e itens apenas portas. Havia problemas de acoplamento, sendo feita a inicialização das salas, colocando portas, e também obtendo nome a partir de um array de salas, que ficava sendo passada para os métodos na classe. Pouco coesa, pois métodos para exibir e retornar itens disponíveis na sala estava em outras classes.
 
@@ -182,3 +190,4 @@ report. Springer, New York)}
 \nocite{*} 
 
 \end{document}
+
