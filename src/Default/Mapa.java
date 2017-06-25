@@ -192,15 +192,25 @@ public class Mapa {
         return zerou;
     }
     
-    public void moverTroll() throws PersonagemException{
+    public void atacarTroll() throws PersonagemException{
         for (Sala sala : this.salas) {
             if (sala.temTroll()) {
                 for(int i=0; i<sala.getTrolls().size(); i++){
                     try {
-                        sala.getTrolls().get(i).mover(sala, this.getPlayer());
+                        sala.getTrolls().get(i).atacar(sala, this.getPlayer());
                     } catch (PersonagemException ex) {
                         throw ex;
                     }
+                }
+            }
+        }
+    }
+    
+    public void moverTroll() {
+        for (Sala sala : this.salas) {
+            if (sala.temTroll()) {
+                for(int i=0; i<sala.getTrolls().size(); i++){
+                    sala.getTrolls().get(i).mover(sala);
                 }
             }
         }

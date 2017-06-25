@@ -112,9 +112,10 @@ public class Console {
                     System.out.println(ex.getMessage());
                 }
                 try{
-                    mapa.moverTroll();
+                    mapa.atacarTroll();
+                    System.out.println("Jogador foi atacado.");
                 }catch(PersonagemException ex){
-                    System.out.println(ex.getMessage());
+                    mapa.moverTroll();
                 }
                 return !mapa.verifcarFim();
             default:

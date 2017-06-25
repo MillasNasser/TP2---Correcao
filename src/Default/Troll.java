@@ -24,7 +24,7 @@ public class Troll {
         this.nome = nome;
     }
     
-    public void mover(Sala salaAtual, Jogador player) throws PersonagemException{
+    public void atacar(Sala salaAtual, Jogador player) throws PersonagemException{
         if(this.machado == null){
             String[] materiais = {"ouro", "bronze", "ferro"};
             boolean encontrou = true;
@@ -43,24 +43,20 @@ public class Troll {
             try {
                 this.machado.usar(player);
                 this.machado = null;
-                System.out.println("Troll machado");
             } catch (PersonagemException ex) {
                 throw ex;
             }
-        }else{
-            Random random = new Random();
-            int p = 0;
-            try{
-                p = random.nextInt(salaAtual.getPortas().size());
-            }catch(IllegalArgumentException exe){
-                System.out.println(exe.getMessage());
-            }
-            Porta porta = salaAtual.getPortas().get(p);
-            if(porta.getAberta() == true && porta.getEncantada() == false){
-                Sala saida = porta.getSalaSaida();
-                saida.addTroll(this);
-                salaAtual.removeTroll(this);
-            }
+        }
+    }
+    
+    public void mover(Sala salaAtual){
+        Random random = new Random();
+        int p = random.nextInt(salaAtual.getPortas().size());
+        Porta porta = salaAtual.getPortas().get(p);
+        if(porta.getAberta() == true && porta.getEncantada() == false){
+            Sala saida = porta.getSalaSaida();
+            saida.addTroll(this);
+            salaAtual.removeTroll(this);
         }
     }
 }
