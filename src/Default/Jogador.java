@@ -77,6 +77,11 @@ public class Jogador {
     }
 
     public void mover(Aproximavel aproximavel) throws AproximavelException {
+        if(aproximavel instanceof Ouro){
+            if(this.salaAtual.temTroll()){
+                throw new ItemException("Há trolls na sala.");
+            }
+        }
         this.setPerto(aproximavel);
     }
 
@@ -100,23 +105,6 @@ public class Jogador {
             }
         }
         throw new ItemException("Jogador não tem machado.");
-        /*try {
-            String[] materiais = {"ouro", "bronze", "ferro"};
-            Pegavel machado;
-            for(String material: materiais){
-                machado = this.itens.getItem("machado de " + material);
-                try {
-                    ((Machado) machado).usar(troll);
-                } catch (ItemException ie) {
-                    System.out.println(ie.getMessage());
-                    this.itens.removeItem(machado);
-                }
-                this.salaAtual.removeTroll(troll);
-                return;
-            }
-        } catch (ItemException e) {
-            throw e;
-        }*/
     }
 
     public void sair() throws AproximavelException {
