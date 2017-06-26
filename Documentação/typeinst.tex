@@ -43,7 +43,7 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{natbib}
-\bibliographystyle{apalike-pt-br}
+%\bibliographystyle{apalike-pt-br}
 
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
@@ -148,10 +148,10 @@
         Duas modificações foram feitas. A primeira delas foi retirar o método \emph{getPortaByIdentificado}, que foi renomeado para \emph{getPorta} e transferido para o módulo Sala, aumentando a coesão da classe. A segunda foi alterar o tipo do atributo \emph{salaSaida} de String para Sala.
 
 \section{Classe Troll}
-    Acoplada por depender de sala e também com baixa coesão, métodos de outras classes, como inicializa troll, estavam sendo implementados nessa classe.
+    Muitos métodos originalmente implementados nesta classe foram movidos para outros módulos. Estes métodos deixavam a classe pouco coesa.
 
     \subsection{Mudanças e Justificativas}
-        Métodos de outras classes foram movidos para os seus devidos lugares, e método de mover trolls modificado para se adaptar ao novo código.
+        Trolls agora possuem machado. Isto significam que eles o usam do mesmo jeito que os jogadores. Na versão inicial, toda a parte de ataque dos trolls era feita na classe principal quando o comando "exit" era identificado. Além disso, várias coisas não haviam sido feitas, como zerar as moedas de ouro do jogador caso ele seja atacado e não tenha poções. Foi criado o método \emph{atacar} que faz todas essas verificações e toma todas as ações necessárias.
 
 \section{Classe TrollNome}
     Uma função de troll que poderia estar implementada na classe Troll. 
@@ -161,11 +161,11 @@
 
 \section{Pontos positivos}
 
-Houve também pontos em que o código estava seguindo a Programação Orientada a Objeto. O encapsulamento foi feito de maneira correta, As classes Mochila e Pegavel para o antigo código estava sem problemas,isto é, nenhum erro de coesão ou acoplamento 
+Houve também pontos em que o código estava seguindo os conceitos de POO. O encapsulamento foi feito de maneira correta. Muitos dos problema foram resolvidos apenas movendo métodos para outras classes. As classes \emph{Mochila} e \emph{Pegavel} estavam praticamente sem problemas de coesão ou acoplamento. Apenas foram melhorados para se adequar às novas exigências deste Trabalho Prático II.
 
 \section{Mudanças gerais}
 
-	A partir do momento que erros de Programação Orientada a Objeto foi corrigidos, houve mudanças para a realização da expansão do código. O jogo passou a ter outras características tal como especificado na documentação da tarefa.
+	A partir do momento que os erros de POO foram corrigidos, houve mudanças para a realização da expansão do código. O jogo passou a ter outras características tal como especificado na documentação da tarefa.
 
 	\subsection{Exceções}
 		O código inicial não se provia de nenhum meio para a detecção de exceções lançadas pelo jogo. Portanto os poucos meios de se evitar algum erro eram feitos a partir de retornos de funções que por sua vez tornavam o código um pouco dificil de se ler já que não havia nenhuma especificação sobre.
