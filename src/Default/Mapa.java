@@ -92,6 +92,24 @@ public class Mapa {
             }
         }
     }
+    
+    public Jogador getPlayer() {
+        return player;
+    }
+    
+    public List<Sala> getSalas() {
+        return salas;
+    }
+    
+    public Sala getSala(String nomeSala) throws Exception{
+        nomeSala = nomeSala.toLowerCase();
+        for(Sala sala: this.salas){
+            if(nomeSala.equals(sala.getNome().toLowerCase())){
+                return sala;
+            }
+        }
+        throw new Exception("Sala " + nomeSala + " não encontrada.");
+    }
 
     private void inicializaSalas() {
         for(Sala sala: this.salas){
@@ -160,24 +178,6 @@ public class Mapa {
                 }
             }
         }
-    }
-
-    public List<Sala> getSalas() {
-        return salas;
-    }
-    
-    public Sala getSala(String nomeSala) throws Exception{
-        nomeSala = nomeSala.toLowerCase();
-        for(Sala sala: this.salas){
-            if(nomeSala.equals(sala.getNome().toLowerCase())){
-                return sala;
-            }
-        }
-        throw new Exception("Sala " + nomeSala + " não encontrada.");
-    }
-    
-    public Jogador getPlayer() {
-        return player;
     }
     
     public void verifcarFim(){

@@ -34,14 +34,6 @@ public class Jogador {
         this.itens = itens;
     }
 
-    public Pegavel getItem(String strItem) throws ItemException {
-        try {
-            return this.itens.getItem(strItem);
-        } catch (ItemException e) {
-            throw e;
-        }
-    }
-
     public Sala getSalaAtual() {
         return salaAtual;
     }
@@ -130,6 +122,14 @@ public class Jogador {
             System.out.println("Jogador está próximo à: " + this.perto);
         } else {
             System.out.println("Jogador não está próximo a nada.");
+        }
+    }
+    
+    public Pegavel getItem(String strItem) throws ItemException {
+        try {
+            return this.itens.getItem(strItem);
+        } catch (ItemException e) {
+            throw e;
         }
     }
 }

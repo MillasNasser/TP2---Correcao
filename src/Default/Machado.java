@@ -13,7 +13,7 @@ public class Machado extends Pegavel {
         return material;
     }
 
-    public int getDurabilidade() {
+	public int getDurabilidade() {
         return durabilidade;
     }
 
