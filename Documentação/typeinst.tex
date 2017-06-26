@@ -50,7 +50,6 @@
 \usepackage{graphicx}
 
 \usepackage[brazil]{babel} % Pour adopter les règles de typographie française
-
 \usepackage[T1]{fontenc} % Pour que les lettres accentuées soient reconnues
 
 \usepackage{url}
@@ -135,15 +134,18 @@
     Índice de coesão extremamente baixo. Praticamente todos os métodos foram movidos para outros módulos.
     
     \subsection{Mudanças e Justificativas}
-        Muitos métodos foram removidos e outros foram realocados. Os métodos de inicialização (presentes em todas as classes desta seção) foram transformados em um único método implementado na classe mapa.
-        O efeito de cada item também passou a ser implementado dentro de cada classe, ou seja, se o jogador tenta usar uma chave, por exemplo, a função \emph{usar} da classe Chave é chamada e a porta é destrancada. %editei até aqui
-        Para aumentar a coesão todos os itens passou a ter um método usar, estes métodos são responsáveis por aplicar ações de cada item no jogo, outro método criado é o de comparar, responsável por chamar a função compare da classe Util, que compara possíveis nomes que o usuário pode digitar com nomes semelhantes que representam os itens, consequentemente houve uma grande diminuição no código pois não foi mais utilizados switch/cases enormes. Houve também a criação classe Util para conter métodos que podem ser úteis em várias partes do código.
+        Muitos métodos foram removidos e outros foram realocados. Os métodos de inicialização (presentes em todas as classes desta seção) foram transformados em um único método implementado na classe mapa. Estes métodos eram responsáveis por espalhar os itens pelas salas do jogo, e por isso deixavam a classe menos coesa.
+        O efeito de cada item passou a ser implementado dentro de cada classe, ou seja, se o jogador tenta usar uma chave, por exemplo, então a função \emph{usar} da classe Chave é chamada e a porta é destrancada.
+        
+        No código original, o usuário podia entrar com vários nomes diferentes para cada item. Para a poção, por exemplo, eram reconhecidos "poção", "pocao" e "potion". O problema é que isso era feito manualmente para cada item e isto acabava gerando muito código repetido. Para manter a mesma funcionalidade e ao mesmo tempo usar os conceitos aprendidos na disciplina de POO (usando as ideias de Herança de Tipo e Implementação) foi criado o método \emph{comparar} na super-classe \emph{Aproximavel} (portas também gozam deste método). Este permite comparar uma palavra com todas os "nomes" do item, permitindo que ele possa ser acessado de várias maneiras diferentes.
+        
+        A função que efetivamente compara o "nome" de um item à sua lista de nomes foi criada na classe \emph{Util}, pois não se adequava a nenhum módulo existente.
 
 \section{Classe Porta}
-    Não totalmente coesa, desconsiderando set e get, havia apenas um método,de pegar identificador a partir de um array de portas, sendo que o mesmo não deveria estar nessa classe.
+    Poucas modificações foram feitas nesta classe.
 
     \subsection{Mudanças e Justificativas}
-        Para aumentar a coesão foi criado um método para para chamar a compare da classe util, funcionando de maneira idêntica ao método comparar em itens, ou seja, a partir do comando digitado pelo usuário. 
+        Duas modificações foram feitas. A primeira delas foi retirar o método \emph{getPortaByIdentificado}, que foi renomeado para \emph{getPorta} e transferido para o módulo Sala, aumentando a coesão da classe. A segunda foi alterar o tipo do atributo \emph{salaSaida} de String para Sala.
 
 \section{Classe Troll}
     Acoplada por depender de sala e também com baixa coesão, métodos de outras classes, como inicializa troll, estavam sendo implementados nessa classe.

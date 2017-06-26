@@ -60,6 +60,26 @@ public class Sala {
     public List<Porta> getPortas() {
         return portas;
     }
+    
+    public int getMetrosQuadrados() {
+        return metrosQuadrados;
+    }
+
+    public void setMetrosQuadrados(int metrosQuadrados) throws IllegalArgumentException {
+        //Checando por erros.
+        if(metrosQuadrados < 1){
+            throw new IllegalArgumentException("Metros Quadrados não pode ser maior que 1.");
+        }
+        if(this.getQuantidadeOuro() > metrosQuadrados * 10){
+            throw new IllegalArgumentException("Metros Quadrados menor que a quantidade atual de ouro.");
+        }
+        
+        this.metrosQuadrados = metrosQuadrados;
+    }
+    
+    public int getQuantidadeOuro(){
+        return this.ouro.getQuantidade();
+    }
 
     public Porta getPorta(String portaStr) throws AproximavelException {
         for (Porta porta : this.portas) {
@@ -163,10 +183,6 @@ public class Sala {
         }
         throw new ItemException("Não há " + itemStr + " na sala");
     }
-    
-    public int getQuantidadeOuro(){
-        return this.ouro.getQuantidade();
-    }
 
     public Troll getTroll(String trollName) throws PersonagemException {
         if(this.temTroll() == false){
@@ -178,22 +194,6 @@ public class Sala {
             }
         }
         throw new PersonagemException("Troll " + trollName + " não está na sala");
-    }
-
-    public int getMetrosQuadrados() {
-        return metrosQuadrados;
-    }
-
-    public void setMetrosQuadrados(int metrosQuadrados) throws IllegalArgumentException {
-        //Checando por erros.
-        if(metrosQuadrados < 1){
-            throw new IllegalArgumentException("Metros Quadrados não pode ser maior que 1.");
-        }
-        if(this.getQuantidadeOuro() > metrosQuadrados * 10){
-            throw new IllegalArgumentException("Metros Quadrados menor que a quantidade atual de ouro.");
-        }
-        
-        this.metrosQuadrados = metrosQuadrados;
     }
     
     public boolean equals(Sala sala){
