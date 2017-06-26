@@ -50,6 +50,7 @@
 \usepackage{graphicx}
 
 \usepackage[brazil]{babel} % Pour adopter les règles de typographie française
+
 \usepackage[T1]{fontenc} % Pour que les lettres accentuées soient reconnues
 
 \usepackage{url}
@@ -162,13 +163,24 @@ Houve também pontos em que o código estava seguindo a Programação Orientada 
 
 \section{Mudanças gerais}
 
-A partir do momento que erros de Programação Orientada a Objeto foi corrigidos, houve mudanças para a realização da expansão do código. O jogo passou a ter outras características tal como especificado na documentação da tarefa.
+	A partir do momento que erros de Programação Orientada a Objeto foi corrigidos, houve mudanças para a realização da expansão do código. O jogo passou a ter outras características tal como especificado na documentação da tarefa.
 
-\subsection{Exceções}
+	\subsection{Exceções}
+		O código inicial não se provia de nenhum meio para a detecção de exceções lançadas pelo jogo. Portanto os poucos meios de se evitar algum erro eram feitos a partir de retornos de funções que por sua vez tornavam o código um pouco dificil de se ler já que não havia nenhuma especificação sobre.
 
-Explicar exceções
+	\subsubsection{Mudanças e Justificativas}
+		Para tal foi criado três conjuntos de exceções
+		\begin{itemize}
+			\item Personagem
+			\item Item
+			\item Aproximavel
+		\end{itemize}
 
-\subsection{}
+		Exceções do tipo personagem, são responsáveis por lançar mensagens para trolls, que são por sua vez indicam quais movimentos ele poder fazer e sobre o que ele pode interagir. Já para o jogador, estas fazem parte de todas as ações do mesmo, partindo desde interação de algum objeto presente, movimentação, e se o mesmo escreveu algum comando errado.
+		
+		Exceções geradas por algum item geralmente é que os mesmos não puderam realizar suas devidas ações, como exemplo abrir portas ou usar poção em algum lugar inválido.
+		
+		Por fim a última excessão a ser gerada pelo programa acontece pela interação das duas anteriores, estas geram um erro quando o personagem tenta se aproximar de algum item em específico e não foi possivel realizar a ação desejada como chegar perto de portas que não existem na sala e entre outros.
 
 \section{Evolução}
 	Para essa nova abordagem, o jogo apresenta novas funcionalidades.
@@ -201,9 +213,9 @@ Explicar exceções
 		Em seu lançamento cada machado é responsável por saber quem é seu alvo de ataque e qual seu efeito sobre ele, o se lançar em um Troll este será diminuído em sua durabilidade. Mas se o ataque for ao jogador então será mandado um sinal para a classe mochila que ficará a cargo de remover os itens necessários, dependendo da durabilidade do machado.
 		
 	\subsection{Jogador}
-		A principal mudança realizada foi expandir a mochila e limitar a quantidade de itens de cada tipo que o jogador pode fazer, que pode ser simplificada como. Machados pode se levar até quatro deles, independente de seu material, poções e chaves são possíveis carregar até três delas, não mais que isso.
+		A principal mudança realizada foi expandir a mochila e limitar a quantidade de itens de cada tipo que o jogador pode carregar. Pode-se agora levar até quatro machados, independente de seu material, poções e chaves são possíveis carregar até três delas, não mais que isso. 
 		
-		Para simplificar o processo a mochila agora conta com três listas de cada item descrito acima. E ao fazer a verificação é necessário apenas ver o tamanho de cada uma.
+		Para simplificar o processo a mochila agora conta com três listas de cada item descrito acima. E ao fazer a verificação é necessário apenas ver o tamanho de cada uma. 
 
 \section{Conclusão}
 
