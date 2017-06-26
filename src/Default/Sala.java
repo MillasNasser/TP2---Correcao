@@ -83,7 +83,7 @@ public class Sala {
 
     public Porta getPorta(String portaStr) throws AproximavelException {
         for (Porta porta : this.portas) {
-            if(porta.getIdentificador().toLowerCase().equals(portaStr.toLowerCase())){
+            if(porta.compare(portaStr)){
             	return porta;
             }
         }

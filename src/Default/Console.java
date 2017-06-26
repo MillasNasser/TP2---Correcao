@@ -65,10 +65,11 @@ public class Console {
                     break;
                 }
                 //andar com o player
-                if (comandoSplited.length == 3 && comandoSplited[2].equals("door")) {
+                if (comandoSplited.length == 3) {
                     //Vai colocar o player perto da porta
                     try {
-                        Aproximavel porta = mapa.getPlayer().getSalaAtual().getPorta(comandoSplited[1]);
+                        String portaStr = comandoSplited[1] + " " + comandoSplited[2];
+                        Aproximavel porta = mapa.getPlayer().getSalaAtual().getPorta(portaStr);
                         mapa.getPlayer().mover(porta);
                         
                         System.out.println("Jogador de aproximou da Porta " + ((Porta)porta).getIdentificador());
