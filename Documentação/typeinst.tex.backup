@@ -178,19 +178,15 @@ Houve também pontos em que o código estava seguindo a Programação Orientada 
 	\subsection{Exceções}
 		O código inicial não se provia de nenhum meio para a detecção de exceções lançadas pelo jogo. Portanto os poucos meios de se evitar algum erro eram feitos a partir de retornos de funções que por sua vez tornavam o código um pouco dificil de se ler já que não havia nenhuma especificação sobre.
 
-	\subsubsection{Mudanças e Justificativas}
+	\subsection{Mudanças e Justificativas}
 		Para tal foi criado três conjuntos de exceções
 		\begin{itemize}
-			\item Personagem
-			\item Item
-			\item Aproximavel
+			\item PersonagemException
+			\item ItemException
+			\item AproximavelException
 		\end{itemize}
 
-		Exceções do tipo personagem, são responsáveis por lançar mensagens para trolls, que são por sua vez indicam quais movimentos ele poder fazer e sobre o que ele pode interagir. Já para o jogador, estas fazem parte de todas as ações do mesmo, partindo desde interação de algum objeto presente, movimentação, e se o mesmo escreveu algum comando errado.
-		
-		Exceções geradas por algum item geralmente é que os mesmos não puderam realizar suas devidas ações, como exemplo abrir portas ou usar poção em algum lugar inválido.
-		
-		Por fim a última excessão a ser gerada pelo programa acontece pela interação das duas anteriores, estas geram um erro quando o personagem tenta se aproximar de algum item em específico e não foi possivel realizar a ação desejada como chegar perto de portas que não existem na sala e entre outros.
+		E
 		
 \section{Evolução} 
   Para essa nova abordagem, o jogo apresenta novas funcionalidades. 
