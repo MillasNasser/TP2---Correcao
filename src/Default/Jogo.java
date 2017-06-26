@@ -36,7 +36,10 @@ public class Jogo {
             } catch (PersonagemException ex) {
                 
             }
-            mapa.verifcarFim();
+            
+            if(mapa.getPlayer().getSalaAtual().getNome().equals("Saida")){
+            	mapa.verifcarFim();
+            }
         }
         /**/
     }
