@@ -67,7 +67,7 @@
 
 \titlerunning{Trabalho Prático II}
 
-\author{Christoffer de Paula Oliveira, Paulo , Millas}
+\author{Christoffer de Paula Oliveira, Paulo Henrique Tobias, Millas Násser}
 
 \institute{UFSJ- Universidade Federal de São João Del Rei}
 
@@ -90,82 +90,71 @@
 \medskip
 
 \section*{Introdução}
-Este relatório tem como objetivo documentar as mudanças feitos no Trabalho Prático I para que este se adeque aos conceitos de Programação Orientada a Objetos (POO). Além disso, o relatório também o que ajudou e o que atrapalhou na implementação das novas funcionalidades requeridas no Trabalho Prático 2.
+    Este relatório tem como objetivo documentar as mudanças feitos no Trabalho Prático I para que este se adeque aos conceitos de Programação Orientada a Objetos (POO). Além disso, o relatório também relata o que ajudou e o que atrapalhou na implementação das novas funcionalidades requeridas no Trabalho Prático 2.
 
 \section{Classe Jogo}
-A classe Jogo estava com um alto nível de acoplamento. Várias funções -- que, segundo a ideia de coesão, pertencem à outras classes -- estavam implementadas aqui. Além disso, havia muito código repetido, que mais tarde foi transformado em métodos. Estes fatores deixavam o código muito grande e quase ilegível.
+    A classe Jogo estava com um alto nível de acoplamento. Várias funções -- que, segundo a ideia de coesão, pertencem à outras classes -- estavam implementadas aqui. Além disso, havia muito código repetido, que mais tarde foi transformado em métodos. Estes fatores deixavam o código muito grande e quase ilegível.
+    
+    Praticamente todos os objetos do jogo eram declarados aqui. Além da lista de salas e trolls, também existiam listas para cada tipo de item. Estes itens, durante a inicialização, seriam espalhados aleatoriamente pelas salas. Para isso, existia uma classe \emph{Localizavel} que guardava a localização de todos os objetos do jogo (Incluindo Jogador e Trolls).
 
-Praticamente todos os objetos do jogo eram declarados aqui. Além da lista de salas e trolls, também existiam listas para cada tipo de item. Estes itens, durante a inicialização, seriam espalhados aleatoriamente pelas salas. Para isso, existia uma classe \emph{Localizavel} que guardava a localização de todos os objetos do jogo (Incluindo Jogador e Trolls).
+    A verificação e execução dos comandos do jogador também era feita nesta classe. Ações como pegar um item, por exemplo, que pertencem à classe Jogador, eram feitas na classe Jogo.
 
-A verificação e execução dos comandos do jogador também era feita nesta classe. Ações como pegar um item, por exemplo, que pertencem à classe Jogador, eram feitas na classe Jogo.
-
-\subsection{Mudanças e Justificativas}
-
-Para diminuir o acoplamento, foi criada uma nova classe chamada \emph{Console}, que faz o processamento da entrada do usuário e chama as funções corretas, cada uma implementada na sua devida classe. Portanto, se o usuário digitou o comando "pickup gold", o console agora apenas identifica que é o comando "pegar" e chama a função correspondente da classe Jogador.
-
-Além disso, uma nova classe \emph{Mapa} foi criada, que guarda a lista de salas e o objeto Jogador. A lista de trolls, assim como as de itens, foram transformadas em listas individuais para cada sala. Assim, cada sala passou a ter suas próprias listas de trolls e de itens.
-
-Ao final das modificações, a classe jogo apenas chama a função \emph{console} até que o jogo termine.
+    \subsection{Mudanças e Justificativas}
+        Para diminuir o acoplamento, foi criada uma nova classe chamada \emph{Console}, que faz o processamento da entrada do usuário e chama as funções corretas, cada uma implementada na sua devida classe. Portanto, se o usuário digitou o comando "pickup gold", o console agora apenas identifica que é o comando "pegar" e chama a função correspondente da classe Jogador.
+        
+        Além disso, uma nova classe \emph{Mapa} foi criada, que guarda a lista de salas e o objeto Jogador. A lista de trolls, assim como as de itens, foram transformadas em listas individuais para cada sala. Assim, cada sala passou a ter suas próprias listas de trolls e de itens.
+        
+        Ao final das modificações, a classe jogo apenas chama a função \emph{console} até que o jogo termine.
 
 \section{Classe Sala}
+    O principal problema das salas, além do já explicado acima, é que o método que inicializava o conjunto das salas estava implementado ali (veremos mais adiante que este foi um problema em quase todo o projeto). Podemos achar que esse tipo de método pertença à classe Sala, porém quem tem a função de inicializar as salas, ou seja, criar o mapa, é o próprio mapa.
 
-O principal problema das salas, além do já explicado acima, é que a função que inicializava o conjunto das salas estava implementado ali (veremos mais adiante que este foi um problema em quase todo o projeto). Podemos achar que %aqui tem que falar que por mais que a função aparenta pertencer àquela classe, na verdade ela devia ser implementada na classe acima (Mapa).
-
-Não tinha objetos como trolls e itens apenas portas. Havia problemas de acoplamento, sendo feita a inicialização das salas, colocando portas, e também obtendo nome a partir de um array de salas, que ficava sendo passada para os métodos na classe. Pouco coesa, pois métodos para exibir e retornar itens disponíveis na sala estava em outras classes.
-
-\subsection{Mudanças e Justificativas}
-
-Para a cada Sala ter todos os objetos que se pode ter em uma sala foi declarado um array de Pegavel e Trolls, toda a inicialização como dito anteriormente foi passada para a classe Mapa, criados métodos para retornar, remover, adicionar e imprimir itens e trolls nas salas.
+    \subsection{Mudanças e Justificativas}
+        A inicialização do conjunto de salas foi passada para a classe Mapa. Como dito anteriormente, as listas de trolls e itens foram movidas para a Sala. Por consequência disso, foram criados métodos para adicionar, remover, retornar e imprimir os itens e trolls das salas.
 
 \section{Classe Jogador}
+    Pouco coesa. Os métodos que deveriam estar aqui -- pegar, largar, mover, sair, atacar, etc -- estavam em outros módulos.
+    
+    Para armazenar o objeto (porta ou item) que estava perto do jogador eram usados dois atributos. Um do tipo \emph{Porta} -- para armazenar a porta -- e outro do tipo \emph{String} para armazenar os demais itens.
 
-Pouco coesa. Nenhum método além de get e set implementado nessa classe ações do jogador como, soltar e pegar, estavam implementadas na classe Jogo. Acoplada por haver tipo String para representação de um item.
-
-\subsection{Mudanças e Justificativas}
-
-Métodos que são responsáveis por realizar ações do jogador foram implementados aqui, ações como largar e pegar itens, lançar machado, sair da sala e perder ouro deixando o código mais coeso. O tipo de variável para representar o objeto que está perto passou a ser Aproximavel, a classe Aproximavel representa todos os objetos do jogo no qual o jogador pode se aproximar. Por último foi criada uma variável do tipo Sala para armazenar onde o jogador se encontra atualmente no mapa. 
+    \subsection{Mudanças e Justificativas}
+        Largar e pegar itens, lançar machado, sair da sala e perder ouro, que são métodos responsáveis por realizar ações do jogador foram implementados aqui deixando o código mais coeso.
+        
+        Foi criada uma classe \emph{Aproximavel} que indica que o jogador pode se mover para perto deste objeto. Portanto, apenas um atributo é necessário para guardar esta informação. Com a remoção da classe \emph{Localizavel}, foi criado um atributo do tipo \emph{Sala} para armazenar a sala atual do jogador.
 
 \section{Classe Localizável}
+    Praticamente todo o código era dependente dessa classe.
 
-Muito acoplada, praticamente todo o código era dependente dessa classe.
-
-\subsection{Mudanças e Justificativas}
-
-Essa classe foi excluída ocasionando em um bom desnível de acoplamento no código,com isso todo o restante do código que necessitava dessa classe foi adaptado pra não depender mais. 
+    \subsection{Mudanças e Justificativas}
+        Essa classe foi excluída ocasionando em um bom desnível de acoplamento no código,com isso todo o restante do código que necessitava dessa classe foi adaptado pra não depender mais. 
 
 \section{Classes Chave, Machado, Pocao e Ouro}
-
-Todas estão na mesma forma, ou seja implementação bem semelhante, por isso ficou desnecessário criar tópicos diferentes.
-Índice de coesão extremamente baixo, praticamente todos os métodos não eram coesos, por exemplo imprimir itens na sala sem as classes sequer terem salas. 
-
-\subsection{Mudanças e Justificativas}
-
-Para aumentar a coesão todos os itens passou a ter um método usar, estes métodos são responsáveis por aplicar ações de cada item no jogo, outro método criado é o de comparar, responsável por chamar a função compare da classe Util, que compara possíveis nomes que o usuário pode digitar com nomes semelhantes que representam os itens, consequentemente houve uma grande diminuição no código pois não foi mais utilizados switch/cases enormes. Houve também a criação classe Util para conter métodos que podem ser úteis em várias partes do código.
+    Todas possuíam o mesmo problema que a classe sala: possuíam métodos que aparentavam pertencer à classe mas que na verdade deveriam estar em outra.
+    
+    Índice de coesão extremamente baixo. Praticamente todos os métodos foram movidos para outros módulos.
+    
+    \subsection{Mudanças e Justificativas}
+        Muitos métodos foram removidos e outros foram realocados. Os métodos de inicialização (presentes em todas as classes desta seção) foram transformados em um único método implementado na classe mapa.
+        O efeito de cada item também passou a ser implementado dentro de cada classe, ou seja, se o jogador tenta usar uma chave, por exemplo, a função \emph{usar} da classe Chave é chamada e a porta é destrancada. %editei até aqui
+        Para aumentar a coesão todos os itens passou a ter um método usar, estes métodos são responsáveis por aplicar ações de cada item no jogo, outro método criado é o de comparar, responsável por chamar a função compare da classe Util, que compara possíveis nomes que o usuário pode digitar com nomes semelhantes que representam os itens, consequentemente houve uma grande diminuição no código pois não foi mais utilizados switch/cases enormes. Houve também a criação classe Util para conter métodos que podem ser úteis em várias partes do código.
 
 \section{Classe Porta}
+    Não totalmente coesa, desconsiderando set e get, havia apenas um método,de pegar identificador a partir de um array de portas, sendo que o mesmo não deveria estar nessa classe.
 
-Não totalmente coesa, desconsiderando set e get, havia apenas um método,de pegar identificador a partir de um array de portas, sendo que o mesmo não deveria estar nessa classe.
-
-\subsection{Mudanças e Justificativas}
-
-Para aumentar a coesão foi criado um método para para chamar a compare da classe util, funcionando de maneira idêntica ao método comparar em itens, ou seja, a partir do comando digitado pelo usuário. 
+    \subsection{Mudanças e Justificativas}
+        Para aumentar a coesão foi criado um método para para chamar a compare da classe util, funcionando de maneira idêntica ao método comparar em itens, ou seja, a partir do comando digitado pelo usuário. 
 
 \section{Classe Troll}
+    Acoplada por depender de sala e também com baixa coesão, métodos de outras classes, como inicializa troll, estavam sendo implementados nessa classe.
 
-Acoplada por depender de sala e também com baixa coesão, métodos de outras classes, como inicializa troll, estavam sendo implementados nessa classe.
-
-\subsection{Mudanças e Justificativas}
-
-Métodos de outras classes foram movidos para os seus devidos lugares, e método de mover trolls modificado para se adaptar ao novo código.
+    \subsection{Mudanças e Justificativas}
+        Métodos de outras classes foram movidos para os seus devidos lugares, e método de mover trolls modificado para se adaptar ao novo código.
 
 \section{Classe TrollNome}
+    Uma função de troll que poderia estar implementada na classe Troll. 
 
-Uma função de troll que poderia estar implementada na classe Troll. 
-
-\subsection{Mudanças e Justificativas}
-
-
-Caso precise ser mais detalhado
+    \subsection{Mudanças e Justificativas}
+        Caso precise ser mais detalhado
 
 \section{Pontos positivos}
 
@@ -173,60 +162,48 @@ Houve também pontos em que o código estava seguindo a Programação Orientada 
 
 \section{Mudanças gerais}
 
-	A partir do momento que erros de Programação Orientada a Objeto foi corrigidos, houve mudanças para a realização da expansão do código. O jogo passou a ter outras características tal como especificado na documentação da tarefa.
+A partir do momento que erros de Programação Orientada a Objeto foi corrigidos, houve mudanças para a realização da expansão do código. O jogo passou a ter outras características tal como especificado na documentação da tarefa.
 
-	\subsection{Exceções}
-		O código inicial não se provia de nenhum meio para a detecção de exceções lançadas pelo jogo. Portanto os poucos meios de se evitar algum erro eram feitos a partir de retornos de funções que por sua vez tornavam o código um pouco dificil de se ler já que não havia nenhuma especificação sobre.
+\subsection{Exceções}
 
-	\subsubsection{Mudanças e Justificativas}
-		Para tal foi criado três conjuntos de exceções
+Explicar exceções
+
+\subsection{}
+
+\section{Evolução}
+	Para essa nova abordagem, o jogo apresenta novas funcionalidades.
+	
+	\subsection{Salas}
+		Salas agora possuem tamanhos diferentes, com isso as salas serão divididos em metros quadrados que por sua vez visam limitar a quantidade de ouro disponível, onde no máximo podem caber dez peças de ouro por metro quadrado. Portanto salas de tamanhos diferentes armazenam quantidades diferentes.
+		
+		Com essa modificação no tamanho, chegamos a outro ponto, elas por sua vez não podem possuir a mesma configuração de tamanho.
+		
+		Para isso foi adicionado um novo campo na classe Sala, que é tamanho de cada uma para saber identificar qual a quantidade certa de ouro. E a criação das mesmas agora são feitos a partir de um arquivo json, diferentemente de antes que era feita a partir da sua própria classe. Deixando o código mais limpo.
+		
+		%Continuar sala
+	
+	\subsection{Machados}
+		Para essa nova abordagem, o jogo apresenta novas configurações de machados.
 		\begin{itemize}
-			\item Personagem
-			\item Item
-			\item Aproximavel
+			\item Machado de ouro
+			\item Machado de bronze
+			\item Machado de ferro
 		\end{itemize}
-
-		Exceções do tipo personagem, são responsáveis por lançar mensagens para trolls, que são por sua vez indicam quais movimentos ele poder fazer e sobre o que ele pode interagir. Já para o jogador, estas fazem parte de todas as ações do mesmo, partindo desde interação de algum objeto presente, movimentação, e se o mesmo escreveu algum comando errado.
 		
-		Exceções geradas por algum item geralmente é que os mesmos não puderam realizar suas devidas ações, como exemplo abrir portas ou usar poção em algum lugar inválido.
+		Para isso a classe Machado anteriormente se tornou abstrata e recebeu dois novos atributos. 
 		
-		Por fim a última excessão a ser gerada pelo programa acontece pela interação das duas anteriores, estas geram um erro quando o personagem tenta se aproximar de algum item em específico e não foi possivel realizar a ação desejada como chegar perto de portas que não existem na sala e entre outros.
+		O primeiro deles foi a durabilidade, essa indica qual a quantidade de vezes o machado será lançado e o outro campo é o material, fornecendo a durabilidade individual de cama machado.
 		
-\section{Evolução} 
-  Para essa nova abordagem, o jogo apresenta novas funcionalidades. 
-   
-  \subsection{Salas} 
-    Salas agora possuem tamanhos diferentes, com isso as salas serão divididos em metros quadrados que por sua vez visam limitar a quantidade de ouro disponível, onde no máximo podem caber dez peças de ouro por metro quadrado. Portanto salas de tamanhos diferentes armazenam quantidades diferentes. 
-     
-    Com essa modificação no tamanho, chegamos a outro ponto, elas por sua vez não podem possuir a mesma configuração de tamanho. 
-     
-    Para isso foi adicionado um novo campo na classe Sala, que é tamanho de cada uma para saber identificar qual a quantidade certa de ouro. E a criação das mesmas agora são feitos a partir de um arquivo json, diferentemente de antes que era feita a partir da sua própria classe. Deixando o código mais limpo. 
-     
-    %Continuar sala 
-   
-  \subsection{Machados} 
-    Para essa nova abordagem, o jogo apresenta novas configurações de machados. 
-    \begin{itemize} 
-      \item Machado de ouro 
-      \item Machado de bronze 
-      \item Machado de ferro 
-    \end{itemize} 
-     
-    Para isso a classe Machado anteriormente se tornou abstrata e recebeu dois novos atributos.  
-     
-    O primeiro deles foi a durabilidade, essa indica qual a quantidade de vezes o machado será lançado e o outro campo é o material, fornecendo a durabilidade individual de cama machado. 
-     
-    Machados de ferro possuem durabilidade um, ou seja, posem ser lançados apenas uma vez. Os de bronze podem ser lançados em até duas vezes e por fim machados de ouro são lançados 5 vezes. 
-     
-    A abordagem foi criar mais 3 novas classes, uma para cada material acima descrito. Todas elas possuem funcionamento em comum, portanto todas herdaram da classe machado. 
-     
-    Em seu lançamento cada machado é responsável por saber quem é seu alvo de ataque e qual seu efeito sobre ele, o se lançar em um Troll este será diminuído em sua durabilidade. Mas se o ataque for ao jogador então será mandado um sinal para a classe mochila que ficará a cargo de remover os itens necessários, dependendo da durabilidade do machado. 
-     
-  \subsection{Jogador} 
-    A principal mudança realizada foi expandir a mochila e limitar a quantidade de itens de cada tipo que o jogador pode fazer, podem machados se levar até quatro deles, independente de seu material, poções e chaves são possíveis carregar até três delas, não mais que isso. 
-     
-    Para simplificar o processo a mochila agora conta com três listas de cada item descrito acima. E ao fazer a verificação é necessário apenas ver o tamanho de cada uma. 
-
+		Machados de ferro possuem durabilidade um, ou seja, posem ser lançados apenas uma vez. Os de bronze podem ser lançados em até duas vezes e por fim machados de ouro são lançados 5 vezes.
+		
+		A abordagem foi criar mais 3 novas classes, uma para cada material acima descrito. Todas elas possuem funcionamento em comum, portanto todas herdaram da classe machado.
+		
+		Em seu lançamento cada machado é responsável por saber quem é seu alvo de ataque e qual seu efeito sobre ele, o se lançar em um Troll este será diminuído em sua durabilidade. Mas se o ataque for ao jogador então será mandado um sinal para a classe mochila que ficará a cargo de remover os itens necessários, dependendo da durabilidade do machado.
+		
+	\subsection{Jogador}
+		A principal mudança realizada foi expandir a mochila e limitar a quantidade de itens de cada tipo que o jogador pode fazer, que pode ser simplificada como. Machados pode se levar até quatro deles, independente de seu material, poções e chaves são possíveis carregar até três delas, não mais que isso.
+		
+		Para simplificar o processo a mochila agora conta com três listas de cada item descrito acima. E ao fazer a verificação é necessário apenas ver o tamanho de cada uma.
 
 \section{Conclusão}
 
