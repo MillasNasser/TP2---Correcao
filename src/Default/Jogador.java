@@ -140,7 +140,6 @@ public class Jogador {
                     throw ie;
                 }
             }
-            this.salaAtual = porta.getSalaSaida();
             this.perto = null;
         } else {
             throw new AproximavelException("Jogador está longe das portas.");

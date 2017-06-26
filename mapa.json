@@ -6,7 +6,7 @@
 			"portas": [
 				{
 					"identificador": "A",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 06",
 					"saida": false
@@ -86,7 +86,7 @@
 			"portas": [
 				{
 					"identificador": "A",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 10",
 					"saida": false
@@ -113,7 +113,7 @@
 				},
 				{
 					"identificador": "B",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 07",
 					"saida": false
@@ -153,7 +153,7 @@
 				},
 				{
 					"identificador": "B",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 03",
 					"saida": false
@@ -179,7 +179,7 @@
 			"portas": [
 				{
 					"identificador": "A",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 09",
 					"saida": false
@@ -193,7 +193,7 @@
 				},
 				{
 					"identificador": "C",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 05",
 					"saida": false
@@ -206,7 +206,7 @@
 			"portas": [
 				{
 					"identificador": "A",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 12",
 					"saida": false
@@ -240,7 +240,7 @@
 				},
 				{
 					"identificador": "C",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 13",
 					"saida": false
@@ -273,7 +273,7 @@
 			"portas": [
 				{
 					"identificador": "A",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 15",
 					"saida": false
@@ -320,7 +320,7 @@
 			"portas": [
 				{
 					"identificador": "A",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 11",
 					"saida": false
@@ -347,7 +347,7 @@
 				},
 				{
 					"identificador": "B",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 18",
 					"saida": false
@@ -387,7 +387,7 @@
 				},
 				{
 					"identificador": "B",
-					"aberta": true,
+					"aberta": false,
 					"encantada": false,
 					"salaSaida": "Sala 18",
 					"saida": false

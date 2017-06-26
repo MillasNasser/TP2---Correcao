@@ -26,7 +26,7 @@ public class Jogo {
         
         mapa.espalhaItens();
         mapa.espalhaTrolls();
-        
+        mapa.inicializaSalas();
         /**/
         mapa.getPlayer().setSalaAtual(mapa.getSalas().get(0));
         while (true) {

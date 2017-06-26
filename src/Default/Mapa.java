@@ -87,7 +87,7 @@ public class Mapa {
                     porta.setSalaSaida(this.getSala(nomeSalaSaida));
                     this.salas.get(i).addPorta(porta);
                 } catch (Exception ex) {
-                    //TO-DO (?): Sala a ser conectada não existe. O que fazer?
+                    
                 }
             }
         }
@@ -111,7 +111,7 @@ public class Mapa {
         throw new Exception("Sala " + nomeSala + " não encontrada.");
     }
 
-    private void inicializaSalas() {
+    public void inicializaSalas() {
         for(Sala sala: this.salas){
             sala.addChave();
         }
