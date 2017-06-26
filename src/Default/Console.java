@@ -118,6 +118,16 @@ public class Console {
                     mapa.moverTroll();
                 }
                 break;
+		
+	    case "lock":
+		try {
+		    mapa.getPlayer().trancar();
+		    System.out.println("Jogador trancou a porta.");
+		} catch (AproximavelException ex) {
+		    System.out.println(ex.getMessage());
+		}
+		break;
+		
             case "quit":
                 System.exit(0);
             default:

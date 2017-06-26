@@ -114,6 +114,36 @@ public class Jogador {
                 try {
                     Pegavel chave = this.itens.getItem("key");
                     this.itens.removeItem(chave);
+		    porta.setAberta(true);
+		    for(Porta portas : porta.getSalaSaida().getPortas()){
+			if(this.salaAtual.equals(portas.getSalaSaida())){
+			    portas.setAberta(true);
+			}
+		    }
+                } catch (ItemException ie) {
+                    throw ie;
+                }
+            }
+            this.salaAtual = porta.getSalaSaida();
+            this.perto = null;
+        } else {
+            throw new AproximavelException("Jogador está longe das portas.");
+        }
+    }
+    
+    public void trancar() throws AproximavelException {
+        if (this.perto instanceof Porta) {
+            Porta porta = (Porta) this.perto;
+            if (porta.getEncantada()== false) {
+                try {
+                    Pegavel potion = this.itens.getItem("potion");
+                    this.itens.removeItem(potion);
+		    porta.setEncantada(true);
+		    for(Porta portas : porta.getSalaSaida().getPortas()){
+			if(this.salaAtual.equals(portas.getSalaSaida())){
+			    portas.setEncantada(true);
+			}
+		    }
                 } catch (ItemException ie) {
                     throw ie;
                 }

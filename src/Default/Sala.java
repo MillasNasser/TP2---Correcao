@@ -131,7 +131,7 @@ public class Sala {
         System.out.printf("Sala Atual: %s | Tamanho: %d metros quadrados\n", this.nome, this.metrosQuadrados);
         System.out.println("  PORTAS");
         for (Porta porta : this.getPortas()) {
-            System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada"));
+            System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada")+" e"+((porta.getEncantada()) ? " encantada" : " sem encanto"));
         }
         System.out.println("  ITENS");
         System.out.printf("%s", (this.ouro.getQuantidade() > 0)?String.format("    Ouro <%d>\n", this.ouro.getQuantidade()):"");
