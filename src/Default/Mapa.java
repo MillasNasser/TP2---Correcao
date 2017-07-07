@@ -158,7 +158,7 @@ public class Mapa {
     }
 
     public void espalhaTrolls() {
-        int quantidade_trolls = 15;//quantidade de trolls que vou inicializar
+        int quantidade_trolls = 7;//quantidade de trolls que vou inicializar
         Random random = new Random();
         for (int i = 0; i < quantidade_trolls; i++) {
             //Escolhendo uma sala aleatória que esteja vazia.
@@ -168,10 +168,8 @@ public class Mapa {
                 pos = random.nextInt((this.salas.size() - 2)) + 1;//gera a sala aleatoriamente desde q a sala nao seja a primeira
                 //checar se a sala ja foi escolhida anteriormente
                 if( !this.salas.get(pos).temTroll() ) {
-                    //ATT: vamos ter que refazer essa função pra adicionar os dois
-                    //tipos de trolls de um jeito que minimaliza código duplicado.
-                    
-                    //this.salas.get(pos).addTroll(new Troll());
+                    this.salas.get(pos).addTrollCaverna(new TrollCaverna());
+					this.salas.get(pos).addTrollGuerreiro(new TrollGuerreiro());
                     
                     conseguiu = true;
                 }

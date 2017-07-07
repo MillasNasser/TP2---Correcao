@@ -5,10 +5,6 @@
  */
 package Default;
 
-/**
- *
- * @author millas
- */
 public class TrollCaverna extends Troll{
 	
 }

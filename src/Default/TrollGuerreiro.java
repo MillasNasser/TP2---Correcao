@@ -12,10 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- *
- * @author millas
- */
 public class TrollGuerreiro extends Troll{
     
     private Machado machado = null;
