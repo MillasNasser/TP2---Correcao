@@ -3,29 +3,28 @@ package Default;
 import java.util.ArrayList;
 import java.util.List;
 
-import Exceptions.AproximavelException;
 import Exceptions.ItemException;
 import Exceptions.PersonagemException;
+import java.util.Map;
 
 /**
  * @author renan
  *
  */
-public class Sala {
+public class Sala extends Local{
 
     private String nome;
     private int metrosQuadrados;
     private List<Pegavel> itens = null;
     Ouro ouro = null;
-    private List<Troll> trolls = null;
-    private List<Porta> portas = null;
+    private List<TrollCaverna> trollsCaverna = null;
 
     Sala(String nome, int tamanho) {
+        super();
         this.nome = nome;
-        this.portas = new ArrayList<>();
         this.itens = new ArrayList<>();
         this.ouro = new Ouro(0);
-        this.trolls = new ArrayList<>();
+        this.trollsCaverna = new ArrayList<>();
         this.setMetrosQuadrados(tamanho);
     }
 
@@ -43,22 +42,6 @@ public class Sala {
 
     public void setItens(List<Pegavel> itens) {
         this.itens = itens;
-    }
-
-    public List<Troll> getTrolls() {
-        return this.trolls;
-    }
-
-    public void setTrolls(List<Troll> trolls) {
-        this.trolls = trolls;
-    }
-
-    public void setPortas(List<Porta> portas) {
-        this.portas = portas;
-    }
-
-    public List<Porta> getPortas() {
-        return portas;
     }
     
     public int getMetrosQuadrados() {
@@ -79,15 +62,6 @@ public class Sala {
     
     public int getQuantidadeOuro(){
         return this.ouro.getQuantidade();
-    }
-
-    public Porta getPorta(String portaStr) throws AproximavelException {
-        for (Porta porta : this.portas) {
-            if(porta.compare(portaStr)){
-            	return porta;
-            }
-        }
-        throw new AproximavelException("Porta " + portaStr + " não encontrada.");
     }
 
     public void addItem(Pegavel item) throws ItemException {
@@ -112,13 +86,10 @@ public class Sala {
             this.itens.remove(item);
         }
     }
-    
-    public void addPorta(Porta porta){
-    	this.portas.add(porta);
-    }
 
     public void addChave() {
-        for (Porta porta : this.portas) {
+        for( Map.Entry<String, Porta> entry: this.getPortas().entrySet() ) {
+            Porta porta = entry.getValue();
             if (porta.getAberta() == false) {
                 try {
                     this.addItem(new Chave());
@@ -130,27 +101,35 @@ public class Sala {
         }
     }
 
-    public void addTroll(Troll troll) {
-        this.trolls.add(troll);
+    public void addTrollCaverna(TrollCaverna troll) {
+        this.trollsCaverna.add(troll);
     }
 
-    public void removeTroll(Troll troll) {
-        this.trolls.remove(troll);
+    public void removeTrollCaverna(TrollCaverna troll) {
+        this.trollsCaverna.remove(troll);
     }
 
+    public boolean temTrollCaverna(){
+        return (this.trollsCaverna.size() > 0);
+    }
+    
     public boolean temTroll() {
-        if(this.trolls.size() > 0){
-            return true;
-        }else{
-            return false;
+        return (this.temTrollGuerreiro() || this.temTrollCaverna());
+    }
+    
+    public void removeTroll(Troll troll){
+        if(troll instanceof TrollCaverna){
+            this.removeTrollCaverna((TrollCaverna) troll);
+        }else if(troll instanceof TrollGuerreiro){
+            this.removeTrollGuerreiro((TrollGuerreiro) troll);
         }
-        //return (this.trolls.size() > 0);
     }
 
     public void imprimeInfoSala() {
         System.out.printf("Sala Atual: %s | Tamanho: %d metros quadrados\n", this.nome, this.metrosQuadrados);
         System.out.println("  PORTAS");
-        for (Porta porta : this.getPortas()) {
+        for( Map.Entry<String, Porta> entry: this.getPortas().entrySet() ) {
+            Porta porta = entry.getValue();
             System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada")+" e"+((porta.getEncantada()) ? " encantada" : " sem encanto"));
         }
         System.out.println("  ITENS");
@@ -159,10 +138,14 @@ public class Sala {
             System.out.println("    " + item);
         }
         System.out.println("  TROLLS");
-        for (Troll troll : this.trolls) {
+        System.out.println("    Trolls da Caverna");
+        for (Troll troll : this.trollsCaverna) {
             System.out.println("    " + troll.getNome());
         }
-        System.out.println();
+        System.out.println("    Trolls Guerreiros");
+        for (Troll troll : this.getTrollsGuerreiros()) {
+            System.out.println("    " + troll.getNome());
+        }
     }
     
     public boolean temItem(){
@@ -185,15 +168,21 @@ public class Sala {
     }
 
     public Troll getTroll(String trollName) throws PersonagemException {
+        //Verifica se há Trolls na sala.
         if(this.temTroll() == false){
             throw new PersonagemException("Não há trolls na sala.");
         }
-        for (Troll troll : this.trolls) {
+        
+        //Verifica se o troll é um dos trolls da caverna da sala.
+        for (Troll troll : this.trollsCaverna) {
             if (troll.getNome().toLowerCase().equals(trollName)) {
                 return troll;
             }
         }
-        throw new PersonagemException("Troll " + trollName + " não está na sala");
+        
+        //Se não for, então basta chamar a função getTrollGuerreiro, que
+        //ficará encarregada de lançar a exceção caso o troll não seja encontrado.
+        return this.getTrollGuerreiro(trollName);
     }
     
     public boolean equals(Sala sala){

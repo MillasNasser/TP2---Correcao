@@ -1,6 +1,5 @@
 package Default;
 
-import Exceptions.AproximavelException;
 import Exceptions.ItemException;
 import Exceptions.PersonagemException;
 
@@ -13,21 +12,16 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Mapa {
 
     private Jogador player;
     private List<Sala> salas;
+    private List<Corredor> corredores;
 
     public Mapa(){
-        salas = new ArrayList<>();
-        player = new Jogador();
-        
-        /*inicializaSalas();
-        espalhaItens();
-        inicializaTrolls();*/
+        this.salas = new ArrayList<>();
+        this.player = new Jogador();
     }
     
     public Mapa(String arquivo){
@@ -76,6 +70,7 @@ public class Mapa {
                 JsonObject jsonPorta = jsonPortas.get(j).getAsJsonObject();
                 
                 Porta porta = new Porta();
+                String identificador = jsonPorta.get("identificador").getAsString();
                 porta.setIdentificador(jsonPorta.get("identificador").getAsString());
                 porta.setAberta(jsonPorta.get("aberta").getAsBoolean());
                 porta.setEncantada(jsonPorta.get("encantada").getAsBoolean());
@@ -85,7 +80,7 @@ public class Mapa {
                     String nomeSalaSaida = jsonPorta.get("salaSaida").getAsString();
                     
                     porta.setSalaSaida(this.getSala(nomeSalaSaida));
-                    this.salas.get(i).addPorta(porta);
+                    this.salas.get(i).addPorta(identificador, porta);
                 } catch (Exception ex) {
                     
                 }
@@ -173,7 +168,11 @@ public class Mapa {
                 pos = random.nextInt((this.salas.size() - 2)) + 1;//gera a sala aleatoriamente desde q a sala nao seja a primeira
                 //checar se a sala ja foi escolhida anteriormente
                 if( !this.salas.get(pos).temTroll() ) {
-                    this.salas.get(pos).addTroll(new Troll());
+                    //ATT: vamos ter que refazer essa função pra adicionar os dois
+                    //tipos de trolls de um jeito que minimaliza código duplicado.
+                    
+                    //this.salas.get(pos).addTroll(new Troll());
+                    
                     conseguiu = true;
                 }
             }
@@ -194,9 +193,9 @@ public class Mapa {
     public void atacarTroll() throws PersonagemException{
         Sala salaAtual = this.player.getSalaAtual();
         if(salaAtual.temTroll()) {
-            for(int i=0; i<salaAtual.getTrolls().size(); i++){
+            for(int i=0; i<salaAtual.getTrollsGuerreiros().size(); i++){
                 try {
-                    salaAtual.getTrolls().get(i).atacar(salaAtual, this.getPlayer());
+                    salaAtual.getTrollsGuerreiros().get(i).atacar(salaAtual, this.getPlayer());
                 } catch (PersonagemException ex) {
                     throw ex;
                 }
@@ -209,8 +208,8 @@ public class Mapa {
     public void moverTroll() {
         for (Sala sala : this.salas) {
             if (sala.temTroll()) {
-                for(int i=0; i<sala.getTrolls().size(); i++){
-                    sala.getTrolls().get(i).mover(sala);
+                for(int i=0; i<sala.getTrollsGuerreiros().size(); i++){
+                    sala.getTrollsGuerreiros().get(i).mover(sala);
                 }
             }
         }

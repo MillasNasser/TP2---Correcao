@@ -2,7 +2,6 @@ package Default;
 
 import Exceptions.AproximavelException;
 import Exceptions.ItemException;
-import Exceptions.PersonagemException;
 
 /**
  * @author renan
@@ -70,8 +69,8 @@ public class Jogador {
 
 	public void mover(Aproximavel aproximavel) throws AproximavelException {
 		if (aproximavel instanceof Ouro) {
-			if (this.salaAtual.temTroll()) {
-				throw new ItemException("Há trolls na sala.");
+			if (this.salaAtual.temTrollCaverna()) {
+				throw new ItemException("Há trolls da caverna na sala.");
 			}
 		}
 		this.setPerto(aproximavel);
@@ -107,12 +106,15 @@ public class Jogador {
 					Pegavel chave = this.itens.getItem("key");
 					this.itens.removeItem(chave);
 					porta.setAberta(true);
-					for (Porta portas : porta.getSalaSaida().getPortas()) {
+					/* ATT: provavalmente não será mais necessário.
+                            vou fazer com que seja apenas uma porta de ida e volta.
+                    for (Porta portas : porta.getSalaSaida().getPortas()) {
 						if (this.salaAtual.equals(portas.getSalaSaida())) {
 							portas.setAberta(true);
 							this.perto = portas;
 						}
 					}
+                    */
 				} catch (ItemException ie) {
 					throw ie;
 				}
@@ -131,11 +133,14 @@ public class Jogador {
 					Pegavel potion = this.itens.getItem("potion");
 					this.itens.removeItem(potion);
 					porta.setEncantada(true);
+                    /* ATT: provavalmente não será mais necessário.
+                            vou fazer com que seja apenas uma porta de ida e volta.
 					for (Porta portas : porta.getSalaSaida().getPortas()) {
 						if (this.salaAtual.equals(portas.getSalaSaida())) {
 							portas.setEncantada(true);
 						}
 					}
+                    */
 				} catch (ItemException ie) {
 					throw ie;
 				}
@@ -151,11 +156,14 @@ public class Jogador {
 			Porta porta = (Porta) this.perto;
 			if (porta.getEncantada() == true) {
 				porta.setEncantada(false);
+                /* ATT: provavalmente não será mais necessário.
+                            vou fazer com que seja apenas uma porta de ida e volta.
 				for (Porta portas : porta.getSalaSaida().getPortas()) {
 					if (this.salaAtual.equals(portas.getSalaSaida())) {
 						portas.setEncantada(false);
 					}
 				}
+                */
 			}
 		}
 	}
