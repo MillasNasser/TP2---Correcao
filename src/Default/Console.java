@@ -108,6 +108,7 @@ public class Console {
             case "exit":
                 try {
                     mapa.getPlayer().sair();
+					mapa.getPlayer().desencantar();
                     System.out.println("Jogador se moveu para a sala " + mapa.getPlayer().getSalaAtual().getNome());
                 } catch (AproximavelException ex) {
                     System.out.println(ex.getMessage());
@@ -122,7 +123,7 @@ public class Console {
 		
 	    case "lock":
 		try {
-		    mapa.getPlayer().trancar();
+		    mapa.getPlayer().encantar();
 		    System.out.println("Jogador trancou a porta.");
 		} catch (AproximavelException ex) {
 		    System.out.println(ex.getMessage());
