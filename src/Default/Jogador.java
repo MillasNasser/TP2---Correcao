@@ -119,7 +119,7 @@ public class Jogador {
 					throw ie;
 				}
 			}
-			this.salaAtual = porta.getSalaSaida();
+			this.salaAtual = porta.getSala();
 		} else {
 			throw new AproximavelException("Jogador está longe das portas.");
 		}
@@ -128,7 +128,7 @@ public class Jogador {
 	public void encantar() throws AproximavelException {
 		if (this.perto instanceof Porta) {
 			Porta porta = (Porta) this.perto;
-			if (porta.getEncantada() == false) {
+			if (porta.isEncantada() == false) {
 				try {
 					Pegavel potion = this.itens.getItem("potion");
 					this.itens.removeItem(potion);
@@ -154,7 +154,7 @@ public class Jogador {
 	public void desencantar(){
 		if (this.perto instanceof Porta) {
 			Porta porta = (Porta) this.perto;
-			if (porta.getEncantada() == true) {
+			if (porta.isEncantada() == true) {
 				porta.setEncantada(false);
                 /* ATT: provavalmente não será mais necessário.
                             vou fazer com que seja apenas uma porta de ida e volta.

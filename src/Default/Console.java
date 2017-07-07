@@ -3,12 +3,8 @@ package Default;
 import Exceptions.ItemException;
 import java.util.Scanner;
 
-import Default.Mapa;
 import Exceptions.AproximavelException;
 import Exceptions.PersonagemException;
-import java.time.Clock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Console {
 
@@ -18,7 +14,7 @@ public class Console {
         String comando = scanner.nextLine().replaceAll("\n", "").toLowerCase();
         //split do comando pelo espaço
         String[] comandoSplited = comando.split(" ");
-        
+
         String itemStr = null;
         switch (comandoSplited[0]) {
             case "view":
@@ -31,22 +27,22 @@ public class Console {
                 mapa.getPlayer().getItens().imprimeItens();
                 break;
             case "pickup":
-                if(comandoSplited.length < 2){
+                if (comandoSplited.length < 2) {
                     System.out.println("Comando incompleto.");
                     break;
                 }
                 //pegar objetos para a mochila
-                itemStr = comandoSplited[1] + ((comandoSplited.length == 4)?" " + comandoSplited[3]:"");
+                itemStr = comandoSplited[1] + ((comandoSplited.length == 4) ? " " + comandoSplited[3] : "");
                 try {
                     mapa.getPlayer().pegar(itemStr);
-                    
+
                     System.out.println("Jogador pegou " + itemStr);
                 } catch (ItemException ex) {
                     System.out.println(ex.getMessage());
                 }
                 break;
             case "drop":
-                if(comandoSplited.length < 2){
+                if (comandoSplited.length < 2) {
                     System.out.println("Comando incompleto.");
                     break;
                 }
@@ -54,13 +50,13 @@ public class Console {
                 try {
                     mapa.getPlayer().largar(comandoSplited[1]);
 
-                    System.out.println("Jogador largou "+ comandoSplited[1]);
+                    System.out.println("Jogador largou " + comandoSplited[1]);
                 } catch (ItemException ex) {
                     System.out.println(ex.getMessage());
                 }
                 break;
             case "moveto":
-                if(comandoSplited.length < 2){
+                if (comandoSplited.length < 2) {
                     System.out.println("Comando incompleto.");
                     break;
                 }
@@ -71,27 +67,27 @@ public class Console {
                         String portaStr = comandoSplited[1] + " " + comandoSplited[2];
                         Aproximavel porta = mapa.getPlayer().getSalaAtual().getPorta(portaStr);
                         mapa.getPlayer().mover(porta);
-                        
-                        System.out.println("Jogador de aproximou da Porta " + ((Porta)porta).getIdentificador());
+
+                        System.out.println("Jogador de aproximou da Porta " + portaStr);
                     } catch (AproximavelException e) {
                         System.out.println(e.getMessage());
                     }
                 } else {
-                    try{
-                        itemStr = comandoSplited[1] + ((comandoSplited.length == 4)?" " + comandoSplited[3]:"");
-                        
+                    try {
+                        itemStr = comandoSplited[1] + ((comandoSplited.length == 4) ? " " + comandoSplited[3] : "");
+
                         Aproximavel item = mapa.getPlayer().getSalaAtual().getItem(itemStr);
                         mapa.getPlayer().mover(item);
-                        
+
                         System.out.println("Jogador de aproximou de " + item);
-                        
-                    }catch(AproximavelException e){
+
+                    } catch (AproximavelException e) {
                         System.out.println(e.getMessage());
                     }
                 }
                 break;
             case "throwaxe": ///Necessita deletar o troll do jogo
-                if(comandoSplited.length < 2){
+                if (comandoSplited.length < 2) {
                     System.out.println("Comando incompleto.");
                     break;
                 }
@@ -108,28 +104,28 @@ public class Console {
             case "exit":
                 try {
                     mapa.getPlayer().sair();
-					mapa.getPlayer().desencantar();
+                    mapa.getPlayer().desencantar();
                     System.out.println("Jogador se moveu para a sala " + mapa.getPlayer().getSalaAtual().getNome());
                 } catch (AproximavelException ex) {
                     System.out.println(ex.getMessage());
                 }
-                try{
+                try {
                     mapa.atacarTroll();
                     System.out.println("Jogador foi atacado.");
-                }catch(PersonagemException ex){
+                } catch (PersonagemException ex) {
                     mapa.moverTroll();
                 }
                 break;
-		
-	    case "lock":
-		try {
-		    mapa.getPlayer().encantar();
-		    System.out.println("Jogador trancou a porta.");
-		} catch (AproximavelException ex) {
-		    System.out.println(ex.getMessage());
-		}
-		break;
-		
+
+            case "lock":
+                try {
+                    mapa.getPlayer().encantar();
+                    System.out.println("Jogador trancou a porta.");
+                } catch (AproximavelException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                break;
+
             case "quit":
                 System.exit(0);
             default:

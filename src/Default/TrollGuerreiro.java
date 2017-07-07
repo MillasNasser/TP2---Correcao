@@ -59,8 +59,8 @@ public class TrollGuerreiro extends Troll{
         } catch (AproximavelException ex) {
             
         }
-        if(porta.getAberta() == true && porta.getEncantada() == false){
-            Sala saida = porta.getSalaSaida();
+        if(porta.getAberta() == true && porta.isEncantada() == false){
+            Sala saida = porta.getSala();
             saida.addTrollGuerreiro(this);
             salaAtual.removeTroll(this);
         }

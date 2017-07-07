@@ -21,7 +21,7 @@ public class Pocao extends Pegavel {
     }
     
     public void usar(Porta porta) throws ItemException{
-        if(!porta.getEncantada()){
+        if(!porta.isEncantada()){
             porta.setEncantada(true);
         }else{
             throw new ItemException("Porta já está trancada");

@@ -71,7 +71,7 @@ public class Mapa {
                 
                 Porta porta = new Porta();
                 String identificador = jsonPorta.get("identificador").getAsString();
-                porta.setIdentificador(jsonPorta.get("identificador").getAsString());
+                
                 porta.setAberta(jsonPorta.get("aberta").getAsBoolean());
                 porta.setEncantada(jsonPorta.get("encantada").getAsBoolean());
                 porta.setSaida(jsonPorta.get("saida").getAsBoolean());
@@ -79,7 +79,7 @@ public class Mapa {
                 try {
                     String nomeSalaSaida = jsonPorta.get("salaSaida").getAsString();
                     
-                    porta.setSalaSaida(this.getSala(nomeSalaSaida));
+                    porta.setSala(this.getSala(nomeSalaSaida));
                     this.salas.get(i).addPorta(identificador, porta);
                 } catch (Exception ex) {
                     
