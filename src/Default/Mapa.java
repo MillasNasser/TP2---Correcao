@@ -1,6 +1,7 @@
 package Default;
 
 import Exceptions.ItemException;
+import Exceptions.LocalException;
 import Exceptions.PersonagemException;
 
 import com.google.gson.JsonArray;
@@ -12,8 +13,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Mapa {
 
@@ -27,31 +26,13 @@ public class Mapa {
         this.player = new Jogador();
     }
     
-    public Mapa(String arquivo){
+    public Mapa(String arquivo) throws Exception{
         this();
         
         //Lendo o arquivo e configurando as salas.
-        FileReader fr = null;
-        BufferedReader br = null;
+        BufferedReader br = new BufferedReader(new FileReader(arquivo));
         
-        String jsonString = "";
-        
-        try{
-            fr = new FileReader(arquivo);
-            br = new BufferedReader(fr);
-            
-            String linha;
-            
-            br = new BufferedReader(new FileReader(arquivo));
-            
-            while((linha = br.readLine()) != null){
-                jsonString += linha + '\n';
-            }
-        }catch(Exception e){
-            
-        }
-        
-        JsonElement jsonElement = new JsonParser().parse(jsonString);
+        JsonElement jsonElement = new JsonParser().parse(br);
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         
         //Salas
@@ -68,13 +49,9 @@ public class Mapa {
             
             Sala sala = new Sala(nome, tamanho);
             for(int j = 0; j<chaves; j++){
-                try {
-                    sala.addItem(new Chave());
-                } catch (ItemException ex) {
-                }
+                sala.addItem(new Chave());
             }
-            
-            this.salas.add(sala);
+            this.addSala(sala);
         }
         
         //Corredores.
@@ -102,34 +79,15 @@ public class Mapa {
                     saida = false;
                 }
                 
-                try {
-                    String salaStr = jsonPorta.get("sala").getAsString();
-                    Sala sala = this.getSala(salaStr);
-                    
-                    Porta porta = new Porta(sala, corredor);
-                    porta.setAberta(aberta);
-                    porta.setSaida(saida);
-                    
-                    sala.addPorta(identificador, porta);
-                    corredor.addPorta(identificador, porta);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    System.exit(1);
-                }
-                
-                
-                /*porta.setAberta(jsonPorta.get("aberta").getAsBoolean());
-                porta.setEncantada(jsonPorta.get("encantada").getAsBoolean());
-                porta.setSaida(jsonPorta.get("saida").getAsBoolean());*/
-                
-                /*try {
-                    String nomeSalaSaida = jsonPorta.get("salaSaida").getAsString();
-                    
-                    porta.setSala(this.getSala(nomeSalaSaida));
-                    this.salas.get(i).addPorta(identificador, porta);
-                } catch (Exception ex) {
-                    
-                }*/
+                String salaStr = jsonPorta.get("sala").getAsString();
+                Sala sala = this.getSala(salaStr);
+
+                Porta porta = new Porta(sala, corredor);
+                porta.setAberta(aberta);
+                porta.setSaida(saida);
+
+                sala.addPorta(identificador, porta);
+                corredor.addPorta(identificador, porta);
             }
         }
     }
@@ -150,6 +108,15 @@ public class Mapa {
             }
         }
         throw new Exception("Sala " + nomeSala + " não encontrada.");
+    }
+    
+    public void addSala(Sala novaSala) throws LocalException{
+        for(Sala sala: this.salas){
+            if(sala.getMetrosQuadrados() == novaSala.getMetrosQuadrados()){
+                throw new LocalException("Salas não podem ter o mesmo tamanho.");
+            }
+        }
+        this.salas.add(novaSala);
     }
 
     public void inicializaSalas() {
