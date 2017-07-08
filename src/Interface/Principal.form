@@ -42,7 +42,7 @@
               <Component id="jSeparator3" alignment="1" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                  <Component id="local" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="nomeSala" min="-2" max="-2" attributes="0"/>
@@ -100,7 +100,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="234" max="32767" attributes="0"/>
+                  <EmptySpace pref="225" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              <Component id="local" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="nomeSala" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -189,9 +189,9 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel8">
+        <Component class="javax.swing.JLabel" name="local">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Sala"/>
+            <Property name="text" type="java.lang.String" value="Local"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="nomeSala">
@@ -271,11 +271,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoMachadoOuroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bntAcaoMachadoBronze">
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoMachadoBronzeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">
           <Properties>
@@ -288,6 +294,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoMachadoFerroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
           <Properties>

@@ -6,14 +6,13 @@ import java.util.Scanner;
 import Exceptions.AproximavelException;
 import Exceptions.PersonagemException;
 
-public class Console {
+public class Console{
 
-    public static void console(Mapa mapa) throws PersonagemException {
+    public static void console(Mapa mapa,String comando) throws Exception {
         System.out.print("Player> ");
         Scanner scanner = new Scanner(System.in);
-        String comando = scanner.nextLine().replaceAll("\n", "").toLowerCase();
         //split do comando pelo espaço
-        String[] comandoSplited = comando.split(" ");
+        String[] comandoSplited = comando.toLowerCase().split(" ");
 
         String itemStr = null;
         switch (comandoSplited[0]) {
@@ -38,7 +37,8 @@ public class Console {
 
                     System.out.println("Jogador pegou " + itemStr);
                 } catch (ItemException ex) {
-                    System.out.println(ex.getMessage());
+                    //System.out.println(ex.getMessage());
+					throw ex;
                 }
                 break;
             case "drop":
@@ -70,7 +70,8 @@ public class Console {
 
                         System.out.println("Jogador de aproximou da Porta " + portaStr);
                     } catch (AproximavelException e) {
-                        System.out.println(e.getMessage());
+                        //System.out.println(e.getMessage());
+						throw e;
                     }
                 } else {
                     try {
@@ -82,7 +83,8 @@ public class Console {
                         System.out.println("Jogador de aproximou de " + item);
 
                     } catch (AproximavelException e) {
-                        System.out.println(e.getMessage());
+                        //System.out.println(e.getMessage());
+						throw e;
                     }
                 }
                 break;
@@ -98,7 +100,8 @@ public class Console {
                     mapa.getPlayer().throwAxe(troll);
                     System.out.println("Jogador matou " + troll.getNome());
                 } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
+                    //System.out.println(ex.getMessage());
+					throw ex;
                 }
                 break;
             case "exit":
@@ -107,7 +110,8 @@ public class Console {
                     mapa.getPlayer().desencantar();
                     System.out.println("Jogador se moveu para a sala " + mapa.getPlayer().getSalaAtual().getNome());
                 } catch (AproximavelException ex) {
-                    System.out.println(ex.getMessage());
+                    //System.out.println(ex.getMessage());
+					throw ex;
                 }
                 try {
                     mapa.atacarTroll();
@@ -122,7 +126,8 @@ public class Console {
                     mapa.getPlayer().encantar();
                     System.out.println("Jogador trancou a porta.");
                 } catch (AproximavelException ex) {
-                    System.out.println(ex.getMessage());
+                    //System.out.println(ex.getMessage());
+					throw ex;
                 }
                 break;
 

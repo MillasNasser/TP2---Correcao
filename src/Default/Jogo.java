@@ -32,6 +32,7 @@ public class Jogo {
 		mapa.inicializaSalas();
 		/**/
 		mapa.getPlayer().setSalaAtual(mapa.getSalas().get(0));
+		mapa.getSalas().get(0).addItem(new MachadoOuro());
 		
 		try {
 			mapa.getPlayer().getItens().addItem(new Pocao());
@@ -54,10 +55,10 @@ public class Jogo {
 			}
 		});
 		
-		while (true) {
+		/*while (true) {
 			try {
 				//agora ja tenho o jogo pronto para jogar
-				Console.console(mapa);
+				Console.console(mapa,"");
 			} catch (PersonagemException ex) {
 
 			}
