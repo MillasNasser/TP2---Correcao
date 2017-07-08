@@ -111,6 +111,7 @@ public class Jogador {
 				}
 			}
 			this.localAtual = porta.getFora(this.localAtual);
+			this.perto = null;
 		} else {
 			throw new AproximavelException("Jogador está longe das portas.");
 		}

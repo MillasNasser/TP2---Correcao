@@ -100,20 +100,21 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="225" max="32767" attributes="0"/>
+                  <EmptySpace pref="240" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel14" min="-2" pref="57" max="-2" attributes="0"/>
+                      <Component id="jLabel14" alignment="0" min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="JPanelTrolls" max="32767" attributes="0"/>
-                      <Component id="JPanelPortas" max="32767" attributes="0"/>
+                      <Component id="JPanelPortas" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <Component id="jSeparator4" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -178,12 +179,14 @@
                       <Component id="jLabel11" max="32767" attributes="0"/>
                       <Component id="JPanelPortas" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="JPanelTrolls" max="32767" attributes="0"/>
-                      <Component id="jLabel14" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="JPanelTrolls" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel14" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="110" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -221,6 +224,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoSalaPocaoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeSalaOuro">
           <Properties>
@@ -312,6 +318,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoSalaChaveActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
@@ -323,16 +332,6 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
             <Property name="alignment" type="int" value="0"/>
           </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton1"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-              </Events>
-            </Component>
-          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="JPanelTrolls">
 
@@ -351,6 +350,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Trolls"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator4">
         </Component>
       </SubComponents>
     </Container>
@@ -479,7 +480,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeOuro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;ouro&gt;"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeMachadoBronze">
@@ -499,7 +500,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeDiamante">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;diamante&gt;"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeMachadoFerro">
@@ -534,7 +535,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ouro"/>
+            <Property name="text" type="java.lang.String" value="Ouro:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeMachadoOuro">
@@ -549,7 +550,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Diamante"/>
+            <Property name="text" type="java.lang.String" value="Diamante:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

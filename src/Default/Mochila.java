@@ -42,6 +42,9 @@ public class Mochila {
     public void addItem(Pegavel item) throws ItemException {
         if (item instanceof Ouro) {
             int quantidade = this.ouro.getQuantidade();
+			if(((Ouro)item).getQuantidade() == 0){
+				throw new ItemException("Nao ha ouro na sala");
+			}
             quantidade += ((Ouro) item).getQuantidade();
             this.ouro.setQuantidade(quantidade);
             return;

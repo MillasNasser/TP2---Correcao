@@ -8,8 +8,9 @@ import Exceptions.PersonagemException;
 
 public class Console{
 
-    public static void console(Mapa mapa,String comando) throws Exception {
+    public static void console(Mapa mapa, String comando) throws Exception {
         System.out.print("Player> ");
+		System.out.println(comando);
         Scanner scanner = new Scanner(System.in);
         //split do comando pelo espaço
         String[] comandoSplited = comando.toLowerCase().split(" ");
