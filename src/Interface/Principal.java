@@ -98,21 +98,21 @@ public class Principal extends javax.swing.JPanel {
 
         bntAcaoSalaPocao.setText("ação");
 
-        labelQuantidadeSalaOuro.setText("(ouro_Sala)");
+        labelQuantidadeSalaOuro.setText("0");
 
-        labelQuantidadeSalaPocao.setText("(potion_Sala)");
+        labelQuantidadeSalaPocao.setText("0");
 
         jLabel15.setText("Machados");
 
         jLabel16.setText("ouro");
 
-        labelQuantidadeAxeOuro.setText("(ouroAxe)");
+        labelQuantidadeAxeOuro.setText("0");
 
-        labelQuantidadeAxeBronze.setText("(bronzeAxe)");
+        labelQuantidadeAxeBronze.setText("0");
 
         jLabel19.setText("bronze");
 
-        labelQuantidadeAxeFerro.setText("(ferroAxe)");
+        labelQuantidadeAxeFerro.setText("0");
 
         jLabel21.setText("ferro");
 
@@ -126,7 +126,7 @@ public class Principal extends javax.swing.JPanel {
 
         jLabel22.setText("Chave");
 
-        labelQuantidadeSalaChave.setText("(chave_Sala)");
+        labelQuantidadeSalaChave.setText("0");
 
         bntAcaoSalaChave.setText("ação");
 
@@ -159,27 +159,27 @@ public class Principal extends javax.swing.JPanel {
                 .addComponent(jLabel8)
                 .addGap(6, 6, 6)
                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(InfoSalaLayout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labelQuantidadeSalaOuro)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bntAcaoSalaOuro))
-                        .addComponent(nomeSala)
-                        .addGroup(InfoSalaLayout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(labelQuantidadeSalaPocao)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(bntAcaoSalaPocao)))
+                    .addComponent(nomeSala)
                     .addGroup(InfoSalaLayout.createSequentialGroup()
-                        .addComponent(jLabel22)
+                        .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(InfoSalaLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelQuantidadeSalaPocao))
+                            .addGroup(InfoSalaLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelQuantidadeSalaOuro))
+                            .addGroup(InfoSalaLayout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelQuantidadeSalaChave)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelQuantidadeSalaChave)
-                        .addGap(18, 18, 18)
-                        .addComponent(bntAcaoSalaChave)))
-                .addGap(42, 42, 42)
+                        .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bntAcaoSalaOuro)
+                            .addComponent(bntAcaoSalaPocao)
+                            .addComponent(bntAcaoSalaChave))))
+                .addGap(32, 32, 32)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -191,7 +191,7 @@ public class Principal extends javax.swing.JPanel {
                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(InfoSalaLayout.createSequentialGroup()
                         .addComponent(labelQuantidadeAxeOuro)
-                        .addGap(28, 28, 28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bntAcaoMachadoOuro))
                     .addGroup(InfoSalaLayout.createSequentialGroup()
                         .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +201,7 @@ public class Principal extends javax.swing.JPanel {
                         .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bntAcaoMachadoFerro)
                             .addComponent(bntAcaoMachadoBronze))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(234, Short.MAX_VALUE))
             .addGroup(InfoSalaLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,16 +224,15 @@ public class Principal extends javax.swing.JPanel {
                         .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(InfoSalaLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
-                                    .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(bntAcaoSalaOuro)
-                                        .addComponent(labelQuantidadeSalaOuro)))
+                                    .addComponent(labelQuantidadeSalaOuro)
+                                    .addComponent(bntAcaoSalaOuro))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
+                                    .addComponent(bntAcaoSalaPocao)
                                     .addComponent(labelQuantidadeSalaPocao)
-                                    .addComponent(bntAcaoSalaPocao))
+                                    .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel22)
@@ -266,7 +265,7 @@ public class Principal extends javax.swing.JPanel {
                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JPanelTrolls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         usarPocao.setText("usar");
@@ -278,7 +277,7 @@ public class Principal extends javax.swing.JPanel {
 
         quantidadeOuro.setText("<ouro>");
 
-        quantidadeMachadoBronze.setText("qnt_bronze");
+        quantidadeMachadoBronze.setText("0");
 
         jLabel7.setText("Chave:");
 
@@ -286,21 +285,21 @@ public class Principal extends javax.swing.JPanel {
 
         quantidadeDiamante.setText("<diamante>");
 
-        quantidadeMachadoFerro.setText("qnt_ferro");
+        quantidadeMachadoFerro.setText("0");
 
-        quantidadeChaves.setText("qnt_chaves");
+        quantidadeChaves.setText("0");
 
         jLabel3.setText("ferro:");
 
         jLabel1.setText("Jogador");
 
-        quantidadePocao.setText("qnt_pocao");
+        quantidadePocao.setText("0");
 
         jLabel4.setText("bronze:");
 
         jLabel12.setText("Ouro");
 
-        quantidadeMachadoOuro.setText("qnt_ouro");
+        quantidadeMachadoOuro.setText("0");
 
         jLabel5.setText("ouro:");
 
@@ -424,6 +423,16 @@ public class Principal extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+	// TODO - remover gambi de setar os labels
+	private void setAllLabelsToDefault(){
+		bntAcaoMachadoBronze.setLabel("Mover");
+		bntAcaoMachadoFerro.setLabel("Mover");
+		bntAcaoMachadoOuro.setLabel("Mover");
+		bntAcaoSalaChave.setLabel("Mover");
+		bntAcaoSalaPocao.setLabel("Mover");
+		bntAcaoSalaOuro.setLabel("Mover");
+	}
+	
 	public static void infoBox(String mensagem, String titulo){
         JOptionPane.showMessageDialog(null, mensagem, "InfoBox: " + titulo, JOptionPane.INFORMATION_MESSAGE);
     }
@@ -431,6 +440,9 @@ public class Principal extends javax.swing.JPanel {
     private void usarPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usarPocaoActionPerformed
         try {
 			Pegavel pocao = mapa.getPlayer().getItem("pocao");
+			mapa.getPlayer().getItens().removeItem(pocao);
+			int qntPocao = Integer.parseInt(quantidadePocao.getText());
+			quantidadePocao.setText((qntPocao-1)+"");
 		} catch (ItemException e) {
 			infoBox(e.getMessage(), "Poção");
 		}

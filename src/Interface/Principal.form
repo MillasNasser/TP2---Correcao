@@ -45,32 +45,34 @@
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labelQuantidadeSalaOuro" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="bntAcaoSalaOuro" min="-2" max="-2" attributes="0"/>
+                      <Component id="nomeSala" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelQuantidadeSalaPocao" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelQuantidadeSalaOuro" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelQuantidadeSalaChave" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="nomeSala" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="labelQuantidadeSalaPocao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="bntAcaoSalaPocao" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="labelQuantidadeSalaChave" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="bntAcaoSalaChave" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="bntAcaoSalaOuro" min="-2" max="-2" attributes="0"/>
+                              <Component id="bntAcaoSalaPocao" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="bntAcaoSalaChave" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="3" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -83,7 +85,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="labelQuantidadeAxeOuro" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="bntAcaoMachadoOuro" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -98,7 +100,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="234" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -127,18 +129,16 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="bntAcaoSalaOuro" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelQuantidadeSalaOuro" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelQuantidadeSalaOuro" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="bntAcaoSalaOuro" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelQuantidadeSalaPocao" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="bntAcaoSalaPocao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelQuantidadeSalaPocao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -183,7 +183,7 @@
                       <Component id="JPanelTrolls" max="32767" attributes="0"/>
                       <Component id="jLabel14" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="110" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -224,12 +224,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeSalaOuro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="(ouro_Sala)"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeSalaPocao">
           <Properties>
-            <Property name="text" type="java.lang.String" value="(potion_Sala)"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
@@ -244,12 +244,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeAxeOuro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="(ouroAxe)"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeAxeBronze">
           <Properties>
-            <Property name="text" type="java.lang.String" value="(bronzeAxe)"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">
@@ -259,7 +259,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeAxeFerro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="(ferroAxe)"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
@@ -296,7 +296,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeSalaChave">
           <Properties>
-            <Property name="text" type="java.lang.String" value="(chave_Sala)"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="bntAcaoSalaChave">
@@ -475,7 +475,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeMachadoBronze">
           <Properties>
-            <Property name="text" type="java.lang.String" value="qnt_bronze"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -495,12 +495,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeMachadoFerro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="qnt_ferro"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeChaves">
           <Properties>
-            <Property name="text" type="java.lang.String" value="qnt_chaves"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -515,7 +515,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadePocao">
           <Properties>
-            <Property name="text" type="java.lang.String" value="qnt_pocao"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -530,7 +530,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeMachadoOuro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="qnt_ouro"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">

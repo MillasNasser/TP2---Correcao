@@ -1,9 +1,13 @@
 package Default;
 
+import Exceptions.ItemException;
 import Exceptions.PersonagemException;
 import Interface.Principal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class Jogo {
 
@@ -20,7 +24,7 @@ public class Jogo {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		Mapa mapa = new Mapa("mapa.json");
 
 		mapa.espalhaItens();
@@ -29,10 +33,19 @@ public class Jogo {
 		/**/
 		mapa.getPlayer().setSalaAtual(mapa.getSalas().get(0));
 		
+		try {
+			mapa.getPlayer().getItens().addItem(new Pocao());
+		} catch (ItemException ex) {}
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				Principal gui = new Principal(mapa);
+				UIManager.LookAndFeelInfo info[] = UIManager.getInstalledLookAndFeels();
+				try{
+					UIManager.setLookAndFeel(info[3].getClassName());
+					SwingUtilities.updateComponentTreeUI(gui);
+				}catch(Exception e){}
 				JFrame frame = new JFrame();
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.getContentPane().add(gui);
