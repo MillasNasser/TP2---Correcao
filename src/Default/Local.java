@@ -3,33 +3,59 @@ package Default;
 import Exceptions.AproximavelException;
 import Exceptions.PersonagemException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Local {
-    private Map<String, Porta> portas;
+    private String nome;
+    private List<Porta> portas;
     private List<TrollGuerreiro> trollsGuerreiros;
     
-    public Local(){
-        this.portas = new HashMap<>();
+    public Local(String nome){
+        this.nome = nome;
+        this.portas = new ArrayList<>();
         this.trollsGuerreiros = new ArrayList<>();
     }
     
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    public void imprimeInfo(){
+        System.out.printf("Nome: %s\n", this.getNome());
+        System.out.println("  PORTAS");
+        for(Porta porta: this.getPortas()){
+            System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada")+" e"+((porta.isEncantada()) ? " encantada" : " sem encanto"));
+        }
+        System.out.println("  TROLLS");
+        System.out.println("    Trolls da Caverna");
+        for (Troll troll : this.trollsGuerreiros) {
+            System.out.println("    " + troll.getNome());
+        }
+        System.out.println("    Trolls Guerreiros");
+        for (Troll troll : this.getTrollsGuerreiros()) {
+            System.out.println("    " + troll.getNome());
+        }
+    }
+    
     //Porta.
-    public void addPorta(String portaStr, Porta porta) throws AproximavelException{
-        this.portas.put(portaStr, porta);
+    public void addPorta(Porta porta) throws AproximavelException{
+        this.portas.add(porta);
     }
     
     public Porta getPorta(String portaStr) throws AproximavelException{
-        Porta porta = this.portas.get(portaStr);
-        if(porta == null){
-            throw new AproximavelException("Porta " + portaStr + " não encontrada.");
+        for(Porta porta: this.portas){
+            if(porta.compare(portaStr)){
+                return porta;
+            }
         }
-        return porta;
+        throw new AproximavelException("Porta " + portaStr + " não encontrada.");
     }
     
-    public Map<String, Porta> getPortas() {
+    public List<Porta> getPortas() {
         return this.portas;
     }
     
@@ -39,7 +65,7 @@ public class Local {
         this.trollsGuerreiros.add(troll);
     }
     
-    public void removeTrollGuerreiro(TrollGuerreiro troll){
+    public void removeTroll(Troll troll){
         this.trollsGuerreiros.remove(troll);
     }
     
@@ -47,7 +73,7 @@ public class Local {
         return (this.trollsGuerreiros.size() > 0);
     }
     
-    public TrollGuerreiro getTrollGuerreiro(String trollNome) throws PersonagemException {
+    public Troll getTroll(String trollNome) throws PersonagemException {
         if(this.temTrollGuerreiro()== false){
             throw new PersonagemException("Não há trolls na sala.");
         }

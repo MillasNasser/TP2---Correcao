@@ -59,7 +59,7 @@ public class Mapa {
         System.out.printf("corredores: %d\n", jsonCorredores.size());
         for(int i=0; i<jsonCorredores.size(); i++){
             JsonObject jsonCorredor = jsonCorredores.get(i).getAsJsonObject();
-            Corredor corredor = new Corredor();
+            Corredor corredor = new Corredor(String.format("Corredor %d", i));
             
             JsonArray jsonPortas = jsonCorredor.get("portas").getAsJsonArray();
             for(int j=0; j<jsonPortas.size(); j++){
@@ -82,12 +82,12 @@ public class Mapa {
                 String salaStr = jsonPorta.get("sala").getAsString();
                 Sala sala = this.getSala(salaStr);
 
-                Porta porta = new Porta(sala, corredor);
+                Porta porta = new Porta(identificador, sala, corredor);
                 porta.setAberta(aberta);
                 porta.setSaida(saida);
 
-                sala.addPorta(identificador, porta);
-                corredor.addPorta(identificador, porta);
+                sala.addPorta(porta);
+                corredor.addPorta(porta);
             }
         }
     }
@@ -202,11 +202,11 @@ public class Mapa {
     }
     
     public void atacarTroll() throws PersonagemException{
-        Sala salaAtual = this.player.getSalaAtual();
-        if(salaAtual.temTroll()) {
-            for(int i=0; i<salaAtual.getTrollsGuerreiros().size(); i++){
+        Local localAtual = this.player.getLocalAtual();
+        if(localAtual.temTrollGuerreiro()) {
+            for(int i=0; i<localAtual.getTrollsGuerreiros().size(); i++){
                 try {
-                    salaAtual.getTrollsGuerreiros().get(i).atacar(salaAtual, this.getPlayer());
+                    localAtual.getTrollsGuerreiros().get(i).atacar(localAtual, this.getPlayer());
                 } catch (PersonagemException ex) {
                     throw ex;
                 }

@@ -10,7 +10,7 @@ import Exceptions.ItemException;
 public class Jogador {
 
 	private Mochila itens;
-	private Sala salaAtual;
+	private Local localAtual;
 	private Aproximavel perto;
 
 	public Jogador() {
@@ -33,12 +33,12 @@ public class Jogador {
 		this.itens = itens;
 	}
 
-	public Sala getSalaAtual() {
-		return salaAtual;
+	public Local getLocalAtual() {
+		return localAtual;
 	}
 
-	public void setSalaAtual(Sala salaAtual) {
-		this.salaAtual = salaAtual;
+	public void setLocalAtual(Sala localAtual) {
+		this.localAtual = localAtual;
 	}
 
 	public void zerarOuro() {
@@ -47,20 +47,20 @@ public class Jogador {
 	}
 
 	public void pegar(String itemStr) throws ItemException {
-		if (this.perto instanceof Pegavel) {
-			if (this.perto.compare(itemStr)) {
-				try {
-					this.itens.addItem((Pegavel) this.perto);
-					this.salaAtual.removeItem((Pegavel) this.perto);
-					this.perto = null;
-					return;
-				} catch (ItemException e) {
-					throw e;
-				}
-			}
-			throw new ItemException("Você não está perto de " + itemStr + ".");
-		}
-		throw new ItemException("Você não está perto de nenhum item.");
+        if (this.perto instanceof Pegavel) {
+            if (this.perto.compare(itemStr)) {
+                try {
+                    this.itens.addItem((Pegavel) this.perto);
+                    ((Sala)this.localAtual).removeItem((Pegavel) this.perto);
+                    this.perto = null;
+                    return;
+                } catch (ItemException e) {
+                    throw e;
+                }
+            }
+            throw new ItemException("Você não está perto de " + itemStr + ".");
+        }
+        throw new ItemException("Você não está perto de nenhum item.");
 	}
 
 	public void largar(String itemStr) throws ItemException {
@@ -68,12 +68,12 @@ public class Jogador {
 	}
 
 	public void mover(Aproximavel aproximavel) throws AproximavelException {
-		if (aproximavel instanceof Ouro) {
-			if (this.salaAtual.temTrollCaverna()) {
-				throw new ItemException("Há trolls da caverna na sala.");
-			}
-		}
-		this.setPerto(aproximavel);
+        if (aproximavel instanceof Ouro) {
+            if (((Sala)this.localAtual).temTrollCaverna()) {
+                throw new ItemException("Há trolls da caverna na sala.");
+            }
+        }
+        this.setPerto(aproximavel);
 	}
 
 	public void throwAxe(Troll troll) throws ItemException {
@@ -88,7 +88,7 @@ public class Jogador {
 					//Machado acabou a duração.
 					this.itens.removeItem(item);
 				} finally {
-					this.salaAtual.removeTroll(troll);
+					this.localAtual.removeTroll(troll);
 					return;
 				}
 			} catch (ItemException ex) {
@@ -106,20 +106,11 @@ public class Jogador {
 					Pegavel chave = this.itens.getItem("key");
 					this.itens.removeItem(chave);
 					porta.setAberta(true);
-					/* ATT: provavalmente não será mais necessário.
-                            vou fazer com que seja apenas uma porta de ida e volta.
-                    for (Porta portas : porta.getSalaSaida().getPortas()) {
-						if (this.salaAtual.equals(portas.getSalaSaida())) {
-							portas.setAberta(true);
-							this.perto = portas;
-						}
-					}
-                    */
 				} catch (ItemException ie) {
 					throw ie;
 				}
 			}
-			this.salaAtual = porta.getSala();
+			this.localAtual = porta.getFora(this.localAtual);
 		} else {
 			throw new AproximavelException("Jogador está longe das portas.");
 		}
@@ -133,14 +124,6 @@ public class Jogador {
 					Pegavel potion = this.itens.getItem("potion");
 					this.itens.removeItem(potion);
 					porta.setEncantada(true);
-                    /* ATT: provavalmente não será mais necessário.
-                            vou fazer com que seja apenas uma porta de ida e volta.
-					for (Porta portas : porta.getSalaSaida().getPortas()) {
-						if (this.salaAtual.equals(portas.getSalaSaida())) {
-							portas.setEncantada(true);
-						}
-					}
-                    */
 				} catch (ItemException ie) {
 					throw ie;
 				}
@@ -156,14 +139,6 @@ public class Jogador {
 			Porta porta = (Porta) this.perto;
 			if (porta.isEncantada() == true) {
 				porta.setEncantada(false);
-                /* ATT: provavalmente não será mais necessário.
-                            vou fazer com que seja apenas uma porta de ida e volta.
-				for (Porta portas : porta.getSalaSaida().getPortas()) {
-					if (this.salaAtual.equals(portas.getSalaSaida())) {
-						portas.setEncantada(false);
-					}
-				}
-                */
 			}
 		}
 	}

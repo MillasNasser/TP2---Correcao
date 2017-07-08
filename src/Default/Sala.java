@@ -12,28 +12,17 @@ import java.util.Map;
  *
  */
 public class Sala extends Local{
-
-    private String nome;
     private int metrosQuadrados;
     private List<Pegavel> itens = null;
     Ouro ouro = null;
     private List<TrollCaverna> trollsCaverna = null;
 
     Sala(String nome, int tamanho) {
-        super();
-        this.nome = nome;
+        super(nome);
         this.itens = new ArrayList<>();
         this.ouro = new Ouro(0);
         this.trollsCaverna = new ArrayList<>();
         this.setMetrosQuadrados(tamanho);
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public List<Pegavel> getItens() {
@@ -88,8 +77,7 @@ public class Sala extends Local{
     }
 
     public void addChave() {
-        for( Map.Entry<String, Porta> entry: this.getPortas().entrySet() ) {
-            Porta porta = entry.getValue();
+        for(Porta porta: this.getPortas()){
             if (porta.getAberta() == false) {
                 try {
                     this.addItem(new Chave());
@@ -121,17 +109,15 @@ public class Sala extends Local{
         if(troll instanceof TrollCaverna){
             this.removeTrollCaverna((TrollCaverna) troll);
         }else if(troll instanceof TrollGuerreiro){
-            this.removeTrollGuerreiro((TrollGuerreiro) troll);
+            super.removeTroll((TrollGuerreiro) troll);
         }
     }
 
-    public void imprimeInfoSala() {
-        System.out.printf("Sala Atual: %s | Tamanho: %d metros quadrados\n", this.nome, this.metrosQuadrados);
+    public void imprimeInfo() {
+        System.out.printf("Sala Atual: %s | Tamanho: %d metros quadrados\n", this.getNome(), this.metrosQuadrados);
         System.out.println("  PORTAS");
-        for( Map.Entry<String, Porta> entry: this.getPortas().entrySet() ) {
-            String identificador = entry.getKey();
-            Porta porta = entry.getValue();
-            System.out.println("    Porta " + identificador + ((porta.getAberta()) ? " aberta" : " fechada")+" e"+((porta.isEncantada()) ? " encantada" : " sem encanto"));
+        for(Porta porta: this.getPortas()){
+            System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada")+" e"+((porta.isEncantada()) ? " encantada" : " sem encanto"));
         }
         System.out.println("  ITENS");
         System.out.printf("%s", (this.ouro.getQuantidade() > 0)?String.format("    Ouro <%d>\n", this.ouro.getQuantidade()):"");
@@ -181,12 +167,12 @@ public class Sala extends Local{
             }
         }
         
-        //Se não for, então basta chamar a função getTrollGuerreiro, que
+        //Se não for, então basta chamar a função getTroll, que
         //ficará encarregada de lançar a exceção caso o troll não seja encontrado.
-        return this.getTrollGuerreiro(trollName);
+        return super.getTroll(trollName);
     }
     
     public boolean equals(Sala sala){
-        return this.nome.equals(sala.getNome());
+        return this.getNome().equals(sala.getNome());
     }
 }
