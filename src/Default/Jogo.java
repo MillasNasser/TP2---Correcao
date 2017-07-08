@@ -31,7 +31,7 @@ public class Jogo {
 		mapa.espalhaTrolls();
 		mapa.inicializaSalas();
 		/**/
-		mapa.getPlayer().setSalaAtual(mapa.getSalas().get(0));
+		mapa.getPlayer().setLocalAtual(mapa.getSalas().get(0));
 		mapa.getSalas().get(0).addItem(new MachadoOuro());
 		
 		try {

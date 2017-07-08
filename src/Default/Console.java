@@ -19,7 +19,7 @@ public class Console{
             case "view":
                 //obtem descricao da sala e seu conteudo
                 //nome da sala e portas				
-                mapa.getPlayer().getSalaAtual().imprimeInfoSala();
+                mapa.getPlayer().getLocalAtual().imprimeInfo();
                 mapa.getPlayer().mostrarProximo();
                 break;
             case "backpack":
@@ -65,7 +65,7 @@ public class Console{
                     //Vai colocar o player perto da porta
                     try {
                         String portaStr = comandoSplited[1] + " " + comandoSplited[2];
-                        Aproximavel porta = mapa.getPlayer().getSalaAtual().getPorta(portaStr);
+                        Aproximavel porta = mapa.getPlayer().getLocalAtual().getPorta(portaStr);
                         mapa.getPlayer().mover(porta);
 
                         System.out.println("Jogador de aproximou da Porta " + portaStr);
@@ -73,11 +73,11 @@ public class Console{
                         //System.out.println(e.getMessage());
 						throw e;
                     }
-                } else {
+                } else if(mapa.getPlayer().getLocalAtual() instanceof Sala){
                     try {
                         itemStr = comandoSplited[1] + ((comandoSplited.length == 4) ? " " + comandoSplited[3] : "");
 
-                        Aproximavel item = mapa.getPlayer().getSalaAtual().getItem(itemStr);
+                        Aproximavel item =((Sala) mapa.getPlayer().getLocalAtual()).getItem(itemStr);
                         mapa.getPlayer().mover(item);
 
                         System.out.println("Jogador de aproximou de " + item);
@@ -96,7 +96,7 @@ public class Console{
                 //Ataca um troll
                 Troll troll;
                 try {
-                    troll = mapa.getPlayer().getSalaAtual().getTroll(comandoSplited[1]);
+                    troll = mapa.getPlayer().getLocalAtual().getTroll(comandoSplited[1]);
                     mapa.getPlayer().throwAxe(troll);
                     System.out.println("Jogador matou " + troll.getNome());
                 } catch (Exception ex) {
@@ -108,7 +108,7 @@ public class Console{
                 try {
                     mapa.getPlayer().sair();
                     mapa.getPlayer().desencantar();
-                    System.out.println("Jogador se moveu para a sala " + mapa.getPlayer().getSalaAtual().getNome());
+                    System.out.println("Jogador se moveu para " + mapa.getPlayer().getLocalAtual().getNome());
                 } catch (AproximavelException ex) {
                     //System.out.println(ex.getMessage());
 					throw ex;

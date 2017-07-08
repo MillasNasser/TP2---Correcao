@@ -27,7 +27,7 @@ public class Principal extends javax.swing.JPanel {
 		this.mapa = mapa;
 		initComponents();
 		setAllLabelsToDefault();
-		nomeSala.setText(mapa.getPlayer().getSalaAtual().getNome());
+		nomeSala.setText(mapa.getPlayer().getLocalAtual().getNome());
 	}
 
 	/**
