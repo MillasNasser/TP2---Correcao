@@ -52,6 +52,16 @@ public class Sala extends Local{
     public int getQuantidadeOuro(){
         return this.ouro.getQuantidade();
     }
+    
+    public int getQuantidadeItem(Class classe){
+        int quantidade = 0;
+        for(Pegavel item: this.itens){
+            if(item.getClass().equals(classe)){
+                quantidade++;
+            }
+        }
+        return quantidade;
+    }
 
     public void addItem(Pegavel item) throws ItemException {
         if(item instanceof Ouro){
