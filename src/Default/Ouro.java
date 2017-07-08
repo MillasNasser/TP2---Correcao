@@ -3,21 +3,7 @@ package Default;
 import Exceptions.ItemException;
 import java.util.ArrayList;
 
-public class Ouro extends Pegavel {
-
-    private int quantidade;
-    
-    public Ouro(int quantidade){
-        this.quantidade = quantidade;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
+public class Ouro extends Tesouro {
     
     public boolean compare(String itemStr){
         String[] nomes = {"gold", "ouro"};
@@ -29,6 +15,6 @@ public class Ouro extends Pegavel {
     }
     
     public String toString(){
-        return String.format("ouro <%d>", this.quantidade);
+        return String.format("ouro <%d>", super.getQuantidade());
     }
 }
