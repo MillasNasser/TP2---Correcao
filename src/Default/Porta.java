@@ -2,6 +2,7 @@ package Default;
 
 public class Porta extends Aproximavel{
 
+    private String identificador;
     private boolean aberta;
     private boolean encantada; //se for encantada troll nao passa
     private boolean saida;
@@ -10,6 +11,7 @@ public class Porta extends Aproximavel{
     
 
     Porta(){
+        this.identificador = "entrada";
         this.aberta = false;
         this.encantada = false;
         this.saida = false;
@@ -17,12 +19,21 @@ public class Porta extends Aproximavel{
         this.corredor = null;
     }
     
-    Porta(Sala sala, Corredor corredor) {
+    Porta(String identificador, Sala sala, Corredor corredor) {
         super();
+        this.identificador = identificador;
         this.sala = sala;
         this.corredor = corredor;
     }
 
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+    
     public boolean isEncantada() {
         return encantada;
     }
@@ -50,6 +61,14 @@ public class Porta extends Aproximavel{
     public Sala getSala() {
         return sala;
     }
+    
+    public Local getFora(Local dentro){
+        if(dentro instanceof Sala){
+            return this.corredor;
+        }else{
+            return this.sala;
+        }
+    }
 
     public void setSala(Sala sala) {
         this.sala = sala;
@@ -65,12 +84,15 @@ public class Porta extends Aproximavel{
     
     @Override
     public boolean compare(String portaStr){
-        String[] nomes = {"door", "porta"};
+        String[] nomes = {this.identificador + " door",
+                          "door " + this.identificador,
+                          "porta " + this.identificador,
+                          this.identificador + " porta"};
         return Util.compare(nomes, portaStr);
     }
     
     @Override
     public String toString(){
-        return "porta";
+        return this.identificador;
     }
 }

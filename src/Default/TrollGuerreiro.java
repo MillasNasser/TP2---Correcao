@@ -5,11 +5,8 @@
  */
 package Default;
 
-import Exceptions.AproximavelException;
 import Exceptions.ItemException;
 import Exceptions.PersonagemException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class TrollGuerreiro extends Troll{
@@ -20,22 +17,22 @@ public class TrollGuerreiro extends Troll{
         this.machado = machado;
     }
     
-    public void atacar(Sala salaAtual, Jogador player) throws PersonagemException{
-        if(this.machado == null){
+    public void atacar(Local localAtual, Jogador player) throws PersonagemException{
+        if(this.machado == null && localAtual instanceof Sala){
             String[] materiais = {"ouro", "bronze", "ferro"};
             boolean encontrou = true;
 
             for(String material: materiais){
                 try{
-                    this.machado = (Machado)salaAtual.getItem("machado de " + material);
-                    salaAtual.removeItem(this.machado);
+                    this.machado = (Machado) ((Sala)localAtual).getItem("machado de " + material);
+                    ((Sala)localAtual).removeItem(this.machado);
                     break;
                 }catch(ItemException e){
                     //Não tinha machado na sala. Não há nada a fazer.
                 }
             }
         }
-        if(this.machado != null && salaAtual.equals(player.getSalaAtual())){
+        if(this.machado != null && localAtual.equals(player.getLocalAtual())){
             try {
                 this.machado.usar(player);
                 this.machado = null;
@@ -47,14 +44,9 @@ public class TrollGuerreiro extends Troll{
     
 	public void mover(Sala salaAtual){
         Random random = new Random();
-        List<String> ids = new ArrayList<>(salaAtual.getPortas().keySet());
-        String id = ids.get(random.nextInt(ids.size()));
-        Porta porta = null;
-        try {
-            porta = salaAtual.getPorta(id);
-        } catch (AproximavelException ex) {
-            
-        }
+        int p = random.nextInt(salaAtual.getPortas().size());
+        Porta porta = salaAtual.getPortas().get(p);
+        
         if(porta.getAberta() == true && porta.isEncantada() == false){
             Sala saida = porta.getSala();
             saida.addTrollGuerreiro(this);
