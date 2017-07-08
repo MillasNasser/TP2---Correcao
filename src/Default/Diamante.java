@@ -2,21 +2,7 @@ package Default;
 
 import Exceptions.ItemException;
 
-public class Diamante extends Pegavel {
-	
-	private int quantidade;
-	
-	public Diamante(int quantidade){
-        this.quantidade = quantidade;
-    }
-
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
+public class Diamante extends Tesouro {
 	
 	public boolean compare(String itemStr){
         String[] nomes = {"diamond", "diamante"};
@@ -28,6 +14,6 @@ public class Diamante extends Pegavel {
     }
     
     public String toString(){
-        return String.format("diamante <%d>", this.quantidade);
+        return String.format("diamante <%d>", super.getQuantidade());
     }
 }
