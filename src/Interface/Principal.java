@@ -5,16 +5,20 @@
  */
 package Interface;
 
-/**
- *
- * @author millas
- */
-public class Principal extends javax.swing.JPanel {
+import Default.Mapa;
+import Default.Pegavel;
+import Exceptions.ItemException;
+import javax.swing.JOptionPane;
 
-	/**
-	 * Creates new form Principal
-	 */
+public class Principal extends javax.swing.JPanel {	
+	private Mapa mapa;
+	
 	public Principal() {
+		initComponents();
+	}
+	
+	public Principal(Mapa mapa) {
+		this.mapa = mapa;
 		initComponents();
 	}
 
@@ -266,6 +270,11 @@ public class Principal extends javax.swing.JPanel {
         );
 
         usarPocao.setText("usar");
+        usarPocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usarPocaoActionPerformed(evt);
+            }
+        });
 
         quantidadeOuro.setText("<ouro>");
 
@@ -406,7 +415,7 @@ public class Principal extends javax.swing.JPanel {
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+	
     private void bntAcaoSalaOuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcaoSalaOuroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bntAcaoSalaOuroActionPerformed
@@ -414,6 +423,18 @@ public class Principal extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+	public static void infoBox(String mensagem, String titulo){
+        JOptionPane.showMessageDialog(null, mensagem, "InfoBox: " + titulo, JOptionPane.INFORMATION_MESSAGE);
+    }
+	
+    private void usarPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usarPocaoActionPerformed
+        try {
+			Pegavel pocao = mapa.getPlayer().getItem("pocao");
+		} catch (ItemException e) {
+			infoBox(e.getMessage(), "Poção");
+		}
+    }//GEN-LAST:event_usarPocaoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
