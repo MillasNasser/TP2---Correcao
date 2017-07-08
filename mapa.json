@@ -1,424 +1,228 @@
 {
-	"salas": [
-		{
-			"nome": "Sala 01",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 06",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 02",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 02",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 01",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 03",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 03",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 02",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 08",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 04",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Saida",
-					"saida": true
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 05",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 05",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 10",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 04",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 06",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 01",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 07",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 07",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 12",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 06",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 08",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 13",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 03",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 09",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 10",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 10",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 09",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 15",
-					"saida": false
-				},
-				{
-					"identificador": "C",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 05",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 11",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 12",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 16",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 12",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 11",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 07",
-					"saida": false
-				},
-				{
-					"identificador": "C",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 13",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 13",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 12",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 08",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 14",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 15",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 19",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 15",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 14",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 10",
-					"saida": false
-				},
-				{
-					"identificador": "C",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 20",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 16",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 11",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 17",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 17",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 16",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 18",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 18",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 19",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 18",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 19",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 14",
-					"saida": false
-				},
-				{
-					"identificador": "B",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 18",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Sala 20",
-			"tamanho": 10,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": true,
-					"encantada": false,
-					"salaSaida": "Sala 15",
-					"saida": false
-				}
-			]
-		},
-		{
-			"nome": "Saida",
-			"tamanho": 1,
-			"portas": [
-				{
-					"identificador": "A",
-					"aberta": false,
-					"encantada": false,
-					"salaSaida": "Sala 04",
-					"saida": true
-				}
-			]
-		}
-	]
+    "salas": [
+        {
+            "nome": "Sala 01",
+            "tamanho": 11
+        },
+        {
+            "nome": "Sala 02",
+            "tamanho": 12,
+            "chaves": 1
+        },
+        {
+            "nome": "Sala 03",
+            "tamanho": 13,
+            "chaves": 1
+        },
+        {
+            "nome": "Sala 04",
+            "tamanho": 14
+        },
+        {
+            "nome": "Sala 05",
+            "tamanho": 15,
+            "chaves": 1
+        },
+        {
+            "nome": "Sala 06",
+            "tamanho": 16
+        },
+        {
+            "nome": "Sala 07",
+            "tamanho": 17
+        },
+        {
+            "nome": "Sala 08",
+            "tamanho": 18
+        },
+        {
+            "nome": "Sala 09",
+            "tamanho": 19
+        },
+        {
+            "nome": "Sala 10",
+            "tamanho": 20
+        },
+        {
+            "nome": "Sala 11",
+            "tamanho": 21,
+            "chaves": 1
+        },
+        {
+            "nome": "Sala 12",
+            "tamanho": 22
+        },
+        {
+            "nome": "Sala 13",
+            "tamanho": 23,
+            "chaves": 1
+        },
+        {
+            "nome": "Sala 14",
+            "tamanho": 24
+        },
+        {
+            "nome": "Sala 15",
+            "tamanho": 25
+        },
+        {
+            "nome": "Sala 16",
+            "tamanho": 26,
+            "chaves": 1
+        },
+        {
+            "nome": "Sala 17",
+            "tamanho": 27
+        },
+        {
+            "nome": "Saida",
+            "tamanho": 1
+        }
+    ],
+    "corredores": [
+        {
+            "portas": [
+                {
+                    "identificador": "A",
+                    "sala": "Sala 01"
+                },
+                {
+                    "identificador": "B",
+                    "sala": "Sala 02"
+                },
+                {
+                    "identificador": "C",
+                    "sala": "Sala 03"
+                },
+                {
+                    "identificador": "D",
+                    "aberta": false,
+                    "sala": "Sala 04"
+                }
+            ]
+        },
+        {
+            "portas": [
+                {
+                    "identificador": "A",
+                    "aberta": false,
+                    "sala": "Sala 04"
+                },
+                {
+                    "identificador": "B",
+                    "sala": "Sala 06"
+                },
+                {
+                    "identificador": "C",
+                    "sala": "Sala 07"
+                }
+            ]
+        },
+        {
+            "portas": [
+                {
+                    "identificador": "A",
+                    "sala": "Sala 05"
+                },
+                {
+                    "identificador": "B",
+                    "sala": "Sala 06"
+                },
+                {
+                    "identificador": "C",
+                    "sala": "Sala 08"
+                },
+                {
+                    "identificador": "D",
+                    "aberta": false,
+                    "sala": "Sala 09"
+                }
+            ]
+        },
+        {
+            "portas": [
+                {
+                    "identificador": "A",
+                    "aberta": false,
+                    "sala": "Sala 08"
+                },
+                {
+                    "identificador": "B",
+                    "sala": "Sala 09"
+                },
+                {
+                    "identificador": "C",
+                    "sala": "Sala 14"
+                },
+                {
+                    "identificador": "D",
+                    "sala": "Sala 15"
+                }
+            ]
+        },
+        {
+            "portas": [
+                {
+                    "identificador": "A",
+                    "aberta": false,
+                    "sala": "Sala 07"
+                },
+                {
+                    "identificador": "B",
+                    "sala": "Sala 10"
+                },
+                {
+                    "identificador": "B",
+                    "sala": "Sala 12"
+                }
+            ]
+        },
+        {
+            "portas": [
+                {
+                    "identificador": "A",
+                    "sala": "Sala 08"
+                },
+                {
+                    "identificador": "B",
+                    "sala": "Sala 11"
+                }
+            ]
+        },
+        {
+            "portas": [
+                {
+                    "identificador": "A",
+                    "aberta": false,
+                    "sala": "Sala 14"
+                },
+                {
+                    "identificador": "B",
+                    "sala": "Sala 15"
+                },
+                {
+                    "identificador": "C",
+                    "sala": "Sala 16"
+                },
+                {
+                    "identificador": "D",
+                    "sala": "Sala 17"
+                }
+            ]
+        },
+        {
+            "portas": [
+                {
+                    "identificador": "A",
+                    "sala": "Sala 17"
+                },
+                {
+                    "identificador": "B",
+                    "aberta": false,
+                    "saida": true,
+                    "sala": "Saida"
+                }
+            ]
+        }
+    ]
 }

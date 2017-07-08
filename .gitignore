@@ -25,4 +25,4 @@ build\.xml
 manifest\.mf
 /dist/
 Trabalho 2 - Adventure.pdf
-str_to_json.py
+*.py

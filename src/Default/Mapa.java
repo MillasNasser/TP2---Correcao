@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Mapa {
 
@@ -21,6 +23,7 @@ public class Mapa {
 
     public Mapa(){
         this.salas = new ArrayList<>();
+        this.corredores = new ArrayList<>();
         this.player = new Jogador();
     }
     
@@ -42,7 +45,7 @@ public class Mapa {
             br = new BufferedReader(new FileReader(arquivo));
             
             while((linha = br.readLine()) != null){
-                jsonString += linha;
+                jsonString += linha + '\n';
             }
         }catch(Exception e){
             
@@ -51,39 +54,82 @@ public class Mapa {
         JsonElement jsonElement = new JsonParser().parse(jsonString);
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         
-        //jsonObject = jsonObject.getAsJsonObject("salas");
+        //Salas
         JsonArray jsonSalas = jsonObject.getAsJsonArray("salas");
         for(int i=0; i<jsonSalas.size(); i++){
             JsonObject jsonSala = jsonSalas.get(i).getAsJsonObject();
             
             String nome = jsonSala.get("nome").getAsString();
             int tamanho = jsonSala.get("tamanho").getAsInt();
+            int chaves = 0;
+            try{
+                chaves = jsonSala.get("chaves").getAsInt();
+            }catch(Exception e){}
+            
             Sala sala = new Sala(nome, tamanho);
+            for(int j = 0; j<chaves; j++){
+                try {
+                    sala.addItem(new Chave());
+                } catch (ItemException ex) {
+                }
+            }
             
             this.salas.add(sala);
         }
         
-        //Conectando as portas.
-        for(int i=0; i<jsonSalas.size(); i++){
-            JsonArray jsonPortas = jsonSalas.get(i).getAsJsonObject().getAsJsonArray("portas");
+        //Corredores.
+        JsonArray jsonCorredores = jsonObject.getAsJsonArray("corredores");
+        System.out.printf("corredores: %d\n", jsonCorredores.size());
+        for(int i=0; i<jsonCorredores.size(); i++){
+            JsonObject jsonCorredor = jsonCorredores.get(i).getAsJsonObject();
+            Corredor corredor = new Corredor();
+            
+            JsonArray jsonPortas = jsonCorredor.get("portas").getAsJsonArray();
             for(int j=0; j<jsonPortas.size(); j++){
                 JsonObject jsonPorta = jsonPortas.get(j).getAsJsonObject();
                 
-                Porta porta = new Porta();
                 String identificador = jsonPorta.get("identificador").getAsString();
+                boolean aberta, saida;
                 
-                porta.setAberta(jsonPorta.get("aberta").getAsBoolean());
-                porta.setEncantada(jsonPorta.get("encantada").getAsBoolean());
-                porta.setSaida(jsonPorta.get("saida").getAsBoolean());
+                try{
+                    aberta = jsonPorta.get("aberta").getAsBoolean();
+                }catch(NullPointerException npe){
+                    aberta = true;
+                }
+                try{
+                    saida = jsonPorta.get("saida").getAsBoolean();
+                }catch(NullPointerException npe){
+                    saida = false;
+                }
                 
                 try {
+                    String salaStr = jsonPorta.get("sala").getAsString();
+                    Sala sala = this.getSala(salaStr);
+                    
+                    Porta porta = new Porta(sala, corredor);
+                    porta.setAberta(aberta);
+                    porta.setSaida(saida);
+                    
+                    sala.addPorta(identificador, porta);
+                    corredor.addPorta(identificador, porta);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    System.exit(1);
+                }
+                
+                
+                /*porta.setAberta(jsonPorta.get("aberta").getAsBoolean());
+                porta.setEncantada(jsonPorta.get("encantada").getAsBoolean());
+                porta.setSaida(jsonPorta.get("saida").getAsBoolean());*/
+                
+                /*try {
                     String nomeSalaSaida = jsonPorta.get("salaSaida").getAsString();
                     
                     porta.setSala(this.getSala(nomeSalaSaida));
                     this.salas.get(i).addPorta(identificador, porta);
                 } catch (Exception ex) {
                     
-                }
+                }*/
             }
         }
     }

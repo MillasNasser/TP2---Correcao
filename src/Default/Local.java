@@ -18,7 +18,7 @@ public class Local {
     
     //Porta.
     public void addPorta(String portaStr, Porta porta) throws AproximavelException{
-        this.portas.put(portaStr.toLowerCase(), porta);
+        this.portas.put(portaStr, porta);
     }
     
     public Porta getPorta(String portaStr) throws AproximavelException{
