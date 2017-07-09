@@ -23,10 +23,11 @@ public class Principal {
         }catch(Exception e){}
         
         Box infoBox = new Box(Box.HORIZONTAL);
+        infoBox.setLocation(10, 10);
         janela.add(infoBox);
         
         GuiLocal local = new GuiLocal(mapa.getPlayer().getLocalAtual());
-        janela.add(local);
+        infoBox.add(local);
         
         janela.setVisible(true);
     }

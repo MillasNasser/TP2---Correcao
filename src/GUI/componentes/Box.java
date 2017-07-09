@@ -50,20 +50,26 @@ public class Box extends Container {
     @Override
     final public Component add(Component comp){
         Point posicao = comp.getLocation();
+        posicao.x += this.getX();
+        posicao.y += this.getY();
         
         int ultimoIndice = this.getComponentCount() - 1;
         if(ultimoIndice >= 0){
             Rectangle ultimoBounds = this.getComponent(ultimoIndice).getBounds();
-            posicao.x = ultimoBounds.x + this.espacamento;
-            posicao.y = ultimoBounds.y + this.espacamento;
+            posicao.x = ultimoBounds.x;
+            posicao.y = ultimoBounds.y;
             if(this.orientacao == HORIZONTAL){
-                posicao.x += ultimoBounds.width;
+                posicao.x += ultimoBounds.width + this.espacamento;
             }else{
-                posicao.y += ultimoBounds.height;
+                posicao.y += ultimoBounds.height + this.espacamento;
             }
         }
         
         comp.setLocation(posicao);
+        
+        if(comp instanceof SalaItem){
+            System.out.println("SALA ITEM" + comp.getBounds());
+        }
         
         super.add(comp);
         
