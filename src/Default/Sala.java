@@ -15,12 +15,14 @@ public class Sala extends Local{
     private int metrosQuadrados;
     private List<Pegavel> itens = null;
     Ouro ouro = null;
+	Diamante diamante = null;
     private List<TrollCaverna> trollsCaverna = null;
 
     Sala(String nome, int tamanho) {
         super(nome);
         this.itens = new ArrayList<>();
         this.ouro = new Ouro(0);
+		this.diamante = new Diamante(0);
         this.trollsCaverna = new ArrayList<>();
         this.setMetrosQuadrados(tamanho);
     }
@@ -52,6 +54,10 @@ public class Sala extends Local{
     public int getQuantidadeOuro(){
         return this.ouro.getQuantidade();
     }
+	
+	public int getQuantidadeDiamante(){
+        return this.diamante.getQuantidade();
+    }
     
     public int getQuantidadeItem(Class classe){
         int quantidade = 0;
@@ -74,7 +80,17 @@ public class Sala extends Local{
                 throw new ItemException("Não cabe mais ouro na sala.");
             }
             return;
-        }
+        }else if(item instanceof Diamante){
+			int quantidadeAtual = this.getQuantidadeDiamante();
+            int novaQuantidade = quantidadeAtual + ((Diamante)item).getQuantidade();
+            ((Diamante)item).setQuantidade(novaQuantidade);
+            
+            this.diamante.setQuantidade(novaQuantidade);
+            if(this.getQuantidadeDiamante()+ 1 > this.metrosQuadrados * 10){
+                throw new ItemException("Não cabe mais diamante na sala.");
+            }
+            return;
+		}
         this.itens.add(item);
     }
 

@@ -141,7 +141,9 @@ public class Mapa {
                 Pegavel copia;
                 if(item instanceof Ouro){
                     copia = new Ouro(((Ouro)item).getQuantidade());
-                }else{
+                }else if(item instanceof Diamante){
+					copia = new Diamante(((Diamante)item).getQuantidade());
+				}else{
                     copia = con.newInstance();
                 }
                 this.salas.get(sala).addItem(copia);
@@ -179,7 +181,14 @@ public class Mapa {
         int quantidade = 100;
         while(quantidade > 0){
             try {
-                this.espalhaItem(new Ouro(random.nextInt(quantidade)), this.salas.size());
+				System.out.println(this.salas.size()+"");
+                if(random.nextBoolean()){
+					this.espalhaItem(new Ouro(random.nextInt(quantidade)), this.salas.size());
+				}else{
+					System.out.println(this.salas.size()+"");
+					this.espalhaItem(new Diamante(random.nextInt(quantidade)), this.salas.size());
+				}
+				System.out.println(this.salas.size()+"");
             } catch (ItemException ex) {
                 quantidade -= 10;
             }
