@@ -85,6 +85,7 @@ public class Jogador {
 					((Machado) item).usar(troll);
 				} catch (ItemException me) {
 					//Machado acabou a duração.
+                    System.out.println("TIRA O MACHADO AÍ");
 					this.itens.removeItem(item);
 				} finally {
 					this.localAtual.removeTroll(troll);

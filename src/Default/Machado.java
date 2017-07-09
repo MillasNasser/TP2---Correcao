@@ -29,18 +29,14 @@ public class Machado extends Pegavel {
 
     ///Do jogador
     public void usar(Troll troll) throws ItemException {
-        try {
-            diminuiDurabilidade();
-        } catch (ItemException ie) {
-            throw ie;
-        }
+        diminuiDurabilidade();
     }
 
     ///Do troll
     public void usar(Jogador player) throws PersonagemException {
         while (durabilidade != 0) {
             try {
-                this.durabilidade--;
+                this.diminuiDurabilidade();
 
                 Pegavel pocao = player.getItem("potion");
                 player.getItens().removeItem(pocao);

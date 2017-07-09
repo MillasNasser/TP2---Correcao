@@ -50,7 +50,8 @@
         },
         {
             "nome": "Sala 12",
-            "tamanho": 22
+            "tamanho": 22,
+			"chaves": 1
         },
         {
             "nome": "Sala 13",

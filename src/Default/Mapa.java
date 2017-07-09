@@ -10,9 +10,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.lang.model.type.TypeVariable;
 
 public class Mapa {
 
@@ -123,12 +128,27 @@ public class Mapa {
     
     public void espalhaItem(Pegavel item, int maxItens) throws ItemException{
         Random random = new Random();
+        Constructor<Pegavel> con = null;
+        try {
+            con = (Constructor<Pegavel>) item.getClass().getConstructor();
+        } catch (Exception ex) {
+            throw new ItemException("Falha ao obter o construtor " + item);
+        }
+        
         for(int i = 0; i < maxItens; i++){
             int sala = random.nextInt(salas.size() - 1);
             try {
-                this.salas.get(sala).addItem(item);
+                Pegavel copia;
+                if(item instanceof Ouro){
+                    copia = new Ouro(((Ouro)item).getQuantidade());
+                }else{
+                    copia = con.newInstance();
+                }
+                this.salas.get(sala).addItem(copia);
             } catch (ItemException ex) {
                 throw ex;
+            } catch (Exception e){
+                throw new ItemException("Falha ao criar uma copia de " + item);
             }
         }
     }
