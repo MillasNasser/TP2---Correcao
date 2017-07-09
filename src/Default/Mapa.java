@@ -96,6 +96,7 @@ public class Mapa {
                 sala.addPorta(porta);
                 corredor.addPorta(porta);
             }
+			this.corredores.add(corredor);
         }
     }
     
@@ -177,7 +178,7 @@ public class Mapa {
             //A exceção só será lançada em Ouro.
         }
         
-        Random random = new Random();
+        /*Random random = new Random();
         int quantidade = 100;
         while(quantidade > 0){
             try {
@@ -192,7 +193,7 @@ public class Mapa {
             } catch (ItemException ex) {
                 quantidade -= 10;
             }
-        }
+        }*/
     }
 
     public void espalhaTrolls() {
@@ -226,7 +227,7 @@ public class Mapa {
         System.exit(0); //Fim de jogo.
     }
     
-    public void atacarTroll() throws PersonagemException{
+    public void atacarTroll() throws PersonagemException, ItemException{
         Local localAtual = this.player.getLocalAtual();
         if(localAtual.temTrollGuerreiro()) {
             for(int i=0; i<localAtual.getTrollsGuerreiros().size(); i++){
@@ -234,7 +235,9 @@ public class Mapa {
                     ((TrollGuerreiro)localAtual.getTrollsGuerreiros().get(i)).atacar(localAtual, this.getPlayer());
                 } catch (PersonagemException ex) {
                     throw ex;
-                }
+                }catch(ItemException e){
+					throw e;
+				}
             }
         }else{
             throw new PersonagemException("Não há trolls na sala.");
@@ -242,10 +245,13 @@ public class Mapa {
     }
     
     public void moverTroll() {
-        for (Sala sala : this.salas) {
-            if (sala.temTroll()) {
-                for(int i=0; i<sala.getTrollsGuerreiros().size(); i++){
-                    ((TrollGuerreiro)sala.getTrollsGuerreiros().get(i)).mover(sala);
+		ArrayList<Local> todosLocais = new ArrayList<>();
+		todosLocais.addAll(salas);
+		todosLocais.addAll(corredores);
+        for (Local lugar : todosLocais) {
+            if (lugar.temTrollGuerreiro()) {
+                for(int i=0; i<lugar.getTrollsGuerreiros().size(); i++){
+                    ((TrollGuerreiro)lugar.getTrollsGuerreiros().get(i)).mover(lugar);
                 }
             }
         }

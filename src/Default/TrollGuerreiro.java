@@ -17,21 +17,10 @@ public class TrollGuerreiro extends Troll{
         this.machado = machado;
     }
     
-    public void atacar(Local localAtual, Jogador player) throws PersonagemException{
-        if(this.machado == null && localAtual instanceof Sala){
-            String[] materiais = {"ouro", "bronze", "ferro"};
-            boolean encontrou = true;
-
-            for(String material: materiais){
-                try{
-                    this.machado = (Machado) ((Sala)localAtual).getItem("machado de " + material);
-                    ((Sala)localAtual).removeItem(this.machado);
-                    break;
-                }catch(ItemException e){
-                    //Não tinha machado na sala. Não há nada a fazer.
-                }
-            }
-        }
+    public void atacar(Local localAtual, Jogador player) throws PersonagemException, ItemException{
+		if(machado == null){
+			throw new ItemException("Nao ha machado");
+		}
         if(this.machado != null && localAtual.equals(player.getLocalAtual())){
             try {
                 this.machado.usar(player);
@@ -40,17 +29,31 @@ public class TrollGuerreiro extends Troll{
                 throw ex;
             }
         }
+		///Talvez lançar uma exceção
     }
     
-	public void mover(Sala salaAtual){
+	public void mover(Local localAtual){
         Random random = new Random();
-        int p = random.nextInt(salaAtual.getPortas().size());
-        Porta porta = salaAtual.getPortas().get(p);
+        int p = random.nextInt(localAtual.getPortas().size());
+        Porta porta = localAtual.getPortas().get(p);
         
+		if(this.machado == null && localAtual instanceof Sala){
+            String[] materiais = {"ouro", "bronze", "ferro"};
+            for(String material: materiais){
+                try{
+                    this.machado = (Machado) ((Sala)localAtual).getItem("machado de " + material);
+                    ((Sala)localAtual).removeItem(this.machado);
+                    break;
+                }catch(ItemException e){
+                    //throw e;
+                }
+            }
+        }
+		
         if(porta.getAberta() == true && porta.isEncantada() == false){
-            Sala saida = porta.getSala();
+            Local saida = porta.getFora(localAtual);
             saida.addTrollGuerreiro(this);
-            salaAtual.removeTroll(this);
+            localAtual.removeTroll(this);
         }
     }
 }
