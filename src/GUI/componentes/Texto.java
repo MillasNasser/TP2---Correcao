@@ -8,4 +8,12 @@ public class Texto extends JLabel{
         
         this.setSize(this.getPreferredSize());
     }
+    
+    public void setWidth(int width){
+        this.setSize(width, this.getHeight());
+    }
+    
+    public void setHeight(int height){
+        this.setSize(this.getWidth(), height);
+    }
 }
