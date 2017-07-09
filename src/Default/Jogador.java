@@ -42,7 +42,6 @@ public class Jogador {
 	}
 
 	public void zerarOuro() {
-		int quantidade = this.itens.getOuro().getQuantidade();
 		this.itens.getOuro().setQuantidade(0);
 	}
 

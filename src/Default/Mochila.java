@@ -56,7 +56,7 @@ public class Mochila {
                 }
             }
             return quantidade;
-        }else if(tipo == MachadoOuro.class){
+        }else if(tipo == MachadoFerro.class){
             int quantidade = 0;
             for(Pegavel machado: this.machados){
                 if(machado instanceof MachadoFerro){
@@ -82,8 +82,10 @@ public class Mochila {
 			if(((Ouro)item).getQuantidade() == 0){
 				throw new ItemException("Nao ha ouro na sala");
 			}
+            System.out.printf("%%%%%%%%%%%% tinha %d: ", quantidade);
             quantidade += ((Ouro) item).getQuantidade();
             this.ouro.setQuantidade(quantidade);
+            System.out.printf("=====> %d\n", quantidade);
             return;
         } else if (item instanceof Machado) {
             if (this.machados.size() + 1 <= 4) {

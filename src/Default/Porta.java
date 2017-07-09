@@ -84,10 +84,14 @@ public class Porta extends Aproximavel{
     
     @Override
     public boolean compare(String portaStr){
-        String[] nomes = {this.identificador + " door",
-                          "door " + this.identificador,
-                          "porta " + this.identificador,
-                          this.identificador + " porta"};
+        String[] nomes = {this.sala.getNome() + " door",
+                          this.corredor.getNome() + " door",
+                          "door " + this.sala.getNome(),
+                          "door " + this.corredor.getNome(),
+                          "porta " + this.sala.getNome(),
+                          "porta " + this.corredor.getNome(),
+                          this.sala.getNome() + " porta",
+                          this.corredor.getNome() + " porta"};
         return Util.compare(nomes, portaStr);
     }
     

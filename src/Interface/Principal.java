@@ -74,6 +74,11 @@ public class Principal extends javax.swing.JPanel {
                             try{
                                 Console.console(mapa, "exit");
                             }catch (Exception e) {
+                                int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Pocao.class);
+                                quantidadePocao.setText(String.valueOf(quantidade));
+                                
+                                quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Ouro.class);
+                                quantidadeOuro.setText(String.valueOf(quantidade));
                                 atualizaGUI();
                                 infoBox(e.getMessage(), "Porta");
                             }finally{
@@ -83,7 +88,7 @@ public class Principal extends javax.swing.JPanel {
                             }
 						}else{
 							setAllLabelsToDefault();
-                            Console.console(mapa, "moveto " + porta.getIdentificador() + " door");
+                            Console.console(mapa, "moveto " + porta.getFora(mapa.getPlayer().getLocalAtual()).getNome() + " door");
 							botaoPorta.setText("Sair");
 						}
 					} catch (Exception e) {
@@ -105,7 +110,7 @@ public class Principal extends javax.swing.JPanel {
 				@Override
 				public void actionPerformed(ActionEvent event) {
 					try {
-						Console.console(mapa, "throwAxe "+troll.getNome());
+						Console.console(mapa, "throwAxe " + troll.getNome());
 						JPanelTrolls.remove(botaoTroll);
                         quantidadeMachadoOuro.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoOuro.class)));
                         quantidadeMachadoBronze.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoBronze.class)));
@@ -598,18 +603,19 @@ public class Principal extends javax.swing.JPanel {
     private void btnAcaoSalaOuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoSalaOuroActionPerformed
         setAllLabelsToDefault();
 		try {
-			int quantidadeDeOuro;
+			int quantidade;
 			if(mapa.getPlayer().getPerto() instanceof Ouro){
-				quantidadeDeOuro = ((Ouro) mapa.getPlayer().getPerto()).getQuantidade();
 				Console.console(mapa, "pickup ouro");
-				quantidadeOuro.setText(String.valueOf(quantidadeDeOuro));
+                quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Ouro.class);
+				quantidadeOuro.setText(String.valueOf(quantidade));
 				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto ouro");
-				quantidadeDeOuro = ((Ouro) mapa.getPlayer().getPerto()).getQuantidade();
+				quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Ouro.class);
 				btnAcaoSalaOuro.setText("pegar");
 			}
 		} catch (Exception e) {
+            e.printStackTrace();
 			infoBox(e.getMessage(), "Ouro");
 		}
     }//GEN-LAST:event_btnAcaoSalaOuroActionPerformed

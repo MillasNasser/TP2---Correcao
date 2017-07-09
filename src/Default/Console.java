@@ -13,7 +13,7 @@ public class Console{
 		System.out.println(comando);
         Scanner scanner = new Scanner(System.in);
         //split do comando pelo espaço
-        String[] comandoSplited = comando.toLowerCase().split(" ");
+        String[] comandoSplited = comando.trim().split("\\s+", 2);
 
         String itemStr = null;
         switch (comandoSplited[0]) {
@@ -32,7 +32,7 @@ public class Console{
                     break;
                 }
                 //pegar objetos para a mochila
-                itemStr = comandoSplited[1] + ((comandoSplited.length == 4) ? " " + comandoSplited[3] : "");
+                itemStr = comandoSplited[1];
                 try {
                     mapa.getPlayer().pegar(itemStr);
 
@@ -62,10 +62,10 @@ public class Console{
                     break;
                 }
                 //andar com o player
-                if (comandoSplited.length == 3) {
+                if (comandoSplited[1].contains(" ")) {
                     //Vai colocar o player perto da porta
                     try {
-                        String portaStr = comandoSplited[1] + " " + comandoSplited[2];
+                        String portaStr = comandoSplited[1];
                         Aproximavel porta = mapa.getPlayer().getLocalAtual().getPorta(portaStr);
                         mapa.getPlayer().mover(porta);
 
@@ -76,7 +76,7 @@ public class Console{
                     }
                 } else if(mapa.getPlayer().getLocalAtual() instanceof Sala){
                     try {
-                        itemStr = comandoSplited[1] + ((comandoSplited.length == 4) ? " " + comandoSplited[3] : "");
+                        itemStr = comandoSplited[1];
 
                         Aproximavel item =((Sala) mapa.getPlayer().getLocalAtual()).getItem(itemStr);
                         mapa.getPlayer().mover(item);
