@@ -30,6 +30,7 @@ public class Jogo {
         //((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
         //((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
         ((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
+        ((Sala)mapa.getPlayer().getLocalAtual()).addTrollCaverna(new TrollCaverna());
         //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoBronze());
         ((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoBronze());
         //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoOuro());

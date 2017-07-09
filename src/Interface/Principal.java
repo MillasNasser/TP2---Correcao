@@ -112,10 +112,11 @@ public class Principal extends javax.swing.JPanel {
 					try {
 						Console.console(mapa, "throwAxe " + troll.getNome());
 						JPanelTrolls.remove(botaoTroll);
+						frame.validate();
                         quantidadeMachadoOuro.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoOuro.class)));
                         quantidadeMachadoBronze.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoBronze.class)));
                         quantidadeMachadoFerro.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoFerro.class)));
-						frame.validate();
+						
 						/*TODO arrumar o label do jogador*/
 					} catch (Exception e) {
 						infoBox(e.getMessage(), "Porta");
