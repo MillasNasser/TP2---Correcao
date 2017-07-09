@@ -1,0 +1,231 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Ce gabarit peu servir autant les philosophes que les scientifiques ; 
+% et même d'autres genres, vous en faites ce que vous voulez.
+% J'ai modifié et partagé ce gabarit afin d'épargner à d'autres 
+% d'interminables heures à modifier des gabarits d'articles anglais. 
+% 
+% L'ajout d'une table des matières et une bibliographie a été ajoutée,
+% rendant le gabarit plus ajusté aux besoins de plusieurs.
+%
+% Pour retrouvé le gabarit original, veuillez télécharger les
+% documents suivants: llncs2e.zip (.cls et autres) et 
+% typeinst.zip (.tex). Les documents ci-haut mentionnés ne sont pas 
+% disponibles au même endroit, alors je vous invite à fouiller le web. 
+%
+% Pour l'instant (02-2016) ils sont disponibles tous deux ici :
+%
+% http://kawahara.ca/springer-lncs-latex-template/
+%
+% Netkompt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{natbib}
+\bibliographystyle{apalike-pt-br}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage[brazil]{babel} % Pour adopter les règles de typographie française
+\usepackage[T1]{fontenc} % Pour que les lettres accentuées soient reconnues
+
+\usepackage{url}
+\urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+\urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+\urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|    
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+
+\mainmatter 
+
+\title{Relatório Trabalho Prático II}
+
+\titlerunning{Trabalho Prático II}
+
+\author{Christoffer de Paula Oliveira, Paulo Henrique Tobias, Millas Násser}
+
+\institute{UFSJ- Universidade Federal de São João Del Rei}
+
+\authorrunning{Christoffer de Paula Oliveira, Paulo Henrique Tobias, Millas Násser}
+
+\toctitle{Sumário}
+\tocauthor{{}}
+
+\maketitle
+
+\medskip
+
+\begingroup
+\let\clearpage\relax
+\tableofcontents
+\addcontentsline{toc}{section}{Introduction}
+\endgroup
+
+\medskip
+\medskip
+
+\section*{Introdução}
+    Este relatório tem como objetivo documentar as mudanças feitos no Trabalho Prático I para que este se adeque aos conceitos de Programação Orientada a Objetos (POO). Além disso, o relatório também relata o que ajudou e o que atrapalhou na implementação das novas funcionalidades requeridas no Trabalho Prático 2.
+
+\section{Classe Jogo}
+    A classe Jogo estava com um alto nível de acoplamento. Várias funções -- que, segundo a ideia de coesão, pertencem à outras classes -- estavam implementadas aqui. Além disso, havia muito código repetido, que mais tarde foi transformado em métodos. Estes fatores deixavam o código muito grande e quase ilegível.
+    
+    Praticamente todos os objetos do jogo eram declarados aqui. Além da lista de salas e trolls, também existiam listas para cada tipo de item. Estes itens, durante a inicialização, seriam espalhados aleatoriamente pelas salas. Para isso, existia uma classe \emph{Localizavel} que guardava a localização de todos os objetos do jogo (Incluindo Jogador e Trolls).
+
+    A verificação e execução dos comandos do jogador também era feita nesta classe. Ações como pegar um item, por exemplo, que pertencem à classe Jogador, eram feitas na classe Jogo.
+
+    \subsection{Mudanças e Justificativas}
+        Para diminuir o acoplamento, foi criada uma nova classe chamada \emph{Console}, que faz o processamento da entrada do usuário e chama as funções corretas, cada uma implementada na sua devida classe. Portanto, se o usuário digitou o comando "pickup gold", o console agora apenas identifica que é o comando "pegar" e chama a função correspondente da classe Jogador.
+        
+        Além disso, uma nova classe \emph{Mapa} foi criada, que guarda a lista de salas e o objeto Jogador. A lista de trolls, assim como as de itens, foram transformadas em listas individuais para cada sala. Assim, cada sala passou a ter suas próprias listas de trolls e de itens.
+        
+        Ao final das modificações, a classe jogo apenas chama a função \emph{console} até que o jogo termine.
+
+\section{Classe Sala}
+    O principal problema das salas, além do já explicado acima, é que o método que inicializava o conjunto das salas estava implementado ali (veremos mais adiante que este foi um problema em quase todo o projeto). Podemos achar que esse tipo de método pertença à classe Sala, porém quem tem a função de inicializar as salas, ou seja, criar o mapa, é o próprio mapa.
+
+    \subsection{Mudanças e Justificativas}
+        A inicialização do conjunto de salas foi passada para a classe Mapa. Como dito anteriormente, as listas de trolls e itens foram movidas para a Sala. Por consequência disso, foram criados métodos para adicionar, remover, retornar e imprimir os itens e trolls das salas.
+
+\section{Classe Jogador}
+    Pouco coesa. Os métodos que deveriam estar aqui -- pegar, largar, mover, sair, atacar, etc -- estavam em outros módulos.
+    
+    Para armazenar o objeto (porta ou item) que estava perto do jogador eram usados dois atributos. Um do tipo \emph{Porta} -- para armazenar a porta -- e outro do tipo \emph{String} para armazenar os demais itens.
+
+    \subsection{Mudanças e Justificativas}
+        Largar e pegar itens, lançar machado, sair da sala e perder ouro, que são métodos responsáveis por realizar ações do jogador foram implementados aqui deixando o código mais coeso.
+        
+        Foi criada uma classe \emph{Aproximavel} que indica que o jogador pode se mover para perto deste objeto. Portanto, apenas um atributo é necessário para guardar esta informação. Com a remoção da classe \emph{Localizavel}, foi criado um atributo do tipo \emph{Sala} para armazenar a sala atual do jogador.
+
+\section{Classe Localizável}
+    Praticamente todo o código era dependente dessa classe.
+
+    \subsection{Mudanças e Justificativas}
+        Essa classe foi excluída ocasionando em um bom desnível de acoplamento no código,com isso todo o restante do código que necessitava dessa classe foi adaptado pra não depender mais. 
+
+\section{Classes Chave, Machado, Pocao e Ouro}
+    Todas possuíam o mesmo problema que a classe sala: possuíam métodos que aparentavam pertencer à classe mas que na verdade deveriam estar em outra.
+    
+    Índice de coesão extremamente baixo. Praticamente todos os métodos foram movidos para outros módulos.
+    
+    \subsection{Mudanças e Justificativas}
+        Muitos métodos foram removidos e outros foram realocados. Os métodos de inicialização (presentes em todas as classes desta seção) foram transformados em um único método implementado na classe mapa. Estes métodos eram responsáveis por espalhar os itens pelas salas do jogo, e por isso deixavam a classe menos coesa.
+        O efeito de cada item passou a ser implementado dentro de cada classe, ou seja, se o jogador tenta usar uma chave, por exemplo, então a função \emph{usar} da classe Chave é chamada e a porta é destrancada.
+        
+        No código original, o usuário podia entrar com vários nomes diferentes para cada item. Para a poção, por exemplo, eram reconhecidos "poção", "pocao" e "potion". O problema é que isso era feito manualmente para cada item e isto acabava gerando muito código repetido. Para manter a mesma funcionalidade e ao mesmo tempo usar os conceitos aprendidos na disciplina de POO (usando as ideias de Herança de Tipo e Implementação) foi criado o método \emph{comparar} na super-classe \emph{Aproximavel} (portas também gozam deste método). Este permite comparar uma palavra com todas os "nomes" do item, permitindo que ele possa ser acessado de várias maneiras diferentes.
+        
+        A função que efetivamente compara o "nome" de um item à sua lista de nomes foi criada na classe \emph{Util}, pois não se adequava a nenhum módulo existente.
+
+\section{Classe Porta}
+    Poucas modificações foram feitas nesta classe.
+
+    \subsection{Mudanças e Justificativas}
+        Duas modificações foram feitas. A primeira delas foi retirar o método \emph{getPortaByIdentificado}, que foi renomeado para \emph{getPorta} e transferido para o módulo Sala, aumentando a coesão da classe. A segunda foi alterar o tipo do atributo \emph{salaSaida} de String para Sala.
+
+\section{Classe Troll}
+    Acoplada por depender de sala e também com baixa coesão, métodos de outras classes, como inicializa troll, estavam sendo implementados nessa classe.
+
+    \subsection{Mudanças e Justificativas}
+        Métodos de outras classes foram movidos para os seus devidos lugares, e método de mover trolls modificado para se adaptar ao novo código.
+
+\section{Classe TrollNome}
+    Uma função de troll que poderia estar implementada na classe Troll. 
+
+    \subsection{Mudanças e Justificativas}
+        Caso precise ser mais detalhado
+
+\section{Pontos positivos}
+
+Houve também pontos em que o código estava seguindo a Programação Orientada a Objeto. O encapsulamento foi feito de maneira correta, As classes Mochila e Pegavel para o antigo código estava sem problemas,isto é, nenhum erro de coesão ou acoplamento 
+
+\section{Mudanças gerais}
+
+	A partir do momento que erros de Programação Orientada a Objeto foi corrigidos, houve mudanças para a realização da expansão do código. O jogo passou a ter outras características tal como especificado na documentação da tarefa.
+
+	\subsection{Exceções}
+		O código inicial não se provia de nenhum meio para a detecção de exceções lançadas pelo jogo. Portanto os poucos meios de se evitar algum erro eram feitos a partir de retornos de funções que por sua vez tornavam o código um pouco dificil de se ler já que não havia nenhuma especificação sobre.
+
+	\subsubsection{Mudanças e Justificativas}
+		Para tal foi criado três conjuntos de exceções
+		\begin{itemize}
+			\item Personagem
+			\item Item
+			\item Aproximavel
+		\end{itemize}
+
+		Exceções do tipo personagem, são responsáveis por lançar mensagens para trolls, que são por sua vez indicam quais movimentos ele poder fazer e sobre o que ele pode interagir. Já para o jogador, estas fazem parte de todas as ações do mesmo, partindo desde interação de algum objeto presente, movimentação, e se o mesmo escreveu algum comando errado.
+		
+		Exceções geradas por algum item geralmente é que os mesmos não puderam realizar suas devidas ações, como exemplo abrir portas ou usar poção em algum lugar inválido.
+		
+		Por fim a última excessão a ser gerada pelo programa acontece pela interação das duas anteriores, estas geram um erro quando o personagem tenta se aproximar de algum item em específico e não foi possivel realizar a ação desejada como chegar perto de portas que não existem na sala e entre outros.
+
+\section{Evolução}
+	Para essa nova abordagem, o jogo apresenta novas funcionalidades.
+	
+	\subsection{Salas}
+		Salas agora possuem tamanhos diferentes, com isso as salas serão divididos em metros quadrados que por sua vez visam limitar a quantidade de ouro disponível, onde no máximo podem caber dez peças de ouro por metro quadrado. Portanto salas de tamanhos diferentes armazenam quantidades diferentes.
+		
+		Com essa modificação no tamanho, chegamos a outro ponto, elas por sua vez não podem possuir a mesma configuração de tamanho.
+		
+		Para isso foi adicionado um novo campo na classe Sala, que é tamanho de cada uma para saber identificar qual a quantidade certa de ouro. E a criação das mesmas agora são feitos a partir de um arquivo json, diferentemente de antes que era feita a partir da sua própria classe. Deixando o código mais limpo.
+		
+		%Continuar sala
+	
+	\subsection{Machados}
+		Para essa nova abordagem, o jogo apresenta novas configurações de machados.
+		\begin{itemize}
+			\item Machado de ouro
+			\item Machado de bronze
+			\item Machado de ferro
+		\end{itemize}
+		
+		Para isso a classe Machado anteriormente se tornou abstrata e recebeu dois novos atributos. 
+		
+		O primeiro deles foi a durabilidade, essa indica qual a quantidade de vezes o machado será lançado e o outro campo é o material, fornecendo a durabilidade individual de cama machado.
+		
+		Machados de ferro possuem durabilidade um, ou seja, posem ser lançados apenas uma vez. Os de bronze podem ser lançados em até duas vezes e por fim machados de ouro são lançados 5 vezes.
+		
+		A abordagem foi criar mais 3 novas classes, uma para cada material acima descrito. Todas elas possuem funcionamento em comum, portanto todas herdaram da classe machado.
+		
+		Em seu lançamento cada machado é responsável por saber quem é seu alvo de ataque e qual seu efeito sobre ele, o se lançar em um Troll este será diminuído em sua durabilidade. Mas se o ataque for ao jogador então será mandado um sinal para a classe mochila que ficará a cargo de remover os itens necessários, dependendo da durabilidade do machado.
+		
+	\subsection{Jogador}
+		A principal mudança realizada foi expandir a mochila e limitar a quantidade de itens de cada tipo que o jogador pode carregar. Pode-se agora levar até quatro machados, independente de seu material, poções e chaves são possíveis carregar até três delas, não mais que isso. 
+		
+		Para simplificar o processo a mochila agora conta com três listas de cada item descrito acima. E ao fazer a verificação é necessário apenas ver o tamanho de cada uma. 
+
+\section{Conclusão}
+
+{\small (Example from Jensen K., Wirth N. (1991) Pascal user manual and
+report. Springer, New York)}
+
+\bibliography{references}
+\nocite{*} 
+
+\end{document}
+
