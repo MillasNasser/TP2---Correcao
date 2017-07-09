@@ -29,7 +29,11 @@ public class Machado extends Pegavel {
 
     ///Do jogador
     public void usar(Troll troll) throws ItemException {
-        diminuiDurabilidade();
+		try{
+			diminuiDurabilidade();
+		}catch(ItemException e){
+			throw e;
+		}
     }
 
     ///Do troll
@@ -38,7 +42,7 @@ public class Machado extends Pegavel {
             try {
                 this.diminuiDurabilidade();
 
-                Pegavel pocao = player.getItem("potion");
+                Pegavel pocao = player.getItem("pocao");
                 player.getItens().removeItem(pocao);
             } catch (ItemException ie) {
                 player.zerarOuro();
@@ -48,7 +52,7 @@ public class Machado extends Pegavel {
 
     public void diminuiDurabilidade() throws ItemException {
         this.durabilidade--;
-        if (this.durabilidade == 0) {
+        if (this.durabilidade < 0) {
             throw new ItemException("Quebrou o machado");
         }
     }

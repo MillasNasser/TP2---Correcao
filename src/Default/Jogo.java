@@ -26,16 +26,16 @@ public class Jogo {
 		mapa.espalhaItens();
 		mapa.espalhaTrolls();
         
+        //((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
+        //((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
+        //((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
         ((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
-        ((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
-        ((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
-        ((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
+        //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoBronze());
         ((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoBronze());
-        ((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoBronze());
-        ((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoOuro());
-        ((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoOuro());
-        //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoFerro());
-        //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoFerro());
+        //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoOuro());
+        //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoOuro());
+        /*((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoFerro());
+        ((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoFerro());
 		/**/
 		
 		SwingUtilities.invokeLater(new Runnable() {

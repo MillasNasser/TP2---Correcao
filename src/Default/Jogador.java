@@ -87,13 +87,12 @@ public class Jogador {
 					//Machado acabou a duração.
                     System.out.println("TIRA O MACHADO AÍ");
 					this.itens.removeItem(item);
+					throw me;
 				} finally {
 					this.localAtual.removeTroll(troll);
 					return;
 				}
-			} catch (ItemException ex) {
-
-			}
+			} catch (ItemException ex) {}
 		}
 		throw new ItemException("Jogador não tem machado.");
 	}
