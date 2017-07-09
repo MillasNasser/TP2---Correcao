@@ -82,10 +82,8 @@ public class Mochila {
 			if(((Ouro)item).getQuantidade() == 0){
 				throw new ItemException("Nao ha ouro na sala");
 			}
-            System.out.printf("%%%%%%%%%%%% tinha %d: ", quantidade);
             quantidade += ((Ouro) item).getQuantidade();
             this.ouro.setQuantidade(quantidade);
-            System.out.printf("=====> %d\n", quantidade);
             return;
         } else if (item instanceof Machado) {
             if (this.machados.size() + 1 <= 4) {

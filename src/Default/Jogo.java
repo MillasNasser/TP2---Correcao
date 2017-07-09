@@ -26,12 +26,6 @@ public class Jogo {
 	 */
 	public static void main(String[] args) throws Exception{
 		Mapa mapa = new Mapa("mapa.json");
-		for(Sala sala: mapa.getSalas()){
-			System.out.println(sala.getNome());
-			for (Porta porta : sala.getPortas()) {
-				System.out.println("\t porta:"+porta.getIdentificador());
-			}
-		}
 
 		mapa.espalhaItens();
 		mapa.espalhaTrolls();

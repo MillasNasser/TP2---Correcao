@@ -13,7 +13,7 @@ public class Console{
 		System.out.println(comando);
         Scanner scanner = new Scanner(System.in);
         //split do comando pelo espaço
-        String[] comandoSplited = comando.trim().split("\\s+", 2);
+        String[] comandoSplited = comando.trim().toLowerCase().split("\\s+", 2);
 
         String itemStr = null;
         switch (comandoSplited[0]) {
@@ -22,7 +22,8 @@ public class Console{
                 //nome da sala e portas				
                 mapa.getPlayer().getLocalAtual().imprimeInfo();
                 mapa.getPlayer().mostrarProximo();
-				break;
+                Console.console(mapa, "backpack");
+				return;
             case "backpack":
                 mapa.getPlayer().getItens().imprimeItens();
 				return;//break;
@@ -62,7 +63,7 @@ public class Console{
                     break;
                 }
                 //andar com o player
-                if (comandoSplited[1].contains(" ")) {
+                if (comandoSplited[1].contains("door") || comandoSplited[1].contains("porta")) {
                     //Vai colocar o player perto da porta
                     try {
                         String portaStr = comandoSplited[1];
@@ -138,6 +139,6 @@ public class Console{
                 System.out.println("Comando inválido.");
                 break;
         }
-		Console.console(mapa, "backpack");
+		Console.console(mapa, "view");
     }
 }
