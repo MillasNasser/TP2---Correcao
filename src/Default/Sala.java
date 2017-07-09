@@ -145,6 +145,13 @@ public class Sala extends Local{
         }
     }
     
+	public List<Troll> getTrolls(){
+		List<Troll> todosTrolls = new ArrayList<>();
+		todosTrolls.addAll(trollsCaverna);
+		todosTrolls.addAll(super.getTrollsGuerreiros());
+		return todosTrolls;
+	}
+	
     public boolean temItem(){
         return (this.itens.size() > 0 || this.ouro.getQuantidade() > 0);
     }

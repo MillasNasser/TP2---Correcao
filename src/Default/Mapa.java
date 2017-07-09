@@ -54,6 +54,8 @@ public class Mapa {
             this.addSala(sala);
         }
         
+		getPlayer().setLocalAtual(getSalas().get(0));
+		
         //Corredores.
         JsonArray jsonCorredores = jsonObject.getAsJsonArray("corredores");
         System.out.printf("corredores: %d\n", jsonCorredores.size());
@@ -206,7 +208,7 @@ public class Mapa {
         if(localAtual.temTrollGuerreiro()) {
             for(int i=0; i<localAtual.getTrollsGuerreiros().size(); i++){
                 try {
-                    localAtual.getTrollsGuerreiros().get(i).atacar(localAtual, this.getPlayer());
+                    ((TrollGuerreiro)localAtual.getTrollsGuerreiros().get(i)).atacar(localAtual, this.getPlayer());
                 } catch (PersonagemException ex) {
                     throw ex;
                 }
@@ -220,7 +222,7 @@ public class Mapa {
         for (Sala sala : this.salas) {
             if (sala.temTroll()) {
                 for(int i=0; i<sala.getTrollsGuerreiros().size(); i++){
-                    sala.getTrollsGuerreiros().get(i).mover(sala);
+                    ((TrollGuerreiro)sala.getTrollsGuerreiros().get(i)).mover(sala);
                 }
             }
         }

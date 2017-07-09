@@ -8,7 +8,7 @@ import java.util.List;
 public class Local {
     private String nome;
     private List<Porta> portas;
-    private List<TrollGuerreiro> trollsGuerreiros;
+    private List<Troll> trollsGuerreiros;
     
     public Local(String nome){
         this.nome = nome;
@@ -77,15 +77,19 @@ public class Local {
         if(this.temTrollGuerreiro()== false){
             throw new PersonagemException("Não há trolls na sala.");
         }
-        for (TrollGuerreiro troll : this.trollsGuerreiros) {
+        for (Troll troll : this.trollsGuerreiros) {
             if (troll.getNome().toLowerCase().equals(trollNome)) {
                 return troll;
             }
         }
         throw new PersonagemException("Troll " + trollNome + " não está na sala");   
     }
+	
+	public List<Troll> getTrolls(){
+		return this.trollsGuerreiros;
+	}
     
-    public List<TrollGuerreiro> getTrollsGuerreiros() {
+    public List<Troll> getTrollsGuerreiros() {
         return this.trollsGuerreiros;
     }
 }

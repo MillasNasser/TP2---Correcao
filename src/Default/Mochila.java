@@ -30,7 +30,7 @@ public class Mochila {
     public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
-
+	
     public Ouro getOuro() {
         return ouro;
     }

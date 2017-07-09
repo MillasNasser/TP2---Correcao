@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import Default.Porta;
 import javax.swing.JButton;
 
 /**
@@ -12,19 +13,27 @@ import javax.swing.JButton;
  * @author millas
  */
 public class ButtonPorta extends JButton{
-	private String labelPorta;
+	private Porta porta;
 	
-	public ButtonPorta(String nome){
-		super(nome);
-		this.labelPorta = nome;
+	public ButtonPorta(){
+		super();
+		this.porta = null;
 	}
 	
-	public String getLabelPorta() {
-		return labelPorta;
+	public ButtonPorta(Porta porta){
+		super(porta.getIdentificador());
+		this.porta = porta;
 	}
 
-	public void setLabelPorta(String label) {
-		this.labelPorta = label;
+	public Porta getPorta() {
+		return porta;
+	}
+
+	public void setPorta(Porta porta) {
+		this.porta = porta;
 	}
 	
+	public String getLabelPorta(){
+		return this.porta.getIdentificador();
+	}
 }

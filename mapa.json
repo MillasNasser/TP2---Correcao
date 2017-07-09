@@ -121,11 +121,11 @@
         {
             "portas": [
                 {
-                    "identificador": "A",
+                    "identificador": "B",
                     "sala": "Sala 05"
                 },
                 {
-                    "identificador": "B",
+                    "identificador": "A",
                     "sala": "Sala 06"
                 },
                 {

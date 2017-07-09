@@ -22,10 +22,12 @@ public class Console{
                 //nome da sala e portas				
                 mapa.getPlayer().getLocalAtual().imprimeInfo();
                 mapa.getPlayer().mostrarProximo();
-                break;
+				return;
+                //break;
             case "backpack":
                 mapa.getPlayer().getItens().imprimeItens();
-                break;
+				return;
+                //break;
             case "pickup":
                 if (comandoSplited.length < 2) {
                     System.out.println("Comando incompleto.");
@@ -138,5 +140,6 @@ public class Console{
                 System.out.println("Comando inválido.");
                 break;
         }
+		Console.console(mapa, "backpack");
     }
 }

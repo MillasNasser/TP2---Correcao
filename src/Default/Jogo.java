@@ -37,23 +37,17 @@ public class Jogo {
 		mapa.espalhaTrolls();
 		mapa.inicializaSalas();
 		/**/
-		mapa.getPlayer().setLocalAtual(mapa.getSalas().get(0));
-		mapa.getSalas().get(0).addItem(new MachadoOuro());
-		
-		try {
-			mapa.getPlayer().getItens().addItem(new Pocao());
-		} catch (ItemException ex) {}
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				Principal gui = new Principal(mapa);
+				JFrame frame = new JFrame();
+				Principal gui = new Principal(mapa, frame);
 				UIManager.LookAndFeelInfo info[] = UIManager.getInstalledLookAndFeels();
 				try{
 					UIManager.setLookAndFeel(info[3].getClassName());
 					SwingUtilities.updateComponentTreeUI(gui);
 				}catch(Exception e){}
-				JFrame frame = new JFrame();
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.getContentPane().add(gui);
 				frame.pack();

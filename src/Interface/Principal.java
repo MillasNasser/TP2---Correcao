@@ -18,25 +18,34 @@ import Default.Pegavel;
 import Default.Pocao;
 import Default.Porta;
 import Default.Sala;
+import Default.Troll;
+import Default.TrollCaverna;
+import Default.TrollGuerreiro;
 import Exceptions.ItemException;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Principal extends javax.swing.JPanel {	
 	private Mapa mapa;
+	private JFrame frame;
 	
 	public Principal() {
 		initComponents();
 	}
 	
-	public Principal(Mapa mapa) {
+	public Principal(Mapa mapa, JFrame frame) {
 		this.mapa = mapa;
+		this.frame = frame;
 		initComponents();
 		atualizaGUI();
 	}
@@ -45,20 +54,24 @@ public class Principal extends javax.swing.JPanel {
 		setAllLabelsToDefault();
 		defineQuantidadeItens();
 		mostraPortas();
+		mostraTrolls();
 		nomeSala.setText(mapa.getPlayer().getLocalAtual().getNome());
+		frame.validate();
 	}
 	
 	public void mostraPortas(){
 		JPanelPortas.removeAll();
 		for(Porta porta: mapa.getPlayer().getLocalAtual().getPortas()){
 			
-			ButtonPorta botaoPorta = new ButtonPorta(porta.getIdentificador());
+			ButtonPorta botaoPorta = new ButtonPorta(porta);
 			botaoPorta.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent event) {
 					try {
 						if(mapa.getPlayer().getPerto() instanceof Porta && mapa.getPlayer().getPerto()==porta){
 							Console.console(mapa, "exit");
+							int quantidadeChave = -1;
+							quantidadeChaves.setText((quantidadeChave)+"");
 							atualizaGUI();
 						}else{
 							setAllLabelsToDefault();
@@ -66,12 +79,38 @@ public class Principal extends javax.swing.JPanel {
 							botaoPorta.setLabel("sair");
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
 						infoBox(e.getMessage(), "Porta");
 					}
 				}
 			});
 			JPanelPortas.add(botaoPorta);
+		}
+	}
+	
+	public void mostraTrolls(){
+		JPanelTrolls.removeAll();
+		for(Troll troll: mapa.getPlayer().getLocalAtual().getTrolls()){
+			
+			JButton botaoTroll = new JButton(troll.getNome());
+			botaoTroll.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent event) {
+					try {
+						Console.console(mapa, "throwAxe "+troll.getNome());
+						JPanelTrolls.remove(botaoTroll);
+						frame.validate();
+						/*TODO arrumar o label do jogador*/
+					} catch (Exception e) {
+						infoBox(e.getMessage(), "Porta");
+					}
+				}
+			});
+			if(troll instanceof TrollGuerreiro){
+				botaoTroll.setForeground(Color.red);
+			}else if(troll instanceof TrollCaverna){
+				botaoTroll.setForeground(Color.ORANGE);
+			}
+			JPanelTrolls.add(botaoTroll);
 		}
 	}
 	
@@ -87,8 +126,10 @@ public class Principal extends javax.swing.JPanel {
 			if(botaoPorta instanceof ButtonPorta){
 				String nome = ((ButtonPorta) botaoPorta).getLabelPorta();
 				((ButtonPorta) botaoPorta).setLabel(nome);
+				
 			}
 		}
+		frame.validate();
 	}
 	
 	public void defineQuantidadeItens(){
@@ -560,13 +601,13 @@ public class Principal extends javax.swing.JPanel {
     }//GEN-LAST:event_bntAcaoSalaOuroActionPerformed
 	
     private void usarPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usarPocaoActionPerformed
+		int qntPocao = Integer.parseInt(quantidadePocao.getText());
+		quantidadePocao.setText((qntPocao-1)+"");
 		try {
-			Pegavel pocao = mapa.getPlayer().getItem("pocao");
-			mapa.getPlayer().getItens().removeItem(pocao);
-			int qntPocao = Integer.parseInt(quantidadePocao.getText());
-			quantidadePocao.setText((qntPocao-1)+"");
-		} catch (ItemException e) {
-			infoBox(e.getMessage(), "Poção");
+			Console.console(mapa, "lock");
+			atualizaGUI();
+		} catch (Exception ex) {
+			infoBox(ex.getMessage(), "Poção");
 		}
     }//GEN-LAST:event_usarPocaoActionPerformed
 

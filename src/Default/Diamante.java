@@ -4,6 +4,14 @@ import Exceptions.ItemException;
 
 public class Diamante extends Tesouro {
 	
+	public Diamante(){
+		super();
+	}
+	
+	public Diamante(int quantidade){
+		super(quantidade);
+	}
+	
 	public boolean compare(String itemStr){
         String[] nomes = {"diamond", "diamante"};
         return Util.compare(nomes, itemStr);
