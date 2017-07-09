@@ -44,6 +44,10 @@ public class Jogador {
 	public void zerarOuro() {
 		this.itens.getOuro().setQuantidade(0);
 	}
+	
+	public void zerarDiamante() {
+		this.itens.getDiamante().setQuantidade(0);
+	}
 
 	public void pegar(String itemStr) throws ItemException {
         if (this.perto instanceof Pegavel) {
@@ -67,7 +71,7 @@ public class Jogador {
 	}
 
 	public void mover(Aproximavel aproximavel) throws AproximavelException {
-        if (aproximavel instanceof Ouro) {
+        if (aproximavel instanceof Ouro || aproximavel instanceof Diamante) {
             if (((Sala)this.localAtual).temTrollCaverna()) {
                 throw new ItemException("Há trolls da caverna na sala.");
             }

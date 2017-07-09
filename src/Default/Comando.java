@@ -6,7 +6,7 @@ import java.util.Scanner;
 import Exceptions.AproximavelException;
 import Exceptions.PersonagemException;
 
-public class Console{
+public class Comando{
 
     public static void console(Mapa mapa, String comando) throws Exception {
         System.out.print("Player> ");
@@ -22,7 +22,7 @@ public class Console{
                 //nome da sala e portas				
                 mapa.getPlayer().getLocalAtual().imprimeInfo();
                 mapa.getPlayer().mostrarProximo();
-                Console.console(mapa, "backpack");
+                Comando.console(mapa, "backpack");
 				return;
             case "backpack":
                 mapa.getPlayer().getItens().imprimeItens();
@@ -139,6 +139,6 @@ public class Console{
                 System.out.println("Comando inválido.");
                 break;
         }
-		Console.console(mapa, "view");
+		Comando.console(mapa, "view");
     }
 }

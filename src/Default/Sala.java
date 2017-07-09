@@ -7,10 +7,6 @@ import Exceptions.ItemException;
 import Exceptions.PersonagemException;
 import java.util.Map;
 
-/**
- * @author renan
- *
- */
 public class Sala extends Local{
     private int metrosQuadrados;
     private List<Pegavel> itens = null;
@@ -97,6 +93,8 @@ public class Sala extends Local{
     public void removeItem(Pegavel item) {
         if(item instanceof Ouro){
             this.ouro.setQuantidade(0);
+        }else if(item instanceof Diamante){
+            this.diamante.setQuantidade(0);
         }else{
             this.itens.remove(item);
         }
@@ -169,7 +167,9 @@ public class Sala extends Local{
 	}
 	
     public boolean temItem(){
-        return (this.itens.size() > 0 || this.ouro.getQuantidade() > 0);
+        return (this.itens.size() > 0 || 
+				this.ouro.getQuantidade() > 0 || 
+				this.diamante.getQuantidade() > 0);
     }
 
     public Pegavel getItem(String itemStr) throws ItemException {
@@ -183,7 +183,9 @@ public class Sala extends Local{
         }
         if(this.ouro.compare(itemStr)){
             return this.ouro;
-        }
+        }else if(this.diamante.compare(itemStr)){
+			return this.diamante;
+		}
         throw new ItemException("Não há " + itemStr + " na sala");
     }
 

@@ -46,6 +46,7 @@ public class Machado extends Pegavel {
                 player.getItens().removeItem(pocao);
             } catch (ItemException ie) {
                 player.zerarOuro();
+				player.zerarDiamante();
             }
         }
     }

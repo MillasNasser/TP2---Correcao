@@ -15,12 +15,14 @@ public class Mochila {
     private List<Pegavel> chaves;
 
     private Ouro ouro;
+	private Diamante diamante;
 
     public Mochila() {
         machados = new ArrayList<>();
         pocoes = new ArrayList<>();
         chaves = new ArrayList<>();
         ouro = new Ouro(0);
+		diamante = new Diamante(0);
     }
 
     public int getCapacidade() {
@@ -37,6 +39,14 @@ public class Mochila {
 
     public void setOuro(Ouro ouro) {
         this.ouro = ouro;
+    }
+	
+	public Diamante getDiamante() {
+        return diamante;
+    }
+
+    public void setDiamante(Diamante diamante) {
+        this.diamante = diamante;
     }
     
     public int getQuantidadeItem(Class tipo){
@@ -71,7 +81,7 @@ public class Mochila {
         }else if(tipo == Ouro.class){
             return this.ouro.getQuantidade();
         }else if(tipo == Diamante.class){
-            return 0;
+            return this.diamante.getQuantidade();
         }
         return 0;
     }
@@ -84,6 +94,14 @@ public class Mochila {
 			}
             quantidade += ((Ouro) item).getQuantidade();
             this.ouro.setQuantidade(quantidade);
+            return;
+        }if (item instanceof Diamante) {
+            int quantidade = this.diamante.getQuantidade();
+			if(((Diamante)item).getQuantidade() == 0){
+				throw new ItemException("Nao ha diamante na sala");
+			}
+            quantidade += ((Diamante) item).getQuantidade();
+            this.diamante.setQuantidade(quantidade);
             return;
         } else if (item instanceof Machado) {
             if (this.machados.size() + 1 <= 4) {
