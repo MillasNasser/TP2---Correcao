@@ -106,6 +106,7 @@ public class Jogador {
 					Pegavel chave = this.itens.getItem("key");
 					this.itens.removeItem(chave);
 					porta.setAberta(true);
+                    System.out.println("USOU A PORRA DA CHAVE");
 				} catch (ItemException ie) {
 					throw ie;
 				}

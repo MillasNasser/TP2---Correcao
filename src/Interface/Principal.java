@@ -7,6 +7,7 @@ package Interface;
 
 import Default.Chave;
 import Default.Console;
+import Default.Corredor;
 import Default.Local;
 import Default.Machado;
 import Default.MachadoBronze;
@@ -69,17 +70,24 @@ public class Principal extends javax.swing.JPanel {
 				@Override
 				public void actionPerformed(ActionEvent event) {
 					try {
-						if(mapa.getPlayer().getPerto() instanceof Porta && mapa.getPlayer().getPerto()==porta){
-                            Console.console(mapa, "exit");
-							int quantidadeChave = -1;
-							quantidadeChaves.setText((quantidadeChave)+"");
-							atualizaGUI();
+						if(mapa.getPlayer().getPerto() instanceof Porta && mapa.getPlayer().getPerto() == porta){
+                            try{
+                                Console.console(mapa, "exit");
+                            }catch (Exception e) {
+                                atualizaGUI();
+                                infoBox(e.getMessage(), "Porta");
+                            }finally{
+                                int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Chave.class);
+                                quantidadeChaves.setText(String.valueOf(quantidade));
+                                atualizaGUI();
+                            }
 						}else{
 							setAllLabelsToDefault();
-                            Console.console(mapa, "moveto "+porta.getIdentificador()+" door");
+                            Console.console(mapa, "moveto " + porta.getIdentificador() + " door");
 							botaoPorta.setText("sair");
 						}
 					} catch (Exception e) {
+                        atualizaGUI();
 						infoBox(e.getMessage(), "Porta");
 					}
 				}
@@ -99,9 +107,9 @@ public class Principal extends javax.swing.JPanel {
 					try {
 						Console.console(mapa, "throwAxe "+troll.getNome());
 						JPanelTrolls.remove(botaoTroll);
-                        quantidadeMachadoOuro.setText(mapa.getPlayer().getItens().getQuantidadeItem(MachadoOuro.class)+"");
-                        quantidadeMachadoBronze.setText(mapa.getPlayer().getItens().getQuantidadeItem(MachadoBronze.class)+"");
-                        quantidadeMachadoFerro.setText(mapa.getPlayer().getItens().getQuantidadeItem(MachadoFerro.class)+"");
+                        quantidadeMachadoOuro.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoOuro.class)));
+                        quantidadeMachadoBronze.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoBronze.class)));
+                        quantidadeMachadoFerro.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoFerro.class)));
 						frame.validate();
 						/*TODO arrumar o label do jogador*/
 					} catch (Exception e) {
@@ -120,12 +128,19 @@ public class Principal extends javax.swing.JPanel {
 	
 	// TODO - remover gambi de setar os labels
 	private void setAllLabelsToDefault(){
-		bntAcaoSalaOuro.setText("Mover");
-		bntAcaoSalaPocao.setText("Mover");
-		bntAcaoSalaChave.setText("Mover");
-		bntAcaoMachadoOuro.setText("Mover");
-		bntAcaoMachadoFerro.setText("Mover");
-		bntAcaoMachadoBronze.setText("Mover");
+        btnAcaoSalaOuro.setEnabled(mapa.getPlayer().getLocalAtual() instanceof Sala);
+        btnAcaoSalaPocao.setEnabled(mapa.getPlayer().getLocalAtual() instanceof Sala);
+        btnAcaoSalaChave.setEnabled(mapa.getPlayer().getLocalAtual() instanceof Sala);
+        btnAcaoMachadoOuro.setEnabled(mapa.getPlayer().getLocalAtual() instanceof Sala);
+        btnAcaoMachadoBronze.setEnabled(mapa.getPlayer().getLocalAtual() instanceof Sala);
+        btnAcaoMachadoFerro.setEnabled(mapa.getPlayer().getLocalAtual() instanceof Sala);
+        
+		btnAcaoSalaOuro.setText("Mover");
+		btnAcaoSalaPocao.setText("Mover");
+		btnAcaoSalaChave.setText("Mover");
+		btnAcaoMachadoOuro.setText("Mover");
+		btnAcaoMachadoFerro.setText("Mover");
+		btnAcaoMachadoBronze.setText("Mover");
 		for(Component botaoPorta: JPanelPortas.getComponents()){
 			if(botaoPorta instanceof ButtonPorta){
 				String nome = ((ButtonPorta) botaoPorta).getLabelPorta();
@@ -141,22 +156,22 @@ public class Principal extends javax.swing.JPanel {
 			int quantidade;
 			Sala sala = ((Sala)mapa.getPlayer().getLocalAtual());
 			
-			labelQuantidadeSalaOuro.setText(sala.getQuantidadeOuro()+"");
+			labelQuantidadeSalaOuro.setText(String.valueOf(sala.getQuantidadeOuro()));
 			
 			quantidade = sala.getQuantidadeItem(MachadoOuro.class);
-			labelQuantidadeAxeOuro.setText(quantidade+"");
+			labelQuantidadeAxeOuro.setText(String.valueOf(quantidade));
 			
 			quantidade = sala.getQuantidadeItem(MachadoFerro.class);
-			labelQuantidadeAxeFerro.setText(quantidade+"");
+			labelQuantidadeAxeFerro.setText(String.valueOf(quantidade));
 			
 			quantidade = sala.getQuantidadeItem(MachadoBronze.class);
-			labelQuantidadeAxeBronze.setText(quantidade+"");
+			labelQuantidadeAxeBronze.setText(String.valueOf(quantidade));
 			
 			quantidade = sala.getQuantidadeItem(Pocao.class);
-			labelQuantidadeSalaPocao.setText(quantidade+"");
+			labelQuantidadeSalaPocao.setText(String.valueOf(quantidade));
 			
 			quantidade = sala.getQuantidadeItem(Chave.class);
-			labelQuantidadeSalaChave.setText(quantidade+"");
+			labelQuantidadeSalaChave.setText(String.valueOf(quantidade));
 		}else{
 			labelQuantidadeAxeOuro.setText("0");			
 			labelQuantidadeSalaOuro.setText("0");
@@ -184,9 +199,9 @@ public class Principal extends javax.swing.JPanel {
         local = new javax.swing.JLabel();
         nomeSala = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        bntAcaoSalaOuro = new javax.swing.JButton();
+        btnAcaoSalaOuro = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        bntAcaoSalaPocao = new javax.swing.JButton();
+        btnAcaoSalaPocao = new javax.swing.JButton();
         labelQuantidadeSalaOuro = new javax.swing.JLabel();
         labelQuantidadeSalaPocao = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -196,14 +211,14 @@ public class Principal extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         labelQuantidadeAxeFerro = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        bntAcaoMachadoOuro = new javax.swing.JButton();
-        bntAcaoMachadoBronze = new javax.swing.JButton();
+        btnAcaoMachadoOuro = new javax.swing.JButton();
+        btnAcaoMachadoBronze = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        bntAcaoMachadoFerro = new javax.swing.JButton();
+        btnAcaoMachadoFerro = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         labelQuantidadeSalaChave = new javax.swing.JLabel();
-        bntAcaoSalaChave = new javax.swing.JButton();
+        btnAcaoSalaChave = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         JPanelPortas = new javax.swing.JPanel();
         JPanelTrolls = new javax.swing.JPanel();
@@ -235,19 +250,19 @@ public class Principal extends javax.swing.JPanel {
 
         jLabel9.setText("Ouro");
 
-        bntAcaoSalaOuro.setText("ação");
-        bntAcaoSalaOuro.addActionListener(new java.awt.event.ActionListener() {
+        btnAcaoSalaOuro.setText("ação");
+        btnAcaoSalaOuro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntAcaoSalaOuroActionPerformed(evt);
+                btnAcaoSalaOuroActionPerformed(evt);
             }
         });
 
         jLabel10.setText("Pocao");
 
-        bntAcaoSalaPocao.setText("ação");
-        bntAcaoSalaPocao.addActionListener(new java.awt.event.ActionListener() {
+        btnAcaoSalaPocao.setText("ação");
+        btnAcaoSalaPocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntAcaoSalaPocaoActionPerformed(evt);
+                btnAcaoSalaPocaoActionPerformed(evt);
             }
         });
 
@@ -269,26 +284,26 @@ public class Principal extends javax.swing.JPanel {
 
         jLabel21.setText("ferro");
 
-        bntAcaoMachadoOuro.setText("ação");
-        bntAcaoMachadoOuro.addActionListener(new java.awt.event.ActionListener() {
+        btnAcaoMachadoOuro.setText("ação");
+        btnAcaoMachadoOuro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntAcaoMachadoOuroActionPerformed(evt);
+                btnAcaoMachadoOuroActionPerformed(evt);
             }
         });
 
-        bntAcaoMachadoBronze.setText("ação");
-        bntAcaoMachadoBronze.addActionListener(new java.awt.event.ActionListener() {
+        btnAcaoMachadoBronze.setText("ação");
+        btnAcaoMachadoBronze.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntAcaoMachadoBronzeActionPerformed(evt);
+                btnAcaoMachadoBronzeActionPerformed(evt);
             }
         });
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        bntAcaoMachadoFerro.setText("ação");
-        bntAcaoMachadoFerro.addActionListener(new java.awt.event.ActionListener() {
+        btnAcaoMachadoFerro.setText("ação");
+        btnAcaoMachadoFerro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntAcaoMachadoFerroActionPerformed(evt);
+                btnAcaoMachadoFerroActionPerformed(evt);
             }
         });
 
@@ -296,10 +311,10 @@ public class Principal extends javax.swing.JPanel {
 
         labelQuantidadeSalaChave.setText("0");
 
-        bntAcaoSalaChave.setText("ação");
-        bntAcaoSalaChave.addActionListener(new java.awt.event.ActionListener() {
+        btnAcaoSalaChave.setText("ação");
+        btnAcaoSalaChave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntAcaoSalaChaveActionPerformed(evt);
+                btnAcaoSalaChaveActionPerformed(evt);
             }
         });
 
@@ -338,9 +353,9 @@ public class Principal extends javax.swing.JPanel {
                                 .addComponent(labelQuantidadeSalaChave)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bntAcaoSalaOuro)
-                            .addComponent(bntAcaoSalaPocao)
-                            .addComponent(bntAcaoSalaChave))))
+                            .addComponent(btnAcaoSalaOuro)
+                            .addComponent(btnAcaoSalaPocao)
+                            .addComponent(btnAcaoSalaChave))))
                 .addGap(32, 32, 32)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -354,15 +369,15 @@ public class Principal extends javax.swing.JPanel {
                     .addGroup(InfoSalaLayout.createSequentialGroup()
                         .addComponent(labelQuantidadeAxeOuro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntAcaoMachadoOuro))
+                        .addComponent(btnAcaoMachadoOuro))
                     .addGroup(InfoSalaLayout.createSequentialGroup()
                         .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelQuantidadeAxeBronze)
                             .addComponent(labelQuantidadeAxeFerro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bntAcaoMachadoFerro)
-                            .addComponent(bntAcaoMachadoBronze))))
+                            .addComponent(btnAcaoMachadoFerro)
+                            .addComponent(btnAcaoMachadoBronze))))
                 .addContainerGap(240, Short.MAX_VALUE))
             .addGroup(InfoSalaLayout.createSequentialGroup()
                 .addContainerGap()
@@ -390,33 +405,33 @@ public class Principal extends javax.swing.JPanel {
                                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel9)
                                     .addComponent(labelQuantidadeSalaOuro)
-                                    .addComponent(bntAcaoSalaOuro))
+                                    .addComponent(btnAcaoSalaOuro))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(bntAcaoSalaPocao)
+                                    .addComponent(btnAcaoSalaPocao)
                                     .addComponent(labelQuantidadeSalaPocao)
                                     .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel22)
                                     .addComponent(labelQuantidadeSalaChave)
-                                    .addComponent(bntAcaoSalaChave)))
+                                    .addComponent(btnAcaoSalaChave)))
                             .addGroup(InfoSalaLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel16)
                                     .addComponent(labelQuantidadeAxeOuro)
-                                    .addComponent(bntAcaoMachadoOuro))
+                                    .addComponent(btnAcaoMachadoOuro))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel19)
                                     .addComponent(labelQuantidadeAxeBronze)
-                                    .addComponent(bntAcaoMachadoBronze))
+                                    .addComponent(btnAcaoMachadoBronze))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel21)
                                     .addComponent(labelQuantidadeAxeFerro)
-                                    .addComponent(bntAcaoMachadoFerro)))))
+                                    .addComponent(btnAcaoMachadoFerro)))))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -580,120 +595,120 @@ public class Principal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 	
-    private void bntAcaoSalaOuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcaoSalaOuroActionPerformed
+    private void btnAcaoSalaOuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoSalaOuroActionPerformed
         setAllLabelsToDefault();
 		try {
 			int quantidadeDeOuro;
 			if(mapa.getPlayer().getPerto() instanceof Ouro){
 				quantidadeDeOuro = ((Ouro) mapa.getPlayer().getPerto()).getQuantidade();
 				Console.console(mapa, "pickup ouro");
-				quantidadeOuro.setText((quantidadeDeOuro)+"");
+				quantidadeOuro.setText(String.valueOf(quantidadeDeOuro));
 				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto ouro");
 				quantidadeDeOuro = ((Ouro) mapa.getPlayer().getPerto()).getQuantidade();
-				bntAcaoSalaOuro.setText("pegar");
+				btnAcaoSalaOuro.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Ouro");
 		}
-    }//GEN-LAST:event_bntAcaoSalaOuroActionPerformed
+    }//GEN-LAST:event_btnAcaoSalaOuroActionPerformed
 	
     private void usarPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usarPocaoActionPerformed
-		int qntPocao = Integer.parseInt(quantidadePocao.getText());
-		quantidadePocao.setText((qntPocao-1)+"");
 		try {
 			Console.console(mapa, "lock");
 			atualizaGUI();
+            int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Pocao.class);
+            quantidadePocao.setText(String.valueOf(quantidade));
 		} catch (Exception ex) {
 			infoBox(ex.getMessage(), "Poção");
 		}
     }//GEN-LAST:event_usarPocaoActionPerformed
 
-    private void bntAcaoMachadoOuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcaoMachadoOuroActionPerformed
+    private void btnAcaoMachadoOuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoMachadoOuroActionPerformed
 		setAllLabelsToDefault();
 		try {
 			if(mapa.getPlayer().getPerto() instanceof MachadoOuro){
 				Console.console(mapa, "pickup machado de ouro");
 				int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(MachadoOuro.class);
-				quantidadeMachadoOuro.setText((quantidade)+"");
+				quantidadeMachadoOuro.setText(String.valueOf(quantidade));
 				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto machado de ouro");
-				bntAcaoMachadoOuro.setText("pegar");
+				btnAcaoMachadoOuro.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Machado de Ouro");
 		}
-    }//GEN-LAST:event_bntAcaoMachadoOuroActionPerformed
+    }//GEN-LAST:event_btnAcaoMachadoOuroActionPerformed
 
-    private void bntAcaoMachadoBronzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcaoMachadoBronzeActionPerformed
+    private void btnAcaoMachadoBronzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoMachadoBronzeActionPerformed
 		setAllLabelsToDefault();
 		try {
 			if(mapa.getPlayer().getPerto() instanceof MachadoBronze){
 				Console.console(mapa, "pickup machado de bronze");
 				int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(MachadoBronze.class);
-				quantidadeMachadoBronze.setText((quantidade+1)+"");
+				quantidadeMachadoBronze.setText(String.valueOf(quantidade));
 				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto machado de bronze");
-				bntAcaoMachadoBronze.setText("pegar");
+				btnAcaoMachadoBronze.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Machado de Ouro");
 		}
-    }//GEN-LAST:event_bntAcaoMachadoBronzeActionPerformed
+    }//GEN-LAST:event_btnAcaoMachadoBronzeActionPerformed
 
-    private void bntAcaoMachadoFerroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcaoMachadoFerroActionPerformed
+    private void btnAcaoMachadoFerroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoMachadoFerroActionPerformed
         setAllLabelsToDefault();
 		try {
 			if(mapa.getPlayer().getPerto() instanceof MachadoFerro){
 				Console.console(mapa, "pickup machado de Ferro");
 				int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(MachadoFerro.class);
-				quantidadeMachadoFerro.setText((quantidade+1)+"");
+				quantidadeMachadoFerro.setText(String.valueOf(quantidade));
 				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto machado de Ferro");
-				bntAcaoMachadoFerro.setText("pegar");
+				btnAcaoMachadoFerro.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Machado de Ouro");
 		}
-    }//GEN-LAST:event_bntAcaoMachadoFerroActionPerformed
+    }//GEN-LAST:event_btnAcaoMachadoFerroActionPerformed
 
-    private void bntAcaoSalaPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcaoSalaPocaoActionPerformed
+    private void btnAcaoSalaPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoSalaPocaoActionPerformed
         setAllLabelsToDefault();
 		try {
 			if(mapa.getPlayer().getPerto() instanceof Pocao){
 				Console.console(mapa, "pickup pocao");
-				int quantidade = Integer.parseInt(quantidadePocao.getText());
-				quantidadePocao.setText((quantidade+1)+"");
+				int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Pocao.class);
+				quantidadePocao.setText(String.valueOf(quantidade));
 				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto pocao");
-				bntAcaoSalaPocao.setText("pegar");
+				btnAcaoSalaPocao.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Poção");
 		}
-    }//GEN-LAST:event_bntAcaoSalaPocaoActionPerformed
+    }//GEN-LAST:event_btnAcaoSalaPocaoActionPerformed
 
-    private void bntAcaoSalaChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcaoSalaChaveActionPerformed
+    private void btnAcaoSalaChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoSalaChaveActionPerformed
         setAllLabelsToDefault();
 		try {
 			if(mapa.getPlayer().getPerto() instanceof Chave){
 				Console.console(mapa, "pickup Chave");
-				int quantidade = Integer.parseInt(quantidadeChaves.getText());
-				quantidadeChaves.setText((quantidade+1)+"");
+				int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Chave.class);
+				quantidadeChaves.setText(String.valueOf(quantidade));
 				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto Chave");
-				bntAcaoSalaChave.setText("pegar");
+				btnAcaoSalaChave.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Poção");
 		}
-    }//GEN-LAST:event_bntAcaoSalaChaveActionPerformed
+    }//GEN-LAST:event_btnAcaoSalaChaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -701,12 +716,12 @@ public class Principal extends javax.swing.JPanel {
     private javax.swing.JPanel InfoSala;
     private javax.swing.JPanel JPanelPortas;
     private javax.swing.JPanel JPanelTrolls;
-    private javax.swing.JButton bntAcaoMachadoBronze;
-    private javax.swing.JButton bntAcaoMachadoFerro;
-    private javax.swing.JButton bntAcaoMachadoOuro;
-    private javax.swing.JButton bntAcaoSalaChave;
-    private javax.swing.JButton bntAcaoSalaOuro;
-    private javax.swing.JButton bntAcaoSalaPocao;
+    private javax.swing.JButton btnAcaoMachadoBronze;
+    private javax.swing.JButton btnAcaoMachadoFerro;
+    private javax.swing.JButton btnAcaoMachadoOuro;
+    private javax.swing.JButton btnAcaoSalaChave;
+    private javax.swing.JButton btnAcaoSalaOuro;
+    private javax.swing.JButton btnAcaoSalaPocao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

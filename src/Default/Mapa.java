@@ -120,12 +120,6 @@ public class Mapa {
         }
         this.salas.add(novaSala);
     }
-
-    public void inicializaSalas() {
-        for(Sala sala: this.salas){
-            sala.addChave();
-        }
-    }
     
     public void espalhaItem(Pegavel item, int maxItens) throws ItemException{
         Random random = new Random();

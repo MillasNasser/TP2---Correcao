@@ -66,9 +66,9 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="bntAcaoSalaOuro" min="-2" max="-2" attributes="0"/>
-                              <Component id="bntAcaoSalaPocao" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bntAcaoSalaChave" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAcaoSalaOuro" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAcaoSalaPocao" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAcaoSalaChave" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -86,7 +86,7 @@
                       <Group type="102" attributes="0">
                           <Component id="labelQuantidadeAxeOuro" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="bntAcaoMachadoOuro" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAcaoMachadoOuro" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -95,8 +95,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="bntAcaoMachadoFerro" min="-2" max="-2" attributes="0"/>
-                              <Component id="bntAcaoMachadoBronze" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAcaoMachadoFerro" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAcaoMachadoBronze" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -133,11 +133,11 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelQuantidadeSalaOuro" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bntAcaoSalaOuro" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAcaoSalaOuro" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="bntAcaoSalaPocao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAcaoSalaPocao" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelQuantidadeSalaPocao" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -145,7 +145,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelQuantidadeSalaChave" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bntAcaoSalaChave" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAcaoSalaChave" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -153,19 +153,19 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelQuantidadeAxeOuro" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bntAcaoMachadoOuro" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAcaoMachadoOuro" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelQuantidadeAxeBronze" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bntAcaoMachadoBronze" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAcaoMachadoBronze" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelQuantidadeAxeFerro" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bntAcaoMachadoFerro" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAcaoMachadoFerro" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -207,12 +207,12 @@
             <Property name="text" type="java.lang.String" value="Ouro"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="bntAcaoSalaOuro">
+        <Component class="javax.swing.JButton" name="btnAcaoSalaOuro">
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoSalaOuroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoSalaOuroActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
@@ -220,12 +220,12 @@
             <Property name="text" type="java.lang.String" value="Pocao"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="bntAcaoSalaPocao">
+        <Component class="javax.swing.JButton" name="btnAcaoSalaPocao">
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoSalaPocaoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoSalaPocaoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeSalaOuro">
@@ -273,20 +273,20 @@
             <Property name="text" type="java.lang.String" value="ferro"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="bntAcaoMachadoOuro">
+        <Component class="javax.swing.JButton" name="btnAcaoMachadoOuro">
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoMachadoOuroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoMachadoOuroActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bntAcaoMachadoBronze">
+        <Component class="javax.swing.JButton" name="btnAcaoMachadoBronze">
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoMachadoBronzeActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoMachadoBronzeActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">
@@ -296,12 +296,12 @@
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator3">
         </Component>
-        <Component class="javax.swing.JButton" name="bntAcaoMachadoFerro">
+        <Component class="javax.swing.JButton" name="btnAcaoMachadoFerro">
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoMachadoFerroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoMachadoFerroActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
@@ -314,12 +314,12 @@
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="bntAcaoSalaChave">
+        <Component class="javax.swing.JButton" name="btnAcaoSalaChave">
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntAcaoSalaChaveActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoSalaChaveActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
