@@ -1,5 +1,6 @@
 package GUI.componentes;
 
+import Default.Util;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Point;
@@ -63,15 +64,20 @@ public class Box extends Container {
             }else{
                 posicao.y += ultimoBounds.height + this.espacamento;
             }
+        }else{
+            this.setSize(Util.getAlcance(comp).x, Util.getAlcance(comp).y);
         }
         
         comp.setLocation(posicao);
         
-        if(comp instanceof SalaItem){
-            System.out.println("SALA ITEM" + comp.getBounds());
-        }
-        
         super.add(comp);
+        
+        if(this.getSize().width < Util.getAlcance(comp).x){
+            this.setSize(Util.getAlcance(comp).x, this.getHeight());
+        }
+        if(this.getSize().height < Util.getAlcance(comp).y){
+            this.setSize(this.getWidth(), Util.getAlcance(comp).y);
+        }
         
         return comp;
     }

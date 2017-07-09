@@ -16,7 +16,7 @@ public class SalaItem extends Box{
         this.quantidade = quantidade;
         
         //Tipo.
-        Texto tipoTexto = new Texto(tipo);
+        Texto tipoTexto = new Texto(tipo + ":");
         this.add(tipoTexto);
         
         //Quantidade.
@@ -26,7 +26,5 @@ public class SalaItem extends Box{
         //Botão
         Botao acaoBotao = new Botao("Mover");
         this.add(acaoBotao);
-        
-        this.setSize(Util.getAlcance(acaoBotao).x, Util.getAlcance(acaoBotao).y);
     }
 }
