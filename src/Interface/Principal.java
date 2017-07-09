@@ -22,6 +22,7 @@ import Default.Troll;
 import Default.TrollCaverna;
 import Default.TrollGuerreiro;
 import Exceptions.ItemException;
+import Exceptions.PersonagemException;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.List;
@@ -69,13 +70,13 @@ public class Principal extends javax.swing.JPanel {
 				public void actionPerformed(ActionEvent event) {
 					try {
 						if(mapa.getPlayer().getPerto() instanceof Porta && mapa.getPlayer().getPerto()==porta){
-							Console.console(mapa, "exit");
+                            Console.console(mapa, "exit");
 							int quantidadeChave = -1;
 							quantidadeChaves.setText((quantidadeChave)+"");
 							atualizaGUI();
 						}else{
 							setAllLabelsToDefault();
-							Console.console(mapa, "moveto "+porta.getIdentificador()+" door");
+                            Console.console(mapa, "moveto "+porta.getIdentificador()+" door");
 							botaoPorta.setLabel("sair");
 						}
 					} catch (Exception e) {
@@ -108,7 +109,7 @@ public class Principal extends javax.swing.JPanel {
 			if(troll instanceof TrollGuerreiro){
 				botaoTroll.setForeground(Color.red);
 			}else if(troll instanceof TrollCaverna){
-				botaoTroll.setForeground(Color.ORANGE);
+				botaoTroll.setForeground(Color.blue);
 			}
 			JPanelTrolls.add(botaoTroll);
 		}
@@ -203,7 +204,6 @@ public class Principal extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         JPanelPortas = new javax.swing.JPanel();
         JPanelTrolls = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         InfoJogador = new javax.swing.JPanel();
@@ -305,9 +305,6 @@ public class Principal extends javax.swing.JPanel {
         JPanelPortas.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         JPanelTrolls.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        jButton2.setText("jButton2");
-        JPanelTrolls.add(jButton2);
 
         jLabel14.setText("Trolls");
 
@@ -708,7 +705,6 @@ public class Principal extends javax.swing.JPanel {
     private javax.swing.JButton bntAcaoSalaChave;
     private javax.swing.JButton bntAcaoSalaOuro;
     private javax.swing.JButton bntAcaoSalaPocao;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

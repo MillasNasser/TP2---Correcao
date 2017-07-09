@@ -22,12 +22,10 @@ public class Console{
                 //nome da sala e portas				
                 mapa.getPlayer().getLocalAtual().imprimeInfo();
                 mapa.getPlayer().mostrarProximo();
-				return;
-                //break;
+				break;
             case "backpack":
                 mapa.getPlayer().getItens().imprimeItens();
-				return;
-                //break;
+				break;
             case "pickup":
                 if (comandoSplited.length < 2) {
                     System.out.println("Comando incompleto.");
@@ -118,8 +116,8 @@ public class Console{
                 }
                 try {
                     mapa.atacarTroll();
-                    System.out.println("Jogador foi atacado.");
-                } catch (PersonagemException ex) {
+                    throw new Exception("Jogador foi atacado.");
+                } catch (PersonagemException pe) {
                     mapa.moverTroll();
                 }
                 break;
@@ -140,6 +138,6 @@ public class Console{
                 System.out.println("Comando inválido.");
                 break;
         }
-		Console.console(mapa, "backpack");
+		//Console.console(mapa, "backpack");
     }
 }

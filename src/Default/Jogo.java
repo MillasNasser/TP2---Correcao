@@ -36,6 +36,10 @@ public class Jogo {
 		mapa.espalhaItens();
 		mapa.espalhaTrolls();
 		mapa.inicializaSalas();
+        
+        ((Sala)mapa.getPlayer().getLocalAtual()).addTrollCaverna(new TrollCaverna());
+        ((Sala)mapa.getPlayer().getLocalAtual()).addTrollGuerreiro(new TrollGuerreiro());
+        ((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoFerro());
 		/**/
 		
 		SwingUtilities.invokeLater(new Runnable() {
