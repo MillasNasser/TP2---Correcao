@@ -1,6 +1,7 @@
 package Default;
 
-import Interface.Principal;
+import GUI.Principal;
+import Interface.Principal_old;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -37,12 +38,14 @@ public class Jogo {
         //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoFerro());
         //((Sala)mapa.getPlayer().getLocalAtual()).addItem(new MachadoFerro());
 		/**/
+        
+        Principal p = new Principal(mapa);
 		
-		SwingUtilities.invokeLater(new Runnable() {
+		/*SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				JFrame frame = new JFrame();
-				Principal gui = new Principal(mapa, frame);
+				Principal_old gui = new Principal_old(mapa, frame);
 				UIManager.LookAndFeelInfo info[] = UIManager.getInstalledLookAndFeels();
 				try{
 					UIManager.setLookAndFeel(info[3].getClassName());
@@ -53,7 +56,7 @@ public class Jogo {
 				frame.pack();
 				frame.setVisible(true);
 			}
-		});
+		});*/
 		
 		/*while (true) {
 			try {

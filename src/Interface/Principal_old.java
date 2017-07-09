@@ -37,15 +37,15 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Principal extends javax.swing.JPanel {	
+public class Principal_old extends javax.swing.JPanel {	
 	private Mapa mapa;
 	private JFrame frame;
 	
-	public Principal() {
+	public Principal_old() {
 		initComponents();
 	}
 	
-	public Principal(Mapa mapa, JFrame frame) {
+	public Principal_old(Mapa mapa, JFrame frame) {
 		this.mapa = mapa;
 		this.frame = frame;
 		initComponents();
