@@ -25,7 +25,7 @@ public class Console{
 				break;
             case "backpack":
                 mapa.getPlayer().getItens().imprimeItens();
-				break;
+				return;//break;
             case "pickup":
                 if (comandoSplited.length < 2) {
                     System.out.println("Comando incompleto.");
@@ -138,6 +138,6 @@ public class Console{
                 System.out.println("Comando inválido.");
                 break;
         }
-		//Console.console(mapa, "backpack");
+		Console.console(mapa, "backpack");
     }
 }

@@ -53,7 +53,7 @@ public class Principal extends javax.swing.JPanel {
 	
 	private void atualizaGUI(){
 		setAllLabelsToDefault();
-		defineQuantidadeItens();
+		localSetItemQuantidade();
 		mostraPortas();
 		mostraTrolls();
 		nomeSala.setText(mapa.getPlayer().getLocalAtual().getNome());
@@ -77,7 +77,7 @@ public class Principal extends javax.swing.JPanel {
 						}else{
 							setAllLabelsToDefault();
                             Console.console(mapa, "moveto "+porta.getIdentificador()+" door");
-							botaoPorta.setLabel("sair");
+							botaoPorta.setText("sair");
 						}
 					} catch (Exception e) {
 						infoBox(e.getMessage(), "Porta");
@@ -99,6 +99,9 @@ public class Principal extends javax.swing.JPanel {
 					try {
 						Console.console(mapa, "throwAxe "+troll.getNome());
 						JPanelTrolls.remove(botaoTroll);
+                        quantidadeMachadoOuro.setText(mapa.getPlayer().getItens().getQuantidadeItem(MachadoOuro.class)+"");
+                        quantidadeMachadoBronze.setText(mapa.getPlayer().getItens().getQuantidadeItem(MachadoBronze.class)+"");
+                        quantidadeMachadoFerro.setText(mapa.getPlayer().getItens().getQuantidadeItem(MachadoFerro.class)+"");
 						frame.validate();
 						/*TODO arrumar o label do jogador*/
 					} catch (Exception e) {
@@ -117,23 +120,23 @@ public class Principal extends javax.swing.JPanel {
 	
 	// TODO - remover gambi de setar os labels
 	private void setAllLabelsToDefault(){
-		bntAcaoSalaOuro.setLabel("Mover");
-		bntAcaoSalaPocao.setLabel("Mover");
-		bntAcaoSalaChave.setLabel("Mover");
-		bntAcaoMachadoOuro.setLabel("Mover");
-		bntAcaoMachadoFerro.setLabel("Mover");
-		bntAcaoMachadoBronze.setLabel("Mover");
+		bntAcaoSalaOuro.setText("Mover");
+		bntAcaoSalaPocao.setText("Mover");
+		bntAcaoSalaChave.setText("Mover");
+		bntAcaoMachadoOuro.setText("Mover");
+		bntAcaoMachadoFerro.setText("Mover");
+		bntAcaoMachadoBronze.setText("Mover");
 		for(Component botaoPorta: JPanelPortas.getComponents()){
 			if(botaoPorta instanceof ButtonPorta){
 				String nome = ((ButtonPorta) botaoPorta).getLabelPorta();
-				((ButtonPorta) botaoPorta).setLabel(nome);
+				((ButtonPorta) botaoPorta).setText(nome);
 				
 			}
 		}
 		frame.validate();
 	}
 	
-	public void defineQuantidadeItens(){
+	public void localSetItemQuantidade(){
 		if(mapa.getPlayer().getLocalAtual() instanceof Sala){
 			int quantidade;
 			Sala sala = ((Sala)mapa.getPlayer().getLocalAtual());
@@ -582,15 +585,14 @@ public class Principal extends javax.swing.JPanel {
 		try {
 			int quantidadeDeOuro;
 			if(mapa.getPlayer().getPerto() instanceof Ouro){
-				int quantidade = Integer.parseInt(quantidadeMachadoOuro.getText());
 				quantidadeDeOuro = ((Ouro) mapa.getPlayer().getPerto()).getQuantidade();
 				Console.console(mapa, "pickup ouro");
-				quantidadeOuro.setText((quantidade+quantidadeDeOuro)+"");
-				defineQuantidadeItens();
+				quantidadeOuro.setText((quantidadeDeOuro)+"");
+				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto ouro");
 				quantidadeDeOuro = ((Ouro) mapa.getPlayer().getPerto()).getQuantidade();
-				bntAcaoSalaOuro.setLabel("pegar");
+				bntAcaoSalaOuro.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Ouro");
@@ -613,12 +615,12 @@ public class Principal extends javax.swing.JPanel {
 		try {
 			if(mapa.getPlayer().getPerto() instanceof MachadoOuro){
 				Console.console(mapa, "pickup machado de ouro");
-				int quantidade = Integer.parseInt(quantidadeMachadoOuro.getText());
-				quantidadeMachadoOuro.setText((quantidade+1)+"");
-				defineQuantidadeItens();
+				int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(MachadoOuro.class);
+				quantidadeMachadoOuro.setText((quantidade)+"");
+				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto machado de ouro");
-				bntAcaoMachadoOuro.setLabel("pegar");
+				bntAcaoMachadoOuro.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Machado de Ouro");
@@ -630,12 +632,12 @@ public class Principal extends javax.swing.JPanel {
 		try {
 			if(mapa.getPlayer().getPerto() instanceof MachadoBronze){
 				Console.console(mapa, "pickup machado de bronze");
-				int quantidade = Integer.parseInt(quantidadeMachadoBronze.getText());
+				int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(MachadoBronze.class);
 				quantidadeMachadoBronze.setText((quantidade+1)+"");
-				defineQuantidadeItens();
+				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto machado de bronze");
-				bntAcaoMachadoBronze.setLabel("pegar");
+				bntAcaoMachadoBronze.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Machado de Ouro");
@@ -647,12 +649,12 @@ public class Principal extends javax.swing.JPanel {
 		try {
 			if(mapa.getPlayer().getPerto() instanceof MachadoFerro){
 				Console.console(mapa, "pickup machado de Ferro");
-				int quantidade = Integer.parseInt(quantidadeMachadoFerro.getText());
+				int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(MachadoFerro.class);
 				quantidadeMachadoFerro.setText((quantidade+1)+"");
-				defineQuantidadeItens();
+				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto machado de Ferro");
-				bntAcaoMachadoFerro.setLabel("pegar");
+				bntAcaoMachadoFerro.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Machado de Ouro");
@@ -666,10 +668,10 @@ public class Principal extends javax.swing.JPanel {
 				Console.console(mapa, "pickup pocao");
 				int quantidade = Integer.parseInt(quantidadePocao.getText());
 				quantidadePocao.setText((quantidade+1)+"");
-				defineQuantidadeItens();
+				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto pocao");
-				bntAcaoSalaPocao.setLabel("pegar");
+				bntAcaoSalaPocao.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Poção");
@@ -683,10 +685,10 @@ public class Principal extends javax.swing.JPanel {
 				Console.console(mapa, "pickup Chave");
 				int quantidade = Integer.parseInt(quantidadeChaves.getText());
 				quantidadeChaves.setText((quantidade+1)+"");
-				defineQuantidadeItens();
+				localSetItemQuantidade();
 			}else{
 				Console.console(mapa, "moveto Chave");
-				bntAcaoSalaChave.setLabel("pegar");
+				bntAcaoSalaChave.setText("pegar");
 			}
 		} catch (Exception e) {
 			infoBox(e.getMessage(), "Poção");

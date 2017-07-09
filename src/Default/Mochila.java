@@ -38,6 +38,43 @@ public class Mochila {
     public void setOuro(Ouro ouro) {
         this.ouro = ouro;
     }
+    
+    public int getQuantidadeItem(Class tipo){
+        if(tipo == MachadoOuro.class){
+            int quantidade = 0;
+            for(Pegavel machado: this.machados){
+                if(machado instanceof MachadoOuro){
+                    quantidade+=((Machado)machado).getDurabilidade();
+                }
+            }
+            return quantidade;
+        }else if(tipo == MachadoBronze.class){
+            int quantidade = 0;
+            for(Pegavel machado: this.machados){
+                if(machado instanceof MachadoBronze){
+                    quantidade+=((Machado)machado).getDurabilidade();
+                }
+            }
+            return quantidade;
+        }else if(tipo == MachadoOuro.class){
+            int quantidade = 0;
+            for(Pegavel machado: this.machados){
+                if(machado instanceof MachadoFerro){
+                    quantidade+=((Machado)machado).getDurabilidade();
+                }
+            }
+            return quantidade;
+        }else if(tipo == Pocao.class){
+            return this.pocoes.size();
+        }else if(tipo == Chave.class){
+            return this.chaves.size();
+        }else if(tipo == Ouro.class){
+            return this.ouro.getQuantidade();
+        }else if(tipo == Diamante.class){
+            return 0;
+        }
+        return 0;
+    }
 
     public void addItem(Pegavel item) throws ItemException {
         if (item instanceof Ouro) {
