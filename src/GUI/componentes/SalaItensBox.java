@@ -43,7 +43,6 @@ public class SalaItensBox extends Box{
             //Machado de Ouro
             SalaItem itemMachadoFerro = new SalaItem("Machado Ferro", sala.getQuantidadeItem(MachadoFerro.class), separacaoDireita);
             direita.add(itemMachadoFerro);
-        
             
         itemOuro.getAcaoBotao().addActionListener(new ActionListener() {
             @Override

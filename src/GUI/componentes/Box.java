@@ -3,6 +3,7 @@ package GUI.componentes;
 import Default.Util;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -17,6 +18,7 @@ public class Box extends Container {
         super();
         
         this.setSize(this.getMaximumSize());
+        this.setSize(0, 0);
         this.orientacao = orientacao;
     }
     
@@ -48,6 +50,26 @@ public class Box extends Container {
         this.espacamento = espacamento;
     }
     
+    public void updateSize(){
+        Dimension tamanho = new Dimension(0, 0);
+        
+        for(int i = 0; i < this.getComponentCount(); i++){
+            if(this.getComponent(i) instanceof Box){
+                ((Box)this.getComponent(i)).updateSize();
+            }
+            Point alcance = Util.getAlcance(this.getComponent(i));
+            
+            if(alcance.x > tamanho.width){
+                tamanho.width = alcance.x;
+            }
+            if(alcance.y > tamanho.height){
+                tamanho.height = alcance.y;
+            }
+        }
+        
+        this.setSize(tamanho);
+    }
+    
     @Override
     final public Component add(Component comp){
         Point posicao = comp.getLocation();
@@ -72,12 +94,9 @@ public class Box extends Container {
         
         super.add(comp);
         
-        if(this.getSize().width < Util.getAlcance(comp).x){
-            this.setSize(Util.getAlcance(comp).x, this.getHeight());
-        }
-        if(this.getSize().height < Util.getAlcance(comp).y){
-            this.setSize(this.getWidth(), Util.getAlcance(comp).y);
-        }
+        this.updateSize();
+        
+        System.out.println("BOX ADD: " + comp.getClass() + "\n  " + this.getBounds());
         
         return comp;
     }
