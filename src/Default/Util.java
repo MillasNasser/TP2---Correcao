@@ -1,8 +1,8 @@
 package Default;
 
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 public class Util {
 	static public boolean compare(String [] nomes, String nomeC){
@@ -16,13 +16,12 @@ public class Util {
     }
     
     static public Point getAlcance(Component comp){
-        Point posicao = comp.getLocation();
-        Dimension tamanho = comp.getSize();
+        Rectangle bounds = comp.getBounds();
         
         Point alcance = new Point();
         
-        alcance.x = posicao.x + tamanho.width;
-        alcance.y = posicao.y + tamanho.height;
+        alcance.x = bounds.x + bounds.width;
+        alcance.y = bounds.y + bounds.height;
         
         return alcance;
     }
