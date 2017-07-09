@@ -1,0 +1,114 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Ce gabarit peu servir autant les philosophes que les scientifiques ; 
+% et même d'autres genres, vous en faites ce que vous voulez.
+% J'ai modifié et partagé ce gabarit afin d'épargner à d'autres 
+% d'interminables heures à modifier des gabarits d'articles anglais. 
+% 
+% L'ajout d'une table des matières et une bibliographie a été ajoutée,
+% rendant le gabarit plus ajusté aux besoins de plusieurs.
+%
+% Pour retrouvé le gabarit original, veuillez télécharger les
+% documents suivants: llncs2e.zip (.cls et autres) et 
+% typeinst.zip (.tex). Les documents ci-haut mentionnés ne sont pas 
+% disponibles au même endroit, alors je vous invite à fouiller le web. 
+%
+% Pour l'instant (02-2016) ils sont disponibles tous deux ici :
+%
+% http://kawahara.ca/springer-lncs-latex-template/
+%
+% Netkompt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{natbib}
+%\bibliographystyle{apalike-pt-br}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage[brazil]{babel} % Pour adopter les règles de typographie française
+\usepackage[T1]{fontenc} % Pour que les lettres accentuées soient reconnues
+
+\usepackage{url}
+\urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+\urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+\urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|    
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+
+\mainmatter 
+
+\title{Relatório Trabalho Prático III}
+
+\titlerunning{Trabalho Prático III}
+
+\author{Christoffer de Paula Oliveira, Paulo Henrique Tobias, Millas Násser}
+
+\institute{UFSJ- Universidade Federal de São João Del Rei}
+
+\authorrunning{Christoffer de Paula Oliveira, Paulo Henrique Tobias, Millas Násser}
+
+\toctitle{Sumário}
+\tocauthor{{}}
+
+\maketitle
+
+\medskip
+
+\begingroup
+\let\clearpage\relax
+\tableofcontents
+\addcontentsline{toc}{section}{Introduction}
+\endgroup
+
+\medskip
+\medskip
+
+%\emph{Localizavel}
+
+\section*{Introdução}
+    Este documento tem como objetivo relatar o que ajudou e o que atrapalhou na implementação das novas funcionalidades requeridas no Trabalho Prático III.Assim como, a percepção do grupo sobre a evolução do código no Trabalho Prático II.
+
+\section{Corredores}
+    A princípio para termos um código mais limpo e sem repetições, foi criada a classe \emph{Local}, salas assim como corredores, estendem de Local.Com isso, as classes \emph{Corredor} e \emph{Sala} ficaram com implementações de apenas suas diferenças.Como por exemplo, tamanho das salas, informações de objetos dentro da sala, troll das cavernas, são funcionalidades que os corredores não necessitam utilizar.Houve também uma utilidade dessa classe para adicionar os novos trolls pois há trolls guerreiros em ambas as classes,assim basta inicializar na classe super.Para termos uma organização melhor antes de adaptar os corredores, as portas passaram ser únicas,isto é, cada porta tem sua Sala e seu Corredor.Assim, apenas uma porta liga dois Locais.Ao contrário do Trabalho prático II que tínhamos duas portas para essa tarefa.Por último a classe \emph{Mapa} passou a ter um array de Corredores.Os ambientes, como por exemplo, onde os jogador se encontra passou a ser Local, dexando de ser apenas sala.
+
+    \subsection{Nossa perspetiva sobre essa evolução}
+
+\section{Throlls}
+    A antiga classe \emph{Troll} passou a ser uma super classe para os dois novos tipos de troll.Apartir disso, assim como nas classes que estendem local , as classes \emph{TrollGuerreiro} e \emph{TrollCaverna} ficaram com implementação de apenas suas diferenças.Os trolls Guerreiros ficam responsáveis apenas por atacar o jogador, enquanto os trolls das cavernas ficam responsáveis por proteger os amontoados de ouro e diamantes. 
+
+    \subsection{Nossa perspetiva sobre essa evolução}
+    
+\section{Interface Gráfica}
+    
+    
+\bibliography{references}
+\nocite{*} 
+
+\end{document}
+
