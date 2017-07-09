@@ -83,7 +83,6 @@ public class Jogador {
 				Pegavel item = this.getItem("machado de " + material);
 				try {
 					((Machado) item).usar(troll);
-					this.localAtual.removeTroll(troll);
 				} catch (ItemException me) {
 					//Machado acabou a duração.
                     System.out.println("TIRA O MACHADO AÍ");
@@ -92,6 +91,7 @@ public class Jogador {
 					//throw me;
 					
 				}finally{
+					this.localAtual.removeTroll(troll);
 					return;
 				}
 			} catch (ItemException ex) {}
