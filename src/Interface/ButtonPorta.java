@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import Default.Local;
 import Default.Porta;
 import javax.swing.JButton;
 
@@ -13,27 +14,19 @@ import javax.swing.JButton;
  * @author millas
  */
 public class ButtonPorta extends JButton{
-	private Porta porta;
+	private String portaStr;
 	
 	public ButtonPorta(){
 		super();
-		this.porta = null;
+		this.portaStr = null;
 	}
 	
-	public ButtonPorta(Porta porta){
-		super(porta.getIdentificador());
-		this.porta = porta;
-	}
-
-	public Porta getPorta() {
-		return porta;
-	}
-
-	public void setPorta(Porta porta) {
-		this.porta = porta;
+	public ButtonPorta(Local localAtual, Porta porta){
+		super(porta.getFora(localAtual).getNome());
+		this.portaStr = porta.getFora(localAtual).getNome();
 	}
 	
 	public String getLabelPorta(){
-		return this.porta.getIdentificador();
+		return this.portaStr;
 	}
 }

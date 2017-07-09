@@ -65,7 +65,7 @@ public class Principal extends javax.swing.JPanel {
 		JPanelPortas.removeAll();
 		for(Porta porta: mapa.getPlayer().getLocalAtual().getPortas()){
 			
-			ButtonPorta botaoPorta = new ButtonPorta(porta);
+			ButtonPorta botaoPorta = new ButtonPorta(mapa.getPlayer().getLocalAtual(), porta);
 			botaoPorta.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent event) {
@@ -84,7 +84,7 @@ public class Principal extends javax.swing.JPanel {
 						}else{
 							setAllLabelsToDefault();
                             Console.console(mapa, "moveto " + porta.getIdentificador() + " door");
-							botaoPorta.setText("sair");
+							botaoPorta.setText("Sair");
 						}
 					} catch (Exception e) {
                         atualizaGUI();
