@@ -87,7 +87,7 @@ public class Principal extends javax.swing.JPanel {
 					try {
 						if(mapa.getPlayer().getPerto() instanceof Porta && mapa.getPlayer().getPerto() == porta){
                             try{
-                                Comando.console(mapa, "exit");
+                                Comando.comando(mapa, "exit");
                             }catch (Exception e) {
                                 atualizaQuantidade(quantidadePocao, Pocao.class);
                                 
@@ -104,7 +104,7 @@ public class Principal extends javax.swing.JPanel {
                             }
 						}else{
 							setAllLabelsToDefault();
-                            Comando.console(mapa, "moveto " + porta.getFora(mapa.getPlayer().getLocalAtual()).getNome() + " door");
+                            Comando.comando(mapa, "moveto " + porta.getFora(mapa.getPlayer().getLocalAtual()).getNome() + " door");
 							botaoPorta.setText("Sair");
 						}
 					} catch (Exception e) {
@@ -126,7 +126,7 @@ public class Principal extends javax.swing.JPanel {
 				@Override
 				public void actionPerformed(ActionEvent event) {
 					try {
-						Comando.console(mapa, "throwAxe " + troll.getNome());
+						Comando.comando(mapa, "throwAxe " + troll.getNome());
 						JPanelTrolls.remove(botaoTroll);
 						frame.validate();
                         quantidadeMachadoOuro.setText(String.valueOf(mapa.getPlayer().getItens().getQuantidadeItem(MachadoOuro.class)));
@@ -640,7 +640,7 @@ public class Principal extends javax.swing.JPanel {
 		
     private void usarPocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usarPocaoActionPerformed
 		try {
-			Comando.console(mapa, "lock");
+			Comando.comando(mapa, "lock");
 			atualizaGUI();
             int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Pocao.class);
             quantidadePocao.setText(String.valueOf(quantidade));
@@ -658,13 +658,10 @@ public class Principal extends javax.swing.JPanel {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(mapa.getPlayer().getPerto() != null){
-                    System.out.println(mapa.getPlayer().getPerto().getClass());
-                }
                 //if(mapa.getPlayer().getPerto() != null && mapa.getPlayer().getPerto().getClass().equals(classe)){
                 if(((JButton)e.getSource()).getText().equals("Pegar")){
                     try{
-                        Comando.console(mapa, "pickup " + tipo);
+                        Comando.comando(mapa, "pickup " + tipo);
                         atualizaQuantidade(labelQuantidade, classe);
                         localSetItemQuantidade();
                         setAllLabelsToDefault();
@@ -673,7 +670,7 @@ public class Principal extends javax.swing.JPanel {
                     }
                 }else{
                     try{
-                        Comando.console(mapa, "moveto " + tipo);
+                        Comando.comando(mapa, "moveto " + tipo);
                         setAllLabelsToDefault();
                         ((JButton)e.getSource()).setText("Pegar");
                     } catch (Exception ex) {
@@ -689,7 +686,7 @@ public class Principal extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    Comando.console(mapa, "drop " + tipo);
+                    Comando.comando(mapa, "drop " + tipo);
                     atualizaQuantidade(labelQuantidade, classe);
                 }catch(Exception ex){
                     infoBox(ex.getMessage(), "Largar " + tipo);

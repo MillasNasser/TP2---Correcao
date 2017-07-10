@@ -24,23 +24,6 @@ public class Local {
         this.nome = nome;
     }
     
-    public void imprimeInfo(){
-        System.out.printf("Nome: %s\n", this.getNome());
-        System.out.println("  PORTAS");
-        for(Porta porta: this.getPortas()){
-            System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada")+" e"+((porta.isEncantada()) ? " encantada" : " sem encanto"));
-        }
-        System.out.println("  TROLLS");
-        System.out.println("    Trolls da Caverna");
-        for (Troll troll : this.trollsGuerreiros) {
-            System.out.println("    " + troll.getNome());
-        }
-        System.out.println("    Trolls Guerreiros");
-        for (Troll troll : this.getTrollsGuerreiros()) {
-            System.out.println("    " + troll.getNome());
-        }
-    }
-    
     //Porta.
     public void addPorta(Porta porta) throws AproximavelException{
         this.portas.add(porta);

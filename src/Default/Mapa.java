@@ -65,7 +65,6 @@ public class Mapa {
 
 		//Corredores.
 		JsonArray jsonCorredores = jsonObject.getAsJsonArray("corredores");
-		System.out.printf("corredores: %d\n", jsonCorredores.size());
 		for (int i = 0; i < jsonCorredores.size(); i++) {
 			JsonObject jsonCorredor = jsonCorredores.get(i).getAsJsonObject();
 			Corredor corredor = new Corredor(String.format("Corredor %d", i));
@@ -181,21 +180,18 @@ public class Mapa {
 		}
 
 		Random random = new Random();
-		int quantidade = 100;
-		while (quantidade > 0) {
-			try {
-				System.out.println(this.salas.size() + "");
-				if (random.nextBoolean()) {
+        int quantidade = 100;
+        while(quantidade > 0){
+            try {
+                if(random.nextBoolean()){
 					this.espalhaItem(new Ouro(random.nextInt(quantidade)), this.salas.size());
-				} else {
-					System.out.println(this.salas.size() + "");
+				}else{
 					this.espalhaItem(new Diamante(random.nextInt(quantidade)), this.salas.size());
 				}
-				System.out.println(this.salas.size() + "");
-			} catch (ItemException ex) {
-				quantidade -= 10;
-			}
-		}
+            } catch (ItemException ex) {
+                quantidade -= 10;
+            }
+        }
 	}
 
 	public void espalhaTrolls() {
