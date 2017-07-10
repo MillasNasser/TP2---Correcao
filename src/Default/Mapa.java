@@ -3,6 +3,7 @@ package Default;
 import Exceptions.ItemException;
 import Exceptions.LocalException;
 import Exceptions.PersonagemException;
+import Interface.Principal;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -179,7 +180,7 @@ public class Mapa {
 			//A exceção só será lançada em Ouro.
 		}
 
-		/*Random random = new Random();
+		Random random = new Random();
         int quantidade = 100;
         while(quantidade > 0){
             try {
@@ -194,7 +195,7 @@ public class Mapa {
             } catch (ItemException ex) {
                 quantidade -= 10;
             }
-        }*/
+        }
 	}
 
 	public void espalhaTrolls() {
@@ -219,7 +220,6 @@ public class Mapa {
 
 	public void verifcarFim() throws ItemException {
 		for (Sala sala : this.salas) {
-
 			try {
 				if (sala.getQuantidadeOuro() != 0 &&
 					sala.getQuantidadeDiamante()!= 0 &&
@@ -228,6 +228,7 @@ public class Mapa {
 				}else if(sala.getQuantidadeOuro() == 0 &&
 						sala.getQuantidadeDiamante() == 0 &&
 						getPlayer().getLocalAtual().equals(getSala("saida"))){
+					Principal.infoBox("Você venceu o jogo!!!!!", "Jogo");
 					System.exit(0); //Fim de jogo.
 				}
 			} catch (Exception ex) {}

@@ -21,14 +21,6 @@ public class Mochila {
         machados = new ArrayList<>();
         pocoes = new ArrayList<>();
         chaves = new ArrayList<>();
-		chaves.add(new Chave());
-		chaves.add(new Chave());
-		chaves.add(new Chave());
-		chaves.add(new Chave());
-		chaves.add(new Chave());
-		chaves.add(new Chave());
-		chaves.add(new Chave());
-		chaves.add(new Chave());
         ouro = new Ouro(0);
 		diamante = new Diamante(0);
     }

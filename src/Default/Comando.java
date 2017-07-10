@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Exceptions.AproximavelException;
 import Exceptions.PersonagemException;
+import Interface.Principal;
 
 public class Comando {
 
@@ -110,7 +111,7 @@ public class Comando {
 				} catch (AproximavelException ex) {
 					throw ex;
 				}
-				
+			
 				mapa.verifcarFim();
 				
 				try {
