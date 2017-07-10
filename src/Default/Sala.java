@@ -181,9 +181,9 @@ public class Sala extends Local{
                 return item;
             }
         }
-        if(this.ouro.compare(itemStr)){
+        if(this.ouro.compare(itemStr) && this.getQuantidadeOuro() > 0){
             return this.ouro;
-        }else if(this.diamante.compare(itemStr)){
+        }else if(this.diamante.compare(itemStr) && this.getQuantidadeDiamante() > 0){
 			return this.diamante;
 		}
         throw new ItemException("Não há " + itemStr + " na sala");
