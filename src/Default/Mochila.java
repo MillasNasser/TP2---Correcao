@@ -154,18 +154,4 @@ public class Mochila {
         }
         throw new ItemException("Não há " + itemStr + " na mochila.");
     }
-
-    public void imprimeItens() {
-        System.out.println("Ouro <" + ouro.getQuantidade() + ">");
-        System.out.println("Poções: " + pocoes.size());
-        System.out.println("Chaves: " + chaves.size());
-        System.out.println("Machados:");
-        for (Pegavel item : this.machados) {
-            Machado machado = (Machado)item;
-            System.out.printf("    -%s | %d\n", machado.getMaterial(), machado.getDurabilidade());
-            /*System.out.println("    -machado de " + ((Machado) item).getMaterial()
-                + ": " + ((Machado) item).getDurabilidade());*/
-        }
-
-    }
 }

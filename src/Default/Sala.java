@@ -136,28 +136,6 @@ public class Sala extends Local{
             super.removeTroll((TrollGuerreiro) troll);
         }
     }
-
-    public void imprimeInfo() {
-        System.out.printf("Sala Atual: %s | Tamanho: %d metros quadrados\n", this.getNome(), this.metrosQuadrados);
-        System.out.println("  PORTAS");
-        for(Porta porta: this.getPortas()){
-            System.out.println("    Porta " + porta.getIdentificador() + ((porta.getAberta()) ? " aberta" : " fechada")+" e"+((porta.isEncantada()) ? " encantada" : " sem encanto"));
-        }
-        System.out.println("  ITENS");
-        System.out.printf("%s", (this.ouro.getQuantidade() > 0)?String.format("    Ouro <%d>\n", this.ouro.getQuantidade()):"");
-        for (Pegavel item : this.itens) {
-            System.out.println("    " + item);
-        }
-        System.out.println("  TROLLS");
-        System.out.println("    Trolls da Caverna");
-        for (Troll troll : this.trollsCaverna) {
-            System.out.println("    " + troll.getNome());
-        }
-        System.out.println("    Trolls Guerreiros");
-        for (Troll troll : this.getTrollsGuerreiros()) {
-            System.out.println("    " + troll.getNome());
-        }
-    }
     
 	public List<Troll> getTrolls(){
 		List<Troll> todosTrolls = new ArrayList<>();
