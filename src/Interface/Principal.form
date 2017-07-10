@@ -22,6 +22,7 @@
               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="InfoJogador" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -106,7 +107,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="216" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -257,7 +258,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ouro"/>
+            <Property name="text" type="java.lang.String" value="Ouro"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeAxeOuro">
@@ -272,7 +273,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">
           <Properties>
-            <Property name="text" type="java.lang.String" value="bronze"/>
+            <Property name="text" type="java.lang.String" value="Bronze"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeAxeFerro">
@@ -282,7 +283,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ferro"/>
+            <Property name="text" type="java.lang.String" value="Ferro"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnAcaoMachadoOuro">
@@ -401,9 +402,21 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="quantidadeMachadoOuro" min="-2" max="-2" attributes="0"/>
-                                      <Component id="quantidadeMachadoBronze" min="-2" max="-2" attributes="0"/>
-                                      <Component id="quantidadeMachadoFerro" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="quantidadeMachadoOuro" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btnLargarMachadoOuro" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="quantidadeMachadoBronze" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btnLargarMachadoBronze" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="quantidadeMachadoFerro" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btnLargarMachadoFerro" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -418,6 +431,8 @@
                                           <Component id="quantidadePocao" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="usarPocao" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnLargarPocao" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -436,7 +451,7 @@
                           <Component id="quantidadeDiamante" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -454,30 +469,34 @@
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                           <Component id="quantidadeMachadoOuro" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLargarMachadoOuro" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="quantidadeMachadoBronze" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLargarMachadoBronze" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="quantidadeMachadoFerro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLargarMachadoFerro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="quantidadePocao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="usarPocao" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLargarPocao" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="quantidadeChaves" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="138" max="32767" attributes="0"/>
+                  <EmptySpace pref="120" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="quantidadeOuro" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -513,12 +532,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Chave:"/>
+            <Property name="text" type="java.lang.String" value="Chaves:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Po&#xe7;&#xe3;o:"/>
+            <Property name="text" type="java.lang.String" value="Po&#xe7;&#xf5;es"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="quantidadeDiamante">
@@ -538,7 +557,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ferro:"/>
+            <Property name="text" type="java.lang.String" value="Ferro:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -553,7 +572,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="bronze:"/>
+            <Property name="text" type="java.lang.String" value="Bronze:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
@@ -568,7 +587,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ouro:"/>
+            <Property name="text" type="java.lang.String" value="Ouro:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
@@ -579,6 +598,26 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Machados:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnLargarMachadoOuro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Largar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnLargarMachadoBronze">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Largar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnLargarMachadoFerro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Largar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnLargarPocao">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Largar"/>
           </Properties>
         </Component>
       </SubComponents>

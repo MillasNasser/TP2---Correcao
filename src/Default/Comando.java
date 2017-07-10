@@ -49,13 +49,9 @@ public class Comando {
 					break;
 				}
 				//soltar objeto da mochila
-				try {
-					mapa.getPlayer().largar(comandoSplited[1]);
+                mapa.getPlayer().largar(comandoSplited[1]);
 
-					System.out.println("Jogador largou " + comandoSplited[1]);
-				} catch (ItemException ex) {
-					System.out.println(ex.getMessage());
-				}
+                System.out.println("Jogador largou " + comandoSplited[1]);
 				break;
 			case "moveto":
 				if (comandoSplited.length < 2) {

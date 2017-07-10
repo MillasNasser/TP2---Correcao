@@ -35,6 +35,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -50,6 +51,10 @@ public class Principal extends javax.swing.JPanel {
 		this.mapa = mapa;
 		this.frame = frame;
 		initComponents();
+        btnLargarMachadoOuro.addActionListener(acaoBotaoLargar("Machado de Ouro", quantidadeMachadoOuro, MachadoOuro.class));
+        btnLargarMachadoBronze.addActionListener(acaoBotaoLargar("Machado de Bronze", quantidadeMachadoBronze, MachadoBronze.class));
+        btnLargarMachadoFerro.addActionListener(acaoBotaoLargar("Machado de Ferro", quantidadeMachadoFerro, MachadoFerro.class));
+        btnLargarPocao.addActionListener(acaoBotaoLargar("Pocao", quantidadePocao, Pocao.class));
 		atualizaGUI();
 	}
 	
@@ -75,14 +80,12 @@ public class Principal extends javax.swing.JPanel {
                             try{
                                 Comando.console(mapa, "exit");
                             }catch (Exception e) {
-                                int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Pocao.class);
-                                quantidadePocao.setText(String.valueOf(quantidade));
+                                atualizaQuantidade(quantidadePocao, Pocao.class);
                                 
-                                quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Ouro.class);
-                                quantidadeOuro.setText(String.valueOf(quantidade));
+                                atualizaQuantidade(quantidadeOuro, Ouro.class);
 								
-								quantidade = mapa.getPlayer().getItens().getQuantidadeItem(Diamante.class);
-                                quantidadeDiamante.setText(String.valueOf(quantidade));
+								atualizaQuantidade(quantidadeDiamante, Diamante.class);
+                                
                                 atualizaGUI();
                                 infoBox(e.getMessage(), "Porta");
                             }finally{
@@ -259,6 +262,10 @@ public class Principal extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnLargarMachadoOuro = new javax.swing.JButton();
+        btnLargarMachadoBronze = new javax.swing.JButton();
+        btnLargarMachadoFerro = new javax.swing.JButton();
+        btnLargarPocao = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         local.setText("Local");
@@ -289,17 +296,17 @@ public class Principal extends javax.swing.JPanel {
 
         jLabel15.setText("Machados");
 
-        jLabel16.setText("ouro");
+        jLabel16.setText("Ouro");
 
         labelQuantidadeAxeOuro.setText("0");
 
         labelQuantidadeAxeBronze.setText("0");
 
-        jLabel19.setText("bronze");
+        jLabel19.setText("Bronze");
 
         labelQuantidadeAxeFerro.setText("0");
 
-        jLabel21.setText("ferro");
+        jLabel21.setText("Ferro");
 
         btnAcaoMachadoOuro.setText("ação");
         btnAcaoMachadoOuro.addActionListener(new java.awt.event.ActionListener() {
@@ -411,7 +418,7 @@ public class Principal extends javax.swing.JPanel {
                         .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAcaoMachadoFerro)
                             .addComponent(btnAcaoMachadoBronze))))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(InfoSalaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(InfoSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,9 +504,9 @@ public class Principal extends javax.swing.JPanel {
 
         quantidadeMachadoBronze.setText("0");
 
-        jLabel7.setText("Chave:");
+        jLabel7.setText("Chaves:");
 
-        jLabel6.setText("Poção:");
+        jLabel6.setText("Poções");
 
         quantidadeDiamante.setText("0");
 
@@ -507,23 +514,31 @@ public class Principal extends javax.swing.JPanel {
 
         quantidadeChaves.setText("0");
 
-        jLabel3.setText("ferro:");
+        jLabel3.setText("Ferro:");
 
         jLabel1.setText("Jogador");
 
         quantidadePocao.setText("0");
 
-        jLabel4.setText("bronze:");
+        jLabel4.setText("Bronze:");
 
         jLabel12.setText("Ouro:");
 
         quantidadeMachadoOuro.setText("0");
 
-        jLabel5.setText("ouro:");
+        jLabel5.setText("Ouro:");
 
         jLabel13.setText("Diamante:");
 
         jLabel2.setText("Machados:");
+
+        btnLargarMachadoOuro.setText("Largar");
+
+        btnLargarMachadoBronze.setText("Largar");
+
+        btnLargarMachadoFerro.setText("Largar");
+
+        btnLargarPocao.setText("Largar");
 
         javax.swing.GroupLayout InfoJogadorLayout = new javax.swing.GroupLayout(InfoJogador);
         InfoJogador.setLayout(InfoJogadorLayout);
@@ -545,9 +560,18 @@ public class Principal extends javax.swing.JPanel {
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(quantidadeMachadoOuro)
-                                    .addComponent(quantidadeMachadoBronze)
-                                    .addComponent(quantidadeMachadoFerro)))
+                                    .addGroup(InfoJogadorLayout.createSequentialGroup()
+                                        .addComponent(quantidadeMachadoOuro)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLargarMachadoOuro))
+                                    .addGroup(InfoJogadorLayout.createSequentialGroup()
+                                        .addComponent(quantidadeMachadoBronze)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLargarMachadoBronze))
+                                    .addGroup(InfoJogadorLayout.createSequentialGroup()
+                                        .addComponent(quantidadeMachadoFerro)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLargarMachadoFerro))))
                             .addGroup(InfoJogadorLayout.createSequentialGroup()
                                 .addGroup(InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6)
@@ -558,7 +582,9 @@ public class Principal extends javax.swing.JPanel {
                                     .addGroup(InfoJogadorLayout.createSequentialGroup()
                                         .addComponent(quantidadePocao)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(usarPocao))))))
+                                        .addComponent(usarPocao)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnLargarPocao))))))
                     .addGroup(InfoJogadorLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel12)
@@ -569,7 +595,7 @@ public class Principal extends javax.swing.JPanel {
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(quantidadeDiamante)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         InfoJogadorLayout.setVerticalGroup(
             InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,25 +609,29 @@ public class Principal extends javax.swing.JPanel {
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(quantidadeMachadoOuro)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5)
+                        .addComponent(btnLargarMachadoOuro)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(quantidadeMachadoBronze))
+                    .addComponent(quantidadeMachadoBronze)
+                    .addComponent(btnLargarMachadoBronze))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(quantidadeMachadoFerro))
+                    .addComponent(quantidadeMachadoFerro)
+                    .addComponent(btnLargarMachadoFerro))
                 .addGap(18, 18, 18)
                 .addGroup(InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(quantidadePocao)
-                    .addComponent(usarPocao))
+                    .addComponent(usarPocao)
+                    .addComponent(btnLargarPocao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(quantidadeChaves))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addGroup(InfoJogadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(quantidadeOuro))
@@ -623,7 +653,8 @@ public class Principal extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InfoJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(InfoJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -765,6 +796,24 @@ public class Principal extends javax.swing.JPanel {
 		}
     }//GEN-LAST:event_btnAcaoSalaDiamanteActionPerformed
 
+    public void atualizaQuantidade(JLabel labelQuantidade, Class classe){
+        int quantidade = mapa.getPlayer().getItens().getQuantidadeItem(classe);
+        labelQuantidade.setText(String.valueOf(quantidade));
+    }
+    
+    public ActionListener acaoBotaoLargar(String tipo, JLabel labelQuantidade, Class classe){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    Comando.console(mapa, "drop " + tipo);
+                    atualizaQuantidade(labelQuantidade, classe);
+                }catch(Exception ex){
+                    infoBox(ex.getMessage(), "Largar " + tipo);
+                }
+            }
+        };
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel InfoJogador;
@@ -778,6 +827,10 @@ public class Principal extends javax.swing.JPanel {
     private javax.swing.JButton btnAcaoSalaDiamante;
     private javax.swing.JButton btnAcaoSalaOuro;
     private javax.swing.JButton btnAcaoSalaPocao;
+    private javax.swing.JButton btnLargarMachadoBronze;
+    private javax.swing.JButton btnLargarMachadoFerro;
+    private javax.swing.JButton btnLargarMachadoOuro;
+    private javax.swing.JButton btnLargarPocao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
