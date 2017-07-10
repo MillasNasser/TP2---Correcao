@@ -224,9 +224,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoSalaOuroActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -237,9 +234,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoSalaPocaoActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeSalaOuro">
           <Properties>
@@ -290,17 +284,11 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoMachadoOuroActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAcaoMachadoBronze">
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoMachadoBronzeActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">
           <Properties>
@@ -313,9 +301,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoMachadoFerroActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
           <Properties>
@@ -331,9 +316,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoSalaChaveActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
@@ -363,9 +345,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="a&#xe7;&#xe3;o"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcaoSalaDiamanteActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidadeSalaDiamante">
           <Properties>
