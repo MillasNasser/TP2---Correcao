@@ -181,21 +181,21 @@ public class Mapa {
 		}
 
 		Random random = new Random();
-        int quantidade = 100;
-        while(quantidade > 0){
-            try {
-				System.out.println(this.salas.size()+"");
-                if(random.nextBoolean()){
+		int quantidade = 100;
+		while (quantidade > 0) {
+			try {
+				System.out.println(this.salas.size() + "");
+				if (random.nextBoolean()) {
 					this.espalhaItem(new Ouro(random.nextInt(quantidade)), this.salas.size());
-				}else{
-					System.out.println(this.salas.size()+"");
+				} else {
+					System.out.println(this.salas.size() + "");
 					this.espalhaItem(new Diamante(random.nextInt(quantidade)), this.salas.size());
 				}
-				System.out.println(this.salas.size()+"");
-            } catch (ItemException ex) {
-                quantidade -= 10;
-            }
-        }
+				System.out.println(this.salas.size() + "");
+			} catch (ItemException ex) {
+				quantidade -= 10;
+			}
+		}
 	}
 
 	public void espalhaTrolls() {
@@ -219,20 +219,18 @@ public class Mapa {
 	}
 
 	public void verifcarFim() throws ItemException {
+		try {
+			if (!getPlayer().getLocalAtual().equals(getSala("saida"))) {
+				return;
+			}
+		} catch (Exception ex) {}
 		for (Sala sala : this.salas) {
-			try {
-				if (sala.getQuantidadeOuro() != 0 &&
-					sala.getQuantidadeDiamante()!= 0 &&
-					getPlayer().getLocalAtual().equals(getSala("saida"))) {
-					throw new ItemException("Ainda há tesouros para serem pegos!!!");
-				}else if(sala.getQuantidadeOuro() == 0 &&
-						sala.getQuantidadeDiamante() == 0 &&
-						getPlayer().getLocalAtual().equals(getSala("saida"))){
-					Principal.infoBox("Você venceu o jogo!!!!!", "Jogo");
-					System.exit(0); //Fim de jogo.
-				}
-			} catch (Exception ex) {}
+			if (sala.getQuantidadeOuro() != 0 || sala.getQuantidadeDiamante() != 0) {
+				throw new ItemException("Ainda há tesouros para serem pegos!!!");
+			}
 		}
+		Principal.infoBox("Você venceu o jogo!!!!!", "Jogo");
+		System.exit(0); //Fim de jogo.
 	}
 
 	public void atacarTroll() throws PersonagemException, ItemException {
